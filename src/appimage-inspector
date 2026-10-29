@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+[ -z "${1}" ] && {
+  echo "You must pass an AppImage as argument"'!'
+  exit 1
+}
+
+function solveLinks() {
+  # Previne links circulares
+  [ "${2}" = "11" ] && {
+    echo "squashfs-root/${1} -"
+    return
+  }
+
+  echo "${filelist}" | grep -q ^"squashfs-root/${1} -> " && {
+    solveLinks $(echo "${filelist}" | grep "squashfs-root/${1}" | cut -d' ' -f3) $((${2}+1))
+    return
+  }
+
+  echo "squashfs-root/${1}" | sed 's|^squashfs-root/||g'
+}
+
+[ ! -f "${1}" ] && {
+  echo "File '${1}' not found"'!'
+  exit 1
+}
+
+offset=$(grep -boam 2 hsqs "${1}" | sed -n 2p | cut -d\: -f1)
+
+[ -z "${offset}" ] && {
+  echo "File '${1}' is not a valid AppImage"'!'
+  exit 1
+}
+
+filelist=$(unsquashfs -o "${offset}" -ll "${1}" | tr -s ' ' | cut -d' ' -f6-8 )
+icon=$(solveLinks ".DirIcon" 1)
+root=$(echo "${filelist}" | sed 's|^squashfs-root/||g' | grep -v / | sed '/^[[:space:]]*$/d')
+desktop=$(solveLinks $(echo "${root}" | grep ".desktop"$) 1)
+
+echo -n "         Desktop File: " > /dev/stderr
+echo "${desktop}"
+
+echo -n "            Icon File: " > /dev/stderr
+echo "${icon}"
+
+echo -n "SquashFS Block Offset: " > /dev/stderr
+echo "${offset}"
+
