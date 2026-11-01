@@ -68,8 +68,8 @@ nem executa binários externos:
 ./build.sh
 ```
 
-O pacote de teste é criado em
-`dist/mainuan-install-appimage_2.0.0+test20261031.2_all.deb`. Instale-o com o gerenciador de
+O pacote oficial é criado em
+`dist/mainuan-install-appimage_2.0.1_all.deb`. Instale-o com o gerenciador de
 pacotes da distribuição. Depois, abra um AppImage pelo Dolphin ou execute:
 
 ```sh
@@ -119,12 +119,12 @@ temporárias:
 
 ```sh
 PYTHONPATH=src QT_QPA_PLATFORM=offscreen python3 -m unittest discover -s tests -v
-lintian dist/mainuan-install-appimage_2.0.0+test20261031.2_all.deb
+lintian dist/mainuan-install-appimage_2.0.1_all.deb
 ```
 
 O modo offscreen não valida renderização real no Plasma, tema claro/escuro,
 escala de fontes nem integração visual com Wayland. Para uma validação final,
-use uma VM descartável Kubuntu 26.04/Plasma 6: instale o pacote de teste, teste
+use uma VM descartável Kubuntu 26.04/Plasma 6: instale o pacote gerado, teste
 tema claro e escuro e escala de fonte ampliada, associe e abra um `.AppImage`
 no Dolphin sob Wayland; teste recusa/autorização do PolicyKit, instalação,
 reinstalação, substituição de versão, remoção pelo `apt` e falhas do `dpkg`.
@@ -167,8 +167,9 @@ O resultado apresenta Abrir aplicativo → Fechar; o aplicativo só executa apó
 
 ## Validação desta entrega
 
-Veja [VALIDATION.md](VALIDATION.md) para resultados executados, simulações,
-limitações e roteiro de VM. O `.deb` é um artefato de teste local, sem publicação.
+Veja [VALIDATION.md](VALIDATION.md) para os resultados históricos de validação,
+simulações, limitações e roteiro de VM. Os artefatos de teste permanecem em
+`dist/`; o pacote oficial é gerado pelo comando acima e será anexado à Release.
 A associação instalada anuncia o MIME AppImage ao Dolphin; preferências MIME
 já salvas pelo usuário podem exigir selecionar “Abrir com” uma vez.
 

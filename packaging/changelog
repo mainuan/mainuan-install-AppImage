@@ -1,3 +1,10 @@
+mainuan-install-appimage (2.0.1) unstable; urgency=medium
+
+  * Primeira versão estável da migração para Qt Widgets no Mainuan.
+  * Preserva a inspeção restrita e as categorias canônicas dos lançadores.
+
+ -- Mainuan <openwebosbr@gmail.com>  Sat, 31 Oct 2026 23:30:00 -0300
+
 mainuan-install-appimage (2.0.0+test20261031.2) unstable; urgency=medium
 
   * Build de teste: preserva categorias padronizadas do lançador AppImage.
