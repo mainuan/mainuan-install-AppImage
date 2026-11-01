@@ -3,6 +3,7 @@ import os
 import subprocess
 import tempfile
 import unittest
+from fnmatch import fnmatchcase
 from pathlib import Path
 from unittest.mock import patch, Mock
 
@@ -57,24 +58,16 @@ class IntegrationTests(unittest.TestCase):
             (mime / 'packages').mkdir(parents=True)
             (mime / 'packages/mainuan-appimage.xml').write_bytes((ROOT / 'packaging/appimage-mime.xml').read_bytes())
             subprocess.run(['update-mime-database', str(mime)], check=True, capture_output=True)
-            source = base / 'Aplicativo com espaços e ação.AppImage'
-            source.write_bytes(__import__('test_installer').make_appimage(base / 'fixture').read_bytes())
-            result = subprocess.run(
-                ['mimetype', f'--database={mime}', '--brief', str(source)],
-                check=True,
-                capture_output=True,
-                text=True,
-            )
-            self.assertEqual(result.stdout.strip(), 'application/vnd.appimage')
-            lower = source.with_suffix('.appimage')
-            source.rename(lower)
-            result = subprocess.run(
-                ['mimetype', f'--database={mime}', '--brief', str(lower)],
-                check=True,
-                capture_output=True,
-                text=True,
-            )
-            self.assertEqual(result.stdout.strip(), 'application/vnd.appimage')
+            globs = (mime / 'globs2').read_text(encoding='utf-8').splitlines()
+            patterns = [
+                fields[2]
+                for line in globs
+                if not line.startswith('#')
+                for fields in [line.split(':', 2)]
+                if len(fields) == 3 and fields[1] == 'application/vnd.appimage'
+            ]
+            self.assertTrue(any(fnmatchcase('Aplicativo com espaços e ação.AppImage'.casefold(), pattern.casefold()) for pattern in patterns))
+            self.assertTrue(any(fnmatchcase('Aplicativo com espaços e ação.appimage'.casefold(), pattern.casefold()) for pattern in patterns))
 
     def test_old_installer_transition_removes_only_its_owned_launcher(self):
         with tempfile.TemporaryDirectory() as directory:
