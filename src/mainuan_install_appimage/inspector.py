@@ -416,7 +416,10 @@ class _MetadataTree(dict[str, _Entry]):
                 parent = parent.parent
             self[entry.path] = entry
 
-        _run_bounded(["unsquashfs", "-lln", "-no-progress", "-processors", "1", "-mem", "64M",
+        # Memory is capped by the isolated reader's RLIMIT_AS.  Do not pass
+        # unsquashfs -mem: Ubuntu 24.04's supported SquashFS 4.6 does not
+        # implement that newer option.
+        _run_bounded(["unsquashfs", "-lln", "-no-progress", "-processors", "1",
                       "-no-wildcards", "-max-depth", str(depth), "-o", str(self.offset), str(self.image),
                       *([path] if path else [])], MAX_TREE_OUTPUT - self.output_bytes,
                      self.timeout(), on_line=consume)
@@ -477,8 +480,6 @@ def _cat_file(image: Path, offset: int, path: str, limit: int, timeout: float = 
             "-cat",
             "-processors",
             "1",
-            "-mem",
-            "64M",
             "-no-wildcards",
             "-o",
             str(offset),

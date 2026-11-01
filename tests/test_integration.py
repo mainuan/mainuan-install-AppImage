@@ -59,12 +59,21 @@ class IntegrationTests(unittest.TestCase):
             subprocess.run(['update-mime-database', str(mime)], check=True, capture_output=True)
             source = base / 'Aplicativo com espaços e ação.AppImage'
             source.write_bytes(__import__('test_installer').make_appimage(base / 'fixture').read_bytes())
-            env = dict(os.environ, XDG_DATA_HOME=str(base), XDG_DATA_DIRS='/usr/local/share:/usr/share')
-            result = subprocess.run(['xdg-mime', 'query', 'filetype', str(source)], env=env, check=True, capture_output=True, text=True)
+            result = subprocess.run(
+                ['mimetype', f'--database={mime}', '--brief', str(source)],
+                check=True,
+                capture_output=True,
+                text=True,
+            )
             self.assertEqual(result.stdout.strip(), 'application/vnd.appimage')
             lower = source.with_suffix('.appimage')
             source.rename(lower)
-            result = subprocess.run(['xdg-mime', 'query', 'filetype', str(lower)], env=env, check=True, capture_output=True, text=True)
+            result = subprocess.run(
+                ['mimetype', f'--database={mime}', '--brief', str(lower)],
+                check=True,
+                capture_output=True,
+                text=True,
+            )
             self.assertEqual(result.stdout.strip(), 'application/vnd.appimage')
 
     def test_old_installer_transition_removes_only_its_owned_launcher(self):
