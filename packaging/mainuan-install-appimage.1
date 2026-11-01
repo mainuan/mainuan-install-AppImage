@@ -1,0 +1,19 @@
+.TH MAINUAN-INSTALL-APPIMAGE 1 "October 2026" "2.0.0"
+.SH NAME
+mainuan-install-appimage \- inspect and install AppImages on Mainuan
+.SH SYNOPSIS
+.B mainuan-install-appimage
+.RI [ file.AppImage ]
+.SH DESCRIPTION
+Opens a Qt Widgets installer in Brazilian Portuguese. Without a file,
+it opens a file chooser. Supports little-endian ELF AppImage Type 2
+with SquashFS 4.0. Inspection never executes the supplied application.
+Installation requires administrator authentication through PolicyKit.
+.SH SECURITY
+The graphical interface must run as an ordinary user. A restricted helper
+validates a private snapshot and builds a Debian package without maintainer
+scripts. Applications only run after an explicit click.
+.SH LIMITATIONS
+Type 1 is unsupported. A failed dpkg transaction may require manual recovery.
+.SH AUTHORS
+Mainuan. Based on the installer by Natanael Barbosa Santos (MIT).

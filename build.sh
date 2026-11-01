@@ -1,53 +1,49 @@
 #!/usr/bin/env bash
+set -euo pipefail
+umask 022
 
-# ImageMagick
-wget -c "https://download.imagemagick.org/ImageMagick/download/binaries/magick"
-chmod +x magick
+ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+VERSION="$(sed -n 's/^Version: //p' "${ROOT}/DEBIAN/control")"
+OUTPUT="${1:-${ROOT}/dist/mainuan-install-appimage_${VERSION}_all.deb}"
+PACKAGE_DIR="$(mktemp -d)"
+trap 'rm -rf -- "$PACKAGE_DIR"' EXIT
 
-# Estrutura o pacote
-mkdir -p {pacote/DEBIAN,pacote/usr/tigertools,pacote/usr/share/applications}
+install -d \
+  "${PACKAGE_DIR}/DEBIAN" \
+  "${PACKAGE_DIR}/usr/bin" \
+  "${PACKAGE_DIR}/usr/lib/mainuan-install-appimage" \
+  "${PACKAGE_DIR}/usr/lib/python3/dist-packages/mainuan_install_appimage" \
+  "${PACKAGE_DIR}/usr/share/mainuan-install-appimage" \
+  "${PACKAGE_DIR}/usr/share/doc/mainuan-install-appimage" \
+  "${PACKAGE_DIR}/usr/share/applications" \
+  "${PACKAGE_DIR}/usr/share/icons/hicolor/128x128/apps" \
+  "${PACKAGE_DIR}/usr/share/mime/packages" \
+  "${PACKAGE_DIR}/usr/share/polkit-1/actions"
 
-# Lançador
-cp src/launcher "pacote/usr/share/applications/AppImage-Installer.desktop"
+install -m 0644 "${ROOT}/DEBIAN/control" "${PACKAGE_DIR}/DEBIAN/control"
+install -m 0755 "${ROOT}/packaging/mainuan-install-appimage" \
+  "${PACKAGE_DIR}/usr/bin/mainuan-install-appimage"
+install -m 0755 "${ROOT}/packaging/privileged-install" \
+  "${PACKAGE_DIR}/usr/lib/mainuan-install-appimage/privileged-install"
+install -m 0644 "${ROOT}"/src/mainuan_install_appimage/*.py \
+  "${PACKAGE_DIR}/usr/lib/python3/dist-packages/mainuan_install_appimage/"
+install -m 0644 "${ROOT}/README.md" "${ROOT}/SECURITY.md" "${PACKAGE_DIR}/usr/share/doc/mainuan-install-appimage/"
+install -m 0644 "${ROOT}/LICENSE" "${PACKAGE_DIR}/usr/share/doc/mainuan-install-appimage/copyright"
+install -m 0644 "${ROOT}/src/AppImage.png" \
+  "${PACKAGE_DIR}/usr/share/mainuan-install-appimage/AppImage.png"
+install -m 0644 "${ROOT}/src/AppImage.png" \
+  "${PACKAGE_DIR}/usr/share/icons/hicolor/128x128/apps/mainuan-install-appimage.png"
+install -m 0644 "${ROOT}/packaging/mainuan-install-appimage.desktop" \
+  "${PACKAGE_DIR}/usr/share/applications/mainuan-install-appimage.desktop"
+install -m 0644 "${ROOT}/packaging/br.com.mainuan.install-appimage.policy" \
+  "${PACKAGE_DIR}/usr/share/polkit-1/actions/br.com.mainuan.install-appimage.policy"
+install -m 0644 "${ROOT}/packaging/appimage-mime.xml" \
+  "${PACKAGE_DIR}/usr/share/mime/packages/mainuan-appimage.xml"
 
-# AppImage do ImageMagick
-./magick --appimage-extract
-cp -rf squashfs-root/* pacote/usr/tigertools
-rm -rf squashfs-root/
-
-# Arquivos de controle
-cp "DEBIAN"/* pacote/DEBIAN
-
-# Fontes
-cp src/* "pacote/usr/tigertools/"
-
-# Executaveis
-chmod +x pacote/usr/tigertools/*
-
-# Renomeia arquivos
-mv "pacote/DEBIAN/control.yaml" "pacote/DEBIAN/control"
-mv "pacote/usr/tigertools/AppImage-Installer.sh" "pacote/usr/tigertools/AppImage-Installer"
-mv "pacote/usr/tigertools/AppRun" "pacote/usr/tigertools/convert-im6.q16"
-
-# Remove arquivos desnecessários
-rm -rf pacote/usr/tigertools/usr/etc
-rm -rf pacote/usr/tigertools/usr/include
-rm -rf pacote/usr/tigertools/usr/share
-rm -rf pacote/usr/tigertools/usr/lib/*.a
-rm -rf pacote/usr/tigertools/usr/lib/ImageMagick-7.0.10
-rm -rf pacote/usr/tigertools/usr/lib/pkgconfig
-rm -rf pacote/usr/tigertools/usr/lib/libdjvulibre.so*
-rm -rf pacote/usr/tigertools/usr/lib/libMagick++*
-
-# Constroi o pacote:
-name=$(grep "Package:"      pacote/DEBIAN/control | cut -d' ' -f2)
-vers=$(grep "Version:"      pacote/DEBIAN/control | cut -d' ' -f2)
-arch=$(grep "Architecture:" pacote/DEBIAN/control | cut -d' ' -f2)
-dpkg -b pacote ${name}_${vers}_${arch}.deb
-
-# Envia a mensagem pro grupo do TigerOS
-curl -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendDocument?chat_id=${TELEGRAM_ID}" -F document=@./"${name}_${vers}_${arch}.deb"  > /dev/null
-curl -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" -d "chat_id=${TELEGRAM_ID}&text=#Pacote_TigerOS_finalizado"           > /dev/null
-
-
-mv ${name}_${vers}_${arch}.deb instalador-de-AppImage.deb
+install -d "${PACKAGE_DIR}/usr/share/man/man1"
+gzip -n -9 -c "${ROOT}/packaging/changelog" > "${PACKAGE_DIR}/usr/share/doc/mainuan-install-appimage/changelog.gz"
+gzip -n -9 -c "${ROOT}/packaging/mainuan-install-appimage.1" > "${PACKAGE_DIR}/usr/share/man/man1/mainuan-install-appimage.1.gz"
+find "${PACKAGE_DIR}" -type d -exec chmod 0755 {} +
+mkdir -p "$(dirname -- "${OUTPUT}")"
+dpkg-deb --build --root-owner-group "${PACKAGE_DIR}" "${OUTPUT}"
+printf 'Pacote gerado: %s\n' "${OUTPUT}"
