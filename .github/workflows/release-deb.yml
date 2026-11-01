@@ -1,0 +1,77 @@
+name: Build Debian package
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    name: Build and publish Debian package
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Check out the release tag
+        uses: actions/checkout@v4
+
+      - name: Install build and validation dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends \
+            desktop-file-utils \
+            lintian \
+            python3-pyqt6 \
+            squashfs-tools
+
+      - name: Verify tag and package version
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          version="$(sed -n 's/^Version: //p' DEBIAN/control)"
+          test -n "$version"
+          test "$RELEASE_TAG" = "v$version"
+
+      - name: Run automated tests and metadata checks
+        run: |
+          set -euo pipefail
+          bash -n build.sh
+          python3 -m compileall -q src/mainuan_install_appimage tests
+          desktop-file-validate packaging/mainuan-install-appimage.desktop
+          PYTHONPATH=src QT_QPA_PLATFORM=offscreen python3 -m unittest discover -s tests -v
+
+      - name: Build and validate the Debian package
+        run: |
+          set -euo pipefail
+          version="$(sed -n 's/^Version: //p' DEBIAN/control)"
+          package="dist/mainuan-install-appimage_${version}_all.deb"
+          ./build.sh "$package"
+          dpkg-deb -I "$package"
+          dpkg-deb -c "$package"
+          lintian "$package"
+          sha256sum "$package" > "$package.sha256"
+          sha256sum -c "$package.sha256"
+
+      - name: Upload release artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: mainuan-install-appimage-${{ github.ref_name }}
+          path: |
+            dist/*.deb
+            dist/*.deb.sha256
+          if-no-files-found: error
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          gh release create "$RELEASE_TAG" \
+            --title "$RELEASE_TAG" \
+            --generate-notes \
+            dist/*.deb \
+            dist/*.deb.sha256
