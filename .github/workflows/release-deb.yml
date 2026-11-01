@@ -70,8 +70,39 @@ jobs:
           RELEASE_TAG: ${{ github.ref_name }}
         run: |
           set -euo pipefail
+          version="$(sed -n 's/^Version: //p' DEBIAN/control)"
+          notes_file="$(mktemp)"
+          trap 'rm -f -- "$notes_file"' EXIT
+          cat > "$notes_file" <<EOF
+          ## Mainuan — Instalador de AppImage ${version}
+
+          Versão estável do instalador de AppImages para Mainuan.
+
+          ### Destaques
+
+          - Interface Qt Widgets em Python/PyQt6.
+          - Inspeção de AppImages Type 2 sem executar o arquivo selecionado.
+          - Validação de metadados, ícones e categorias dos lançadores.
+          - Instalação integrada ao gerenciador de pacotes Debian, com autorização via PolicyKit.
+          - Integração com KDE Plasma e Dolphin.
+
+          ### Validação e integridade
+
+          Esta publicação foi construída pelo GitHub Actions a partir da tag ${RELEASE_TAG}.
+          O workflow executa testes automatizados, valida o arquivo .desktop, compila os módulos Python,
+          constrói e inspeciona o pacote Debian com dpkg-deb, executa Lintian e gera/confere o SHA-256.
+
+          ### Instalação
+
+          Baixe os dois arquivos nos Assets, confira a integridade e instale o pacote:
+
+          \`\`\`bash
+          sha256sum -c mainuan-install-appimage_${version}_all.deb.sha256
+          sudo apt install ./mainuan-install-appimage_${version}_all.deb
+          \`\`\`
+          EOF
           gh release create "$RELEASE_TAG" \
-            --title "$RELEASE_TAG" \
-            --generate-notes \
+            --title "Mainuan Instalador de AppImage ${version}" \
+            --notes-file "$notes_file" \
             dist/*.deb \
             dist/*.deb.sha256
