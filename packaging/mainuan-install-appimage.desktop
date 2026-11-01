@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Mainuan Instalador de AppImage
+Comment=Inspeciona e instala arquivos AppImage como pacotes Debian
+Exec=/usr/bin/mainuan-install-appimage %f
+TryExec=/usr/bin/mainuan-install-appimage
+Icon=mainuan-install-appimage
+Terminal=false
+NoDisplay=true
+MimeType=application/vnd.appimage;
+Categories=System;
+StartupNotify=true

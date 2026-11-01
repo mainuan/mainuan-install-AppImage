@@ -1,0 +1,13 @@
+Package: mainuan-install-appimage
+Version: 2.0.1
+Section: admin
+Priority: optional
+Architecture: all
+Maintainer: Mainuan <openwebosbr@gmail.com>
+Depends: dpkg (>= 1.20), polkitd, pkexec, python3, python3-pyqt6, qt6-wayland, hicolor-icon-theme, shared-mime-info, squashfs-tools
+Provides: appimage-installer
+Conflicts: appimage-installer
+Replaces: appimage-installer
+Description: Instalador seguro de AppImages para o Mainuan
+ Interface em Qt Widgets para inspecionar AppImages sem executá-los e
+ instalá-los por uma transação do gerenciador de pacotes Debian.

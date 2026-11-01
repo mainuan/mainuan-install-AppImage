@@ -1,0 +1,6 @@
+# Categories from kdenlive-26.08.2-x86_64.AppImage:
+# SHA-256 3194c0979bcfb7ec4a0b33ebc05178a51cffdf5b180c3a89bcf4da94e025bc78
+[Desktop Entry]
+Type=Application
+Name=Category fixture
+Categories=Qt;KDE;AudioVideo;AudioVideoEditing;
