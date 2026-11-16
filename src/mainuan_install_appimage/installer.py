@@ -16,11 +16,12 @@ from pathlib import Path
 from PyQt6.QtCore import QBuffer, QIODevice, Qt
 from PyQt6.QtGui import QImage, QImageReader, QPainter
 
+from .i18n import LocalizedError, Message, N_, wire_line
 from .inspector import Inspection, InspectionError
 from .categories import categories_field
 
 
-class InstallationError(RuntimeError):
+class InstallationError(LocalizedError, RuntimeError):
     """An installation could not safely be prepared or completed."""
 
 
@@ -28,7 +29,7 @@ class InstallationError(RuntimeError):
 class InstallationState:
     kind: str
     installed_version: str = ""
-    message: str = ""
+    message: Message | str = ""
     image_sha256: str = ""
 
 
@@ -45,7 +46,7 @@ def _command(arguments: list[str], timeout: int | None = 20) -> subprocess.Compl
                  **({"DPKG_FRONTEND_LOCKED": "1"} if os.environ.get("DPKG_FRONTEND_LOCKED") == "1" else {})},
         )
     except (OSError, subprocess.TimeoutExpired) as error:
-        raise InstallationError(f"Não foi possível consultar o gerenciador de pacotes: {error}") from error
+        raise InstallationError(N_("Could not query the package manager: {error}"), error=error) from error
 
 
 def _package_query(package_name: str) -> tuple[bool, str, str]:
@@ -61,12 +62,12 @@ def _package_query(package_name: str) -> tuple[bool, str, str]:
     if result.returncode == 1:
         return False, "", ""
     if result.returncode != 0:
-        raise InstallationError("O dpkg-query falhou; não é seguro prosseguir.")
+        raise InstallationError(N_("dpkg-query failed; it is not safe to continue."))
     fields = result.stdout.strip().split("\t")
     if len(fields) != 3:
-        raise InstallationError("A resposta do dpkg-query está malformada.")
+        raise InstallationError(N_("The dpkg-query response is malformed."))
     if fields[0] not in ("installed", "config-files", "not-installed"):
-        raise InstallationError("O pacote está em estado parcial no dpkg. Examine-o antes de prosseguir.")
+        raise InstallationError(N_("The package is in a partial state in dpkg. Examine it before continuing."))
     if fields[0] != "installed":
         return False, "", ""
     return True, fields[1], fields[2]
@@ -100,9 +101,9 @@ def installation_state(inspection: Inspection) -> InstallationState:
         except (OSError, ValueError, json.JSONDecodeError):
             return InstallationState(
                 "conflict",
-                message=(
-                    "Já existe um pacote com este identificador que não foi instalado "
-                    "por esta ferramenta. Ele será preservado."
+                message=Message(
+                    N_("A package with this identifier already exists that was not installed "
+                       "by this tool. It will be preserved.")
                 ),
             )
         if (
@@ -112,9 +113,9 @@ def installation_state(inspection: Inspection) -> InstallationState:
         ):
             return InstallationState(
                 "conflict",
-                message=(
-                    "O identificador do pacote pertence a outra instalação. "
-                    "Nenhum arquivo será substituído."
+                message=Message(
+                    N_("The package identifier belongs to another installation. "
+                       "No file will be replaced.")
                 ),
             )
         return InstallationState("managed", version, image_sha256=metadata.get("image_sha256", ""))
@@ -134,10 +135,10 @@ def installation_state(inspection: Inspection) -> InstallationState:
         if legacy_owner.returncode == 0 and legacy_owner.stdout.strip() == "AppImage Installer":
             return InstallationState(
                 "legacy",
-                message=(
-                    "Foi detectada uma instalação legada com este nome. "
-                    "A base do dpkg e os arquivos existentes não serão reparados "
-                    "automaticamente."
+                message=Message(
+                    N_("A legacy installation with this name was detected. "
+                       "The dpkg database and the existing files will not be repaired "
+                       "automatically.")
                 ),
             )
     return InstallationState("new")
@@ -154,7 +155,7 @@ def _fallback_icon() -> QImage:
             image = QImage(str(candidate))
             if not image.isNull():
                 return image
-    raise InstallationError("O ícone de fallback do instalador não está disponível.")
+    raise InstallationError(N_("The installer's fallback icon is not available."))
 
 
 def _load_icon(inspection: Inspection) -> QImage:
@@ -168,7 +169,7 @@ def _load_icon(inspection: Inspection) -> QImage:
 
 def _png_icon(inspection: Inspection, size: int) -> bytes:
     if os.geteuid() == 0:
-        raise InstallationError("A conversão de ícones não pode executar como root.")
+        raise InstallationError(N_("Icon conversion cannot run as root."))
     source = _load_icon(inspection)
     scaled = source.scaled(
         size,
@@ -184,7 +185,7 @@ def _png_icon(inspection: Inspection, size: int) -> bytes:
     buffer = QBuffer()
     buffer.open(QIODevice.OpenModeFlag.WriteOnly)
     if not canvas.save(buffer, "PNG"):
-        raise InstallationError("Não foi possível preparar os ícones do pacote.")
+        raise InstallationError(N_("Could not prepare the package icons."))
     return bytes(buffer.data())
 
 
@@ -212,7 +213,7 @@ def _write_package(inspection: Inspection, image_source: Path, root: Path, icons
     try:
         categories = categories_field(inspection.categories)
     except ValueError as error:
-        raise InstallationError(f"Categorias do lançador recusadas: {error}") from error
+        raise InstallationError(N_("Launcher categories refused: {error}"), error=error) from error
     application = root / "usr/share/applications"
     icon64 = root / "usr/share/icons/hicolor/64x64/apps"
     icon128 = root / "usr/share/icons/hicolor/128x128/apps"
@@ -291,7 +292,7 @@ def _check_destination_safety(inspection: Inspection, allow_existing: bool = Fal
                 continue
             if stat.S_ISLNK(details.st_mode) or not stat.S_ISDIR(details.st_mode) or details.st_uid != 0 or details.st_mode & 0o022:
                 raise InstallationError(
-                    f"O destino {parent} não é um diretório seguro."
+                    N_("The destination {path} is not a secure directory."), path=parent
                 )
 
         try:
@@ -299,16 +300,16 @@ def _check_destination_safety(inspection: Inspection, allow_existing: bool = Fal
         except FileNotFoundError:
             continue
         if stat.S_ISLNK(target.st_mode) or not stat.S_ISREG(target.st_mode):
-            raise InstallationError(f"O destino {path} já existe e não é um arquivo regular.")
+            raise InstallationError(N_("The destination {path} already exists and is not a regular file."), path=path)
         if not allow_existing:
-            raise InstallationError(f"O destino {path} já existe sem uma instalação gerenciada válida.")
+            raise InstallationError(N_("The destination {path} already exists without a valid managed installation."), path=path)
         owner = _command(["dpkg-query", "-S", "--", absolute])
         if owner.returncode != 0 or not any(
             line.partition(": ")[0] == inspection.package_name
             for line in owner.stdout.splitlines()
         ):
             raise InstallationError(
-                f"O arquivo {path} não pertence a um pacote gerenciado por esta ferramenta."
+                N_("The file {path} does not belong to a package managed by this tool."), path=path
             )
 
 
@@ -322,7 +323,7 @@ def build_deb(inspection: Inspection, image_source: Path, output_path: Path, ico
         try:
             _write_package(inspection, image_source, root, icons)
         except (OSError, InspectionError) as error:
-            raise InstallationError(f"Não foi possível preparar o pacote: {error}") from error
+            raise InstallationError(N_("Could not prepare the package: {error}"), error=error) from error
         for directory in root.rglob("*"):
             if directory.is_dir():
                 directory.chmod(0o755)
@@ -334,8 +335,8 @@ def build_deb(inspection: Inspection, image_source: Path, output_path: Path, ico
         )
         if result.returncode != 0:
             raise InstallationError(
-                "O dpkg-deb não conseguiu gerar o pacote: "
-                + (result.stderr.strip() or result.stdout.strip() or "erro desconhecido")
+                N_("dpkg-deb could not build the package: {detail}"),
+                detail=result.stderr.strip() or result.stdout.strip() or Message(N_("unknown error")),
             )
     return output_path
 
@@ -346,26 +347,26 @@ def validate_built_package(deb: Path, inspection: Inspection) -> None:
     result = _command(["dpkg-deb", "-f", str(deb), "Package", "Version", "Architecture"])
     expected = [f"Package: {inspection.package_name}", f"Version: {inspection.debian_version}", f"Architecture: {inspection.architecture}"]
     if result.returncode or result.stdout.splitlines() != expected:
-        raise InstallationError("O controle do pacote preparado não corresponde à instalação.")
+        raise InstallationError(N_("The prepared package's control data does not match the installation."))
     with tempfile.TemporaryFile() as control:
         result_binary = subprocess.run(["/usr/bin/dpkg-deb", "--ctrl-tarfile", str(deb)], stdout=control, stderr=subprocess.PIPE, timeout=30, env={"PATH": "/usr/bin:/bin", "LC_ALL": "C.UTF-8"})
         if result_binary.returncode or control.tell() > 64 * 1024:
-            raise InstallationError("Controle Debian inválido ou excessivo.")
+            raise InstallationError(N_("Invalid or oversized Debian control data."))
         control.seek(0)
         with tarfile.open(fileobj=control, mode="r:") as archive:
             members = archive.getmembers()
             if len(members) != 2 or {entry.name for entry in members} != {".", "./control"} or any(entry.issym() or entry.islnk() for entry in members):
-                raise InstallationError("O pacote contém arquivos de controle não permitidos.")
+                raise InstallationError(N_("The package contains control files that are not allowed."))
             for entry in members:
                 if entry.uid != 0 or entry.gid != 0:
-                    raise InstallationError("Propriedade do controle Debian inválida.")
+                    raise InstallationError(N_("Invalid Debian control ownership."))
                 if entry.name == "./control":
                     if not entry.isfile() or entry.size > 4096 or entry.mode != 0o644:
-                        raise InstallationError("Arquivo de controle Debian inválido.")
+                        raise InstallationError(N_("Invalid Debian control file."))
                     if archive.extractfile(entry).read() != _control_contents(inspection).encode():
-                        raise InstallationError("Campos de controle Debian não permitidos.")
+                        raise InstallationError(N_("Debian control fields not allowed."))
                 elif not entry.isdir() or entry.mode != 0o755:
-                    raise InstallationError("Diretório de controle Debian inválido.")
+                    raise InstallationError(N_("Invalid Debian control directory."))
     _validate_data_manifest(deb, inspection)
 
 
@@ -400,31 +401,31 @@ def _validate_data_manifest(deb: Path, inspection: Inspection) -> None:
                 for count, entry in enumerate(archive, 1):
                     name = entry.name[2:] if entry.name.startswith("./") else entry.name
                     if name in seen or count > len(expected) + len(directories):
-                        raise InstallationError("Manifesto Debian duplicado ou excessivo.")
+                        raise InstallationError(N_("Duplicate or oversized Debian manifest."))
                     seen.add(name)
                     if entry.uid or entry.gid or entry.issparse():
-                        raise InstallationError("Metadados de propriedade Debian inválidos.")
+                        raise InstallationError(N_("Invalid Debian ownership metadata."))
                     if entry.isdir():
                         if name not in directories or entry.mode != 0o755 or entry.size != 0:
-                            raise InstallationError("Diretório fora do manifesto permitido.")
+                            raise InstallationError(N_("Directory outside the allowed manifest."))
                         continue
                     if name not in expected or not entry.isfile():
-                        raise InstallationError("Arquivo ou link fora do manifesto permitido.")
+                        raise InstallationError(N_("File or link outside the allowed manifest."))
                     binary = name.endswith("/AppImage")
                     if entry.mode != (0o755 if binary else 0o644):
-                        raise InstallationError("Permissões de arquivo Debian inválidas.")
+                        raise InstallationError(N_("Invalid Debian file permissions."))
                     if entry.size < 0 or entry.size > (inspection.image_size if binary else 128 * 1024):
-                        raise InstallationError("Tamanho fora do manifesto permitido.")
+                        raise InstallationError(N_("Size outside the allowed manifest."))
                     digest = hashlib.sha256()
                     with archive.extractfile(entry) as stream:
                         for chunk in iter(lambda: stream.read(1024 * 1024), b""):
                             digest.update(chunk)
                     if binary and (entry.size != inspection.image_size or digest.hexdigest() != inspection.image_sha256):
-                        raise InstallationError("O AppImage no pacote não corresponde ao snapshot validado.")
+                        raise InstallationError(N_("The AppImage in the package does not match the validated snapshot."))
             if seen != expected | directories or process.wait(timeout=30) != 0:
-                raise InstallationError("Manifesto Debian incompleto ou inválido.")
+                raise InstallationError(N_("Incomplete or invalid Debian manifest."))
     except (OSError, ValueError, tarfile.TarError, subprocess.TimeoutExpired) as error:
-        raise InstallationError(f"Não foi possível validar os arquivos do pacote: {error}") from error
+        raise InstallationError(N_("Could not validate the package files: {error}"), error=error) from error
     finally:
         if timer is not None:
             timer.cancel()
@@ -439,12 +440,13 @@ def _validate_data_manifest(deb: Path, inspection: Inspection) -> None:
 def ensure_host_architecture(inspection: Inspection) -> None:
     result = _command(["dpkg", "--print-architecture"])
     if result.returncode != 0:
-        raise InstallationError("Não foi possível identificar a arquitetura do sistema.")
+        raise InstallationError(N_("Could not identify the system architecture."))
     host_architecture = result.stdout.strip()
     if inspection.architecture != host_architecture:
         raise InstallationError(
-            f"O AppImage é {inspection.architecture}, mas o sistema é {host_architecture}. "
-            "A instalação foi cancelada."
+            N_("The AppImage is {architecture}, but the system is {host_architecture}. "
+               "The installation was canceled."),
+            architecture=inspection.architecture, host_architecture=host_architecture,
         )
 
 
@@ -459,7 +461,7 @@ def package_manager_lock():
         try:
             fcntl.lockf(descriptor, fcntl.LOCK_EX | fcntl.LOCK_NB)
         except OSError as error:
-            raise InstallationError("O gerenciador de pacotes está ocupado. Tente novamente após a outra transação.") from error
+            raise InstallationError(N_("The package manager is busy. Try again after the other transaction.")) from error
         yield
     finally:
         os.close(descriptor)
@@ -472,7 +474,7 @@ def prepare_and_install(image_source: Path, expected_sha256: str) -> None:
     inspection, icons = inspect_reduced(image_source, expected_sha256)
     if inspection.image_sha256 != expected_sha256:
         raise InstallationError(
-            "O arquivo mudou desde a inspeção. Selecione-o novamente."
+            N_("The file changed since the inspection. Select it again.")
         )
     ensure_host_architecture(inspection)
     state = installation_state(inspection)
@@ -492,18 +494,19 @@ def prepare_and_install(image_source: Path, expected_sha256: str) -> None:
         if result.stdout.strip():
             print(result.stdout.strip(), flush=True)
         if result.returncode != 0:
-            message = result.stderr.strip() or result.stdout.strip() or "erro desconhecido"
+            message = result.stderr.strip() or result.stdout.strip() or Message(N_("unknown error"))
             raise InstallationError(
-                "O dpkg não concluiu a transação. A instalação anterior não foi removida "
-                "previamente; o próprio dpkg pode deixar uma transação parcialmente "
-                f"configurada. Detalhes: {message}"
+                N_("dpkg did not complete the transaction. The previous installation was not removed "
+                   "beforehand; dpkg itself may leave a partially configured transaction. "
+                   "Details: {details}"),
+                details=message,
             )
-        print("Instalação concluída pelo dpkg.", flush=True)
+        print(wire_line(Message(N_("Installation completed by dpkg."))), flush=True)
 
 
 def verify_staged_source(path_text: str, expected_sha256: str, invoking_uid: int) -> Path:
     if not re.fullmatch(r"[0-9a-f]{64}", expected_sha256):
-        raise InstallationError("O identificador da cópia temporária é inválido.")
+        raise InstallationError(N_("The temporary copy identifier is invalid."))
     runtime = Path(f"/run/user/{invoking_uid}")
     stage_dir = runtime / "mainuan-install-appimage"
     supplied = Path(path_text)
@@ -512,7 +515,7 @@ def verify_staged_source(path_text: str, expected_sha256: str, invoking_uid: int
         or supplied.parent != stage_dir
         or not re.fullmatch(r"payload-[0-9a-f]{32}\.AppImage", supplied.name)
     ):
-        raise InstallationError("O arquivo não está na área temporária permitida.")
+        raise InstallationError(N_("The file is not in the allowed temporary area."))
     try:
         runtime_fd = os.open(runtime, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
         try:
@@ -527,7 +530,7 @@ def verify_staged_source(path_text: str, expected_sha256: str, invoking_uid: int
             os.close(runtime_fd)
         source_stat = os.fstat(source_fd)
     except OSError as error:
-        raise InstallationError("Não foi possível validar o arquivo temporário seguro.") from error
+        raise InstallationError(N_("Could not validate the secure temporary file.")) from error
     if (
         not stat.S_ISDIR(runtime_stat.st_mode)
         or stat.S_ISLNK(runtime_stat.st_mode)
@@ -543,7 +546,7 @@ def verify_staged_source(path_text: str, expected_sha256: str, invoking_uid: int
         or source_stat.st_size > 8 * 1024**3
     ):
         os.close(source_fd)
-        raise InstallationError("A área temporária ou o arquivo tem permissões inválidas.")
+        raise InstallationError(N_("The temporary area or the file has invalid permissions."))
     return Path(f"/proc/self/fd/{source_fd}")
 
 
@@ -560,11 +563,11 @@ def copy_verified_source(source_fd_path: Path, destination: Path, expected_sha25
                 break
             copied += len(chunk)
             if copied > 8 * 1024**3 or time.monotonic() > deadline:
-                raise InstallationError("A cópia excedeu o limite de tamanho ou tempo.")
+                raise InstallationError(N_("The copy exceeded the size or time limit."))
             digest.update(chunk)
             target.write(chunk)
         target.flush()
         os.fsync(target.fileno())
     if digest.hexdigest() != expected_sha256:
         destination.unlink(missing_ok=True)
-        raise InstallationError("A cópia temporária não corresponde ao arquivo inspecionado.")
+        raise InstallationError(N_("The temporary copy does not match the inspected file."))

@@ -14,6 +14,7 @@ from typing import Callable
 from pathlib import Path, PurePosixPath
 
 from .categories import normalize_categories
+from .i18n import LocalizedError, Message, N_
 
 
 MAX_IMAGE_SIZE = 8 * 1024**3
@@ -31,7 +32,7 @@ MAX_READER_MEMORY = 1024**3
 _READER_EXEC = """
 import os, resource, sys
 if os.geteuid() == 0:
-    raise RuntimeError("A leitura SquashFS como root foi recusada.")
+    raise RuntimeError("Refusing to read SquashFS as root.")
 resource.setrlimit(resource.RLIMIT_AS, (int(sys.argv[1]), int(sys.argv[1])))
 resource.setrlimit(resource.RLIMIT_CPU, (int(sys.argv[2]), int(sys.argv[2])))
 resource.setrlimit(resource.RLIMIT_CORE, (0, 0))
@@ -46,23 +47,28 @@ _SQUASHFS_SUPERBLOCK_BE = struct.Struct(">4sIIIIHHHHHHQQQQQQQQ")
 _SQUASHFS_NO_TABLE = (1 << 64) - 1
 
 
-class InspectionError(ValueError):
+class InspectionError(LocalizedError, ValueError):
     """Base failure; operational limits never imply an invalid AppImage."""
-    category = "Formato ou metadados"
+    category = N_("Format or metadata")
 
-    def __str__(self):
-        return f"{self.category}: {super().__str__()}"
+    def full_message(self) -> Message:
+        # Translators: {category} is a failure class such as "Format or metadata".
+        return Message(N_("{category}: {message}"), category=Message(self.category), message=self.message)
 
 
 class InspectionLimitError(InspectionError):
-    category = "Limite operacional (não determina a validade do arquivo)"
+    category = N_("Operational limit (does not determine whether the file is valid)")
 
     def __init__(self, resource: str, observed: int | float | str, allowed: int | float | str):
-        super().__init__(f"{resource}; observado={observed}, limite={allowed}")
+        super().__init__(
+            # Translators: {resource} names the limited resource; keep observed= and limit= readable.
+            N_("{resource}; observed={observed}, limit={allowed}"),
+            resource=Message(resource), observed=observed, allowed=allowed,
+        )
 
 
 class InspectionToolError(InspectionError):
-    category = "Ferramenta de leitura SquashFS"
+    category = N_("SquashFS reading tool")
 
 
 @dataclass(frozen=True)
@@ -105,22 +111,22 @@ def _clean_text(value: str, limit: int = 160) -> str:
 
 def _architecture(header: bytes) -> str:
     if len(header) < 64 or header[:4] != b"\x7fELF":
-        raise InspectionError("O arquivo não é um executável ELF.")
+        raise InspectionError(N_("The file is not an ELF executable."))
     elf_class, endian, ident_version = header[4], header[5], header[6]
     if endian != 1 or ident_version != 1:
         raise InspectionError(
-            "Formato incompatível: são aceitos somente AppImages ELF little-endian."
+            N_("Incompatible format: only little-endian ELF AppImages are accepted.")
         )
     if elf_class not in (1, 2):
-        raise InspectionError("O AppImage usa uma classe ELF incompatível.")
+        raise InspectionError(N_("The AppImage uses an incompatible ELF class."))
     header_size = 52 if elf_class == 1 else 64
     if len(header) < header_size:
-        raise InspectionError("O cabeçalho ELF está truncado.")
+        raise InspectionError(N_("The ELF header is truncated."))
     elf_type, machine = struct.unpack_from("<HH", header, 16)
     version = struct.unpack_from("<I", header, 20)[0]
     declared_size = struct.unpack_from("<H", header, 40 if elf_class == 1 else 52)[0]
     if elf_type not in (2, 3) or version != 1 or declared_size < header_size:
-        raise InspectionError("O cabeçalho ELF do AppImage é inválido.")
+        raise InspectionError(N_("The AppImage ELF header is invalid."))
 
     architectures = {
         (1, 3): "i386",
@@ -134,7 +140,7 @@ def _architecture(header: bytes) -> str:
         if flags & 0x400:
             return "armhf"
     raise _UnsupportedArchitecture(
-        "Arquitetura incompatível. Formatos aceitos: amd64, arm64, i386 e armhf."
+        N_("Incompatible architecture. Accepted formats: amd64, arm64, i386 and armhf.")
     )
 
 
@@ -213,7 +219,7 @@ def _find_superblocks(image: Path, file_size: int, inspection_deadline: float | 
             if not chunk:
                 break
             if time.monotonic() > deadline:
-                raise InspectionLimitError("busca SquashFS (s)", round(time.monotonic() - started, 2), allowed)
+                raise InspectionLimitError(N_("SquashFS search (s)"), round(time.monotonic() - started, 2), allowed)
             data = overlap + chunk
             base = absolute - len(overlap)
             for magic in (b"hsqs", b"sqsh"):
@@ -224,9 +230,9 @@ def _find_superblocks(image: Path, file_size: int, inspection_deadline: float | 
                         break
                     candidates += 1
                     if candidates > 4096:
-                        raise InspectionLimitError("candidatos a superbloco", candidates, 4096)
+                        raise InspectionLimitError(N_("superblock candidates"), candidates, 4096)
                     if time.monotonic() > deadline:
-                        raise InspectionLimitError("busca SquashFS (s)", round(time.monotonic() - started, 2), allowed)
+                        raise InspectionLimitError(N_("SquashFS search (s)"), round(time.monotonic() - started, 2), allowed)
                     offset = base + found
                     cursor = found + 1
                     if offset < 64:
@@ -236,7 +242,7 @@ def _find_superblocks(image: Path, file_size: int, inspection_deadline: float | 
                     if _valid_superblock(file_size, offset, raw):
                         offsets.append(offset)
                         if len(offsets) > 64:
-                            raise InspectionLimitError("superblocos estruturais", len(offsets), 64)
+                            raise InspectionLimitError(N_("structural superblocks"), len(offsets), 64)
                 stream.seek(absolute + len(chunk))
             absolute += len(chunk)
             overlap = data[-3:]
@@ -247,9 +253,9 @@ def _run_bounded(arguments: list[str], output_limit: int, timeout: float,
                  on_line: Callable[[str], None] | None = None) -> bytes:
     executable = shutil.which(arguments[0], path="/usr/sbin:/usr/bin:/sbin:/bin")
     if not executable:
-        raise InspectionToolError("unsquashfs não está instalado.")
+        raise InspectionToolError(N_("unsquashfs is not installed."))
     if timeout <= 0:
-        raise InspectionLimitError("tempo da inspeção (s)", MAX_INSPECTION_SECONDS, MAX_INSPECTION_SECONDS)
+        raise InspectionLimitError(N_("inspection time (s)"), MAX_INSPECTION_SECONDS, MAX_INSPECTION_SECONDS)
     try:
         process = subprocess.Popen(
             ["/usr/bin/python3", "-I", "-c", _READER_EXEC, str(MAX_READER_MEMORY),
@@ -258,7 +264,7 @@ def _run_bounded(arguments: list[str], output_limit: int, timeout: float,
             env={"PATH": "/usr/sbin:/usr/bin:/sbin:/bin", "LC_ALL": "C.UTF-8"},
         )
     except OSError as error:
-        raise InspectionToolError(f"Não foi possível iniciar unsquashfs: {error}") from error
+        raise InspectionToolError(N_("Could not start unsquashfs: {error}"), error=error) from error
     output, pending, errors = bytearray(), bytearray(), bytearray()
     seen, stderr_seen = 0, 0
     started = time.monotonic()
@@ -269,7 +275,7 @@ def _run_bounded(arguments: list[str], output_limit: int, timeout: float,
             selector.register(process.stderr, selectors.EVENT_READ, "err")
             while selector.get_map():
                 if time.monotonic() >= deadline:
-                    raise InspectionLimitError("tempo do comando (s)", round(time.monotonic() - started, 2), round(timeout, 2))
+                    raise InspectionLimitError(N_("command time (s)"), round(time.monotonic() - started, 2), round(timeout, 2))
                 for key, _ in selector.select(min(0.25, max(0, deadline - time.monotonic()))):
                     chunk = os.read(key.fileobj.fileno(), 65536)
                     if not chunk:
@@ -278,12 +284,12 @@ def _run_bounded(arguments: list[str], output_limit: int, timeout: float,
                     if key.data == "err":
                         stderr_seen += len(chunk)
                         if stderr_seen > MAX_STDERR:
-                            raise InspectionLimitError("stderr de unsquashfs (bytes)", stderr_seen, MAX_STDERR)
+                            raise InspectionLimitError(N_("unsquashfs stderr (bytes)"), stderr_seen, MAX_STDERR)
                         errors.extend(chunk)
                         continue
                     seen += len(chunk)
                     if seen > output_limit:
-                        raise InspectionLimitError("stdout de unsquashfs (bytes)", seen, output_limit)
+                        raise InspectionLimitError(N_("unsquashfs stdout (bytes)"), seen, output_limit)
                     if on_line is None:
                         output.extend(chunk)
                     else:
@@ -292,24 +298,24 @@ def _run_bounded(arguments: list[str], output_limit: int, timeout: float,
                             line, _, remainder = pending.partition(b"\n")
                             pending = bytearray(remainder)
                             if len(line) > MAX_LIST_LINE:
-                                raise InspectionLimitError("linha de listagem (bytes)", len(line), MAX_LIST_LINE)
+                                raise InspectionLimitError(N_("listing line (bytes)"), len(line), MAX_LIST_LINE)
                             on_line(line.decode("utf-8", "strict"))
                         if len(pending) > MAX_LIST_LINE:
-                            raise InspectionLimitError("linha de listagem (bytes)", len(pending), MAX_LIST_LINE)
+                            raise InspectionLimitError(N_("listing line (bytes)"), len(pending), MAX_LIST_LINE)
             if pending:
                 on_line(pending.decode("utf-8", "strict"))
         code = process.wait(timeout=max(0.01, deadline - time.monotonic()))
         if code:
             detail = errors.decode("utf-8", "replace").strip()[:4096]
             if any(term in detail.lower() for term in ("out of memory", "cannot allocate memory", "memoryerror")):
-                raise InspectionLimitError("memória de unsquashfs (bytes; uso exato indisponível)", "alocação recusada", MAX_READER_MEMORY)
+                raise InspectionLimitError(N_("unsquashfs memory (bytes; exact usage unavailable)"), Message(N_("allocation refused")), MAX_READER_MEMORY)
             if code == -24:  # SIGXCPU
-                raise InspectionLimitError("CPU de unsquashfs (s)", "sinal SIGXCPU", MAX_COMMAND_SECONDS)
-            raise InspectionToolError(f"unsquashfs terminou com código {code}. {detail}")
+                raise InspectionLimitError(N_("unsquashfs CPU (s)"), Message(N_("SIGXCPU signal")), MAX_COMMAND_SECONDS)
+            raise InspectionToolError(N_("unsquashfs exited with code {code}. {detail}"), code=code, detail=detail)
     except UnicodeDecodeError as error:
-        raise InspectionToolError("A listagem não é UTF-8 válida.") from error
+        raise InspectionToolError(N_("The listing is not valid UTF-8.")) from error
     except subprocess.TimeoutExpired as error:
-        raise InspectionLimitError("tempo do comando (s)", round(time.monotonic() - started, 2), round(timeout, 2)) from error
+        raise InspectionLimitError(N_("command time (s)"), round(time.monotonic() - started, 2), round(timeout, 2)) from error
     finally:
         if process.poll() is None:
             process.kill()
@@ -338,30 +344,30 @@ def _listing_entry(line: str) -> _Entry | None:
     fields = line.split(maxsplit=5)
     if (len(fields) != 6 or not re.fullmatch(r"[dl\-bcps][rwxstST-]{9}", fields[0])
             or not re.fullmatch(r"[0-9]+/[0-9]+", fields[1])):
-        raise InspectionToolError("A listagem -lln está malformada (campos/modo/UID/GID).")
+        raise InspectionToolError(N_("The -lln listing is malformed (fields/mode/UID/GID)."))
     try:
         size = int(fields[2])
     except ValueError as error:
-        raise InspectionToolError("A listagem contém um tamanho inválido.") from error
+        raise InspectionToolError(N_("The listing contains an invalid size.")) from error
     mode, listed = fields[0], fields[5]
     if listed == "squashfs-root":
         if not mode.startswith("d"):
-            raise InspectionError("A raiz SquashFS não é um diretório.")
+            raise InspectionError(N_("The SquashFS root is not a directory."))
         return None
     if not listed.startswith("squashfs-root/"):
-        raise InspectionError("Caminho fora da raiz SquashFS na listagem.")
+        raise InspectionError(N_("Path outside the SquashFS root in the listing."))
     relative = listed[len("squashfs-root/"):]
     target = None
     if mode.startswith("l"):
         relative, separator, target = relative.partition(" -> ")
         if len(target) > 1024:
-            raise InspectionLimitError("destino de link (caracteres)", len(target), 1024)
+            raise InspectionLimitError(N_("link target (characters)"), len(target), 1024)
         if not separator or not target:
-            raise InspectionError("Link simbólico inválido.")
+            raise InspectionError(N_("Invalid symbolic link."))
     if len(relative) > 512:
-        raise InspectionLimitError("caminho de metadados (caracteres)", len(relative), 512)
+        raise InspectionLimitError(N_("metadata path (characters)"), len(relative), 512)
     if not _safe_path(relative) or size < 0:
-        raise InspectionError("Caminho inválido ou inseguro na listagem.")
+        raise InspectionError(N_("Invalid or unsafe path in the listing."))
     kind = "file" if mode.startswith("-") else "directory" if mode.startswith("d") else "link" if mode.startswith("l") else "other"
     return _Entry(relative, kind, size, target)
 
@@ -378,41 +384,41 @@ class _MetadataTree(dict[str, _Entry]):
     def timeout(self) -> float:
         remaining = self.deadline - time.monotonic()
         if remaining <= 0:
-            raise InspectionLimitError("tempo total da inspeção (s)", MAX_INSPECTION_SECONDS, MAX_INSPECTION_SECONDS)
+            raise InspectionLimitError(N_("total inspection time (s)"), MAX_INSPECTION_SECONDS, MAX_INSPECTION_SECONDS)
         return min(MAX_COMMAND_SECONDS, remaining)
 
     def _query(self, path: str):
         depth = len(PurePosixPath(path).parts) if path else 1
         if depth > MAX_PATH_DEPTH:
-            raise InspectionLimitError("profundidade de caminho de metadados", depth, MAX_PATH_DEPTH)
+            raise InspectionLimitError(N_("metadata path depth"), depth, MAX_PATH_DEPTH)
         self.queries += 1
         if self.queries > MAX_LIST_QUERIES:
-            raise InspectionLimitError("consultas exatas de metadados", self.queries, MAX_LIST_QUERIES)
+            raise InspectionLimitError(N_("exact metadata queries"), self.queries, MAX_LIST_QUERIES)
         local: dict[str, _Entry] = {}
 
         def consume(line: str):
             self.output_bytes += len(line.encode("utf-8")) + 1
             if self.output_bytes > MAX_TREE_OUTPUT:
-                raise InspectionLimitError("listagens acumuladas (bytes)", self.output_bytes, MAX_TREE_OUTPUT)
+                raise InspectionLimitError(N_("accumulated listings (bytes)"), self.output_bytes, MAX_TREE_OUTPUT)
             entry = _listing_entry(line)
             if entry is None:
                 return
             self.examined += 1
             if self.examined > MAX_TREE_ENTRIES:
-                raise InspectionLimitError("registros examinados nas listagens selecionadas", self.examined, MAX_TREE_ENTRIES)
+                raise InspectionLimitError(N_("records examined in the selected listings"), self.examined, MAX_TREE_ENTRIES)
             if entry.path in local:
-                raise InspectionToolError("Caminho duplicado na mesma listagem.")
+                raise InspectionToolError(N_("Duplicate path in the same listing."))
             if (not path and "/" in entry.path) or (path and not (entry.path == path or path.startswith(entry.path + "/"))):
-                raise InspectionToolError("unsquashfs retornou entradas fora da seleção/profundidade solicitada.")
+                raise InspectionToolError(N_("unsquashfs returned entries outside the requested selection/depth."))
             previous = dict.get(self, entry.path)
             if previous is not None and previous != entry:
-                raise InspectionError("Metadados divergentes entre consultas à mesma imagem.")
+                raise InspectionError(N_("Metadata differs between queries to the same image."))
             local[entry.path] = entry
             parent = PurePosixPath(entry.path).parent
             while str(parent) != ".":
                 ancestor = local.get(str(parent)) or dict.get(self, str(parent))
                 if ancestor is None or ancestor.kind != "directory":
-                    raise InspectionError("Árvore de diretórios de metadados inválida.")
+                    raise InspectionError(N_("Invalid metadata directory tree."))
                 parent = parent.parent
             self[entry.path] = entry
 
@@ -429,9 +435,9 @@ class _MetadataTree(dict[str, _Entry]):
     def get(self, path, default=None):
         if path not in self and path not in self.absent:
             if len(path) > 512:
-                raise InspectionLimitError("caminho de metadados (caracteres)", len(path), 512)
+                raise InspectionLimitError(N_("metadata path (characters)"), len(path), 512)
             if not _safe_path(path):
-                raise InspectionError("Caminho de metadados inseguro.")
+                raise InspectionError(N_("Unsafe metadata path."))
             self._query(path)
         return dict.get(self, path, default)
 
@@ -461,7 +467,7 @@ def _resolve_entry(path: str, entries: dict[str, _Entry]) -> _Entry | None:
         if entry.kind == "link":
             hops += 1
             if hops > 16:
-                raise InspectionLimitError("saltos de links simbólicos", hops, 16)
+                raise InspectionLimitError(N_("symbolic link hops"), hops, 16)
             if entry.target is None or entry.target.startswith("/"):
                 return None
             resolved.pop()
@@ -473,7 +479,7 @@ def _resolve_entry(path: str, entries: dict[str, _Entry]) -> _Entry | None:
 
 def _cat_file(image: Path, offset: int, path: str, limit: int, timeout: float = MAX_COMMAND_SECONDS) -> bytes:
     if not _safe_path(path):
-        raise InspectionError("O caminho de metadados do AppImage é inválido.")
+        raise InspectionError(N_("The AppImage metadata path is invalid."))
     return _run_bounded(
         [
             "unsquashfs",
@@ -493,17 +499,17 @@ def _cat_file(image: Path, offset: int, path: str, limit: int, timeout: float = 
 
 def _parse_desktop(data: bytes, desktop_path: str) -> dict:
     if len(data) > MAX_METADATA_SIZE:
-        raise InspectionLimitError("metadados .desktop (bytes)", len(data), MAX_METADATA_SIZE)
+        raise InspectionLimitError(N_(".desktop metadata (bytes)"), len(data), MAX_METADATA_SIZE)
     try:
         text = data.decode("utf-8-sig", errors="strict")
     except UnicodeDecodeError as error:
-        raise InspectionError("O arquivo .desktop não está codificado em UTF-8.") from error
+        raise InspectionError(N_("The .desktop file is not encoded in UTF-8.")) from error
     values: dict[str, str] = {}
     in_entry = False
     found_entry = False
     for line in text.splitlines():
         if len(line) > 4096:
-            raise InspectionLimitError("linha .desktop (caracteres)", len(line), 4096)
+            raise InspectionLimitError(N_(".desktop line (characters)"), len(line), 4096)
         stripped = line.strip()
         if not stripped or stripped.startswith("#"):
             continue
@@ -514,18 +520,18 @@ def _parse_desktop(data: bytes, desktop_path: str) -> dict:
         if not in_entry:
             continue
         if "=" not in line:
-            raise InspectionError("O arquivo .desktop está malformado.")
+            raise InspectionError(N_("The .desktop file is malformed."))
         key, value = line.split("=", 1)
         if not re.fullmatch(r"[A-Za-z0-9-]+(?:\[[A-Za-z0-9_@.-]+\])?", key.strip()):
-            raise InspectionError("O arquivo .desktop contém uma chave inválida.")
+            raise InspectionError(N_("The .desktop file contains an invalid key."))
         key = key.strip()
         if key in values:
-            raise InspectionError("O arquivo .desktop contém chaves duplicadas.")
+            raise InspectionError(N_("The .desktop file contains duplicate keys."))
         values[key] = value if key == "Categories" else value.strip()
     if not found_entry:
-        raise InspectionError("O AppImage não contém uma seção [Desktop Entry] válida.")
+        raise InspectionError(N_("The AppImage does not contain a valid [Desktop Entry] section."))
     if values.get("Type", "Application") != "Application":
-        raise InspectionError("O arquivo .desktop não descreve um aplicativo.")
+        raise InspectionError(N_("The .desktop file does not describe an application."))
 
     def unescape(value: str) -> str:
         return re.sub(
@@ -553,7 +559,7 @@ def _parse_desktop(data: bytes, desktop_path: str) -> dict:
                               and _debian_version(raw_version, "0" * 64) == raw_version) else ""
     icon = values.get("Icon", "")
     if len(icon) > 512:
-        raise InspectionLimitError("referência de ícone (caracteres)", len(icon), 512)
+        raise InspectionLimitError(N_("icon reference (characters)"), len(icon), 512)
     if any(unicodedata.category(char)[0] == "C" for char in icon):
         icon = ""
     return {"name": name, "identity_name": _clean_text(values.get("Name") or stem), "comment": comment, "version": version, "icon": icon, "categories": normalize_categories(values.get("Categories", ""))}
@@ -577,7 +583,7 @@ def _read_icon(image: Path, offset: int, entries: _MetadataTree, desktop_icon: s
         if entry is None or entry.kind != "file":
             continue
         if total + entry.size > MAX_ICON_SIZE:
-            raise InspectionLimitError("ícones lidos (bytes)", total + entry.size, MAX_ICON_SIZE)
+            raise InspectionLimitError(N_("icons read (bytes)"), total + entry.size, MAX_ICON_SIZE)
         data = _cat_file(image, offset, entry.path, MAX_ICON_SIZE - total, entries.timeout())
         total += len(data)
         if len(data) < 24 or data[:8] != b"\x89PNG\r\n\x1a\n":
@@ -586,7 +592,7 @@ def _read_icon(image: Path, offset: int, entries: _MetadataTree, desktop_icon: s
         if width == 0 or height == 0:
             continue
         if width > 8192 or height > 8192 or width * height > 32_000_000:
-            raise InspectionLimitError("dimensões PNG (largura,altura,pixels)", f"{width},{height},{width*height}", "8192,8192,32000000")
+            raise InspectionLimitError(N_("PNG dimensions (width,height,pixels)"), f"{width},{height},{width*height}", "8192,8192,32000000")
         return data
     return None
 
@@ -611,39 +617,39 @@ def inspect_appimage(image_path: str | Path) -> Inspection:
         path = path.resolve(strict=True)
         file_stat = path.stat()
     except OSError as error:
-        raise InspectionError(f"Não foi possível abrir o arquivo selecionado: {error}") from error
+        raise InspectionError(N_("Could not open the selected file: {error}"), error=error) from error
     if not path.is_file():
-        raise InspectionError("O arquivo selecionado não é um arquivo regular.")
+        raise InspectionError(N_("The selected file is not a regular file."))
     if file_stat.st_size < 64:
-        raise InspectionError("Cabeçalho ELF truncado: arquivo com menos de 64 bytes.")
+        raise InspectionError(N_("Truncated ELF header: file smaller than 64 bytes."))
     if file_stat.st_size > MAX_IMAGE_SIZE:
-        raise InspectionLimitError("arquivo AppImage (bytes)", file_stat.st_size, MAX_IMAGE_SIZE)
+        raise InspectionLimitError(N_("AppImage file (bytes)"), file_stat.st_size, MAX_IMAGE_SIZE)
 
     with path.open("rb") as stream:
         header = stream.read(64)
     architecture = _architecture(header)
     if header[8:11] != b"AI\x02":
-        raise InspectionError("Formato incompatível: somente AppImage Type 2 com assinatura AI de tipo 2 é aceito.")
+        raise InspectionError(N_("Incompatible format: only AppImage Type 2 with a type 2 AI signature is accepted."))
     inspection_deadline = time.monotonic() + MAX_INSPECTION_SECONDS
     image_sha256 = hashlib.sha256()
     with path.open("rb") as stream:
         for chunk in iter(lambda: stream.read(1024 * 1024), b""):
             if time.monotonic() > inspection_deadline:
-                raise InspectionLimitError("tempo total da inspeção (s)", MAX_INSPECTION_SECONDS, MAX_INSPECTION_SECONDS)
+                raise InspectionLimitError(N_("total inspection time (s)"), MAX_INSPECTION_SECONDS, MAX_INSPECTION_SECONDS)
             image_sha256.update(chunk)
     digest = image_sha256.hexdigest()
 
     offsets = _find_superblocks(path, file_stat.st_size, inspection_deadline)
     if not offsets:
         raise InspectionError(
-            "Formato incompatível ou inválido. São aceitos somente AppImages Type 2 "
-            "com SquashFS 4.0 validado."
+            N_("Incompatible or invalid format. Only AppImages Type 2 "
+               "with a validated SquashFS 4.0 are accepted.")
         )
 
     last_error: InspectionError | None = None
     for offset in offsets:
         if time.monotonic() > inspection_deadline:
-            raise InspectionLimitError("tempo total da inspeção (s)", MAX_INSPECTION_SECONDS, MAX_INSPECTION_SECONDS)
+            raise InspectionLimitError(N_("total inspection time (s)"), MAX_INSPECTION_SECONDS, MAX_INSPECTION_SECONDS)
         try:
             entries = _read_tree(path, offset, inspection_deadline)
             desktop_files = sorted(
@@ -655,19 +661,19 @@ def inspect_appimage(image_path: str | Path) -> Inspection:
             )
             if not desktop_files:
                 raise InspectionError(
-                    "O AppImage não contém um arquivo .desktop regular na raiz."
+                    N_("The AppImage does not contain a regular .desktop file at its root.")
                 )
             if len(desktop_files) > MAX_DESKTOP_CANDIDATES:
-                raise InspectionLimitError("candidatos .desktop na raiz", len(desktop_files), MAX_DESKTOP_CANDIDATES)
+                raise InspectionLimitError(N_(".desktop candidates at the root"), len(desktop_files), MAX_DESKTOP_CANDIDATES)
             metadata = None
             desktop_path = ""
             for candidate in desktop_files:
                 try:
                     resolved = _resolve_entry(candidate, entries)
                     if resolved is not None and resolved.size > MAX_METADATA_SIZE:
-                        raise InspectionLimitError("metadados .desktop (bytes)", resolved.size, MAX_METADATA_SIZE)
+                        raise InspectionLimitError(N_(".desktop metadata (bytes)"), resolved.size, MAX_METADATA_SIZE)
                     if resolved is None or resolved.kind != "file":
-                        raise InspectionError("O link .desktop é inválido ou escapa da árvore.")
+                        raise InspectionError(N_("The .desktop link is invalid or escapes the tree."))
                     candidate_data = _cat_file(path, offset, resolved.path, MAX_METADATA_SIZE, entries.timeout())
                     metadata = _parse_desktop(candidate_data, candidate)
                     desktop_path = candidate
@@ -678,7 +684,7 @@ def inspect_appimage(image_path: str | Path) -> Inspection:
                     last_error = error
             if metadata is None:
                 raise last_error or InspectionError(
-                    "O AppImage não contém metadados .desktop válidos."
+                    N_("The AppImage does not contain valid .desktop metadata.")
                 )
             package_name, desktop_identity = _identity_for_desktop(desktop_path)
             return Inspection(
@@ -700,4 +706,4 @@ def inspect_appimage(image_path: str | Path) -> Inspection:
             raise
         except InspectionError as error:
             last_error = error
-    raise last_error or InspectionError("Não foi possível validar o AppImage.")
+    raise last_error or InspectionError(N_("Could not validate the AppImage."))

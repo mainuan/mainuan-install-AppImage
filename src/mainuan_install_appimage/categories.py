@@ -9,6 +9,8 @@ from __future__ import annotations
 
 import re
 
+from .i18n import LocalizedError, N_
+
 MAX_CATEGORY_TEXT = 1024
 MAX_CATEGORIES = 32
 MAIN = frozenset('AudioVideo Audio Video Development Education HealthFitness Game Graphics Network Office Science Settings System Utility'.split())
@@ -43,6 +45,11 @@ _GROUPS = (
 RELATED = {name: parents for parents, names in _GROUPS for name in names.split()}
 # Reserved/custom categories are not imported. ConsoleOnly is inconsistent with
 # the fixed Terminal=false launcher and is deliberately not carried over.
+# Category identifiers are protocol values and are never translated.
+
+
+class CategoryError(LocalizedError, ValueError):
+    """Refused category list (administrative protocol)."""
 
 
 def normalize_categories(value: str) -> tuple[str, ...]:
@@ -72,10 +79,10 @@ def validate_categories(value: object) -> tuple[str, ...]:
     """Administrative protocol: refuse noncanonical input; never fix it silently."""
     if (not isinstance(value, (list, tuple)) or not 1 <= len(value) <= MAX_CATEGORIES
             or any(not isinstance(name, str) or not name or len(name) > 64 for name in value)):
-        raise ValueError('Lista de categorias inválida.')
+        raise CategoryError(N_("Invalid category list."))
     result = tuple(value)
     if normalize_categories(';'.join(result) + ';') != result:
-        raise ValueError('Categorias desconhecidas, malformadas ou não canônicas.')
+        raise CategoryError(N_("Unknown, malformed or non-canonical categories."))
     return result
 
 
