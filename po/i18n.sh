@@ -170,14 +170,17 @@ PY
 }
 
 cmd_check_pot() {
-  local saved; saved=$(mktemp); cp "$POT" "$saved"
-  cmd_extract >/dev/null
-  if ! diff -q <(grep -v '^"POT-Creation-Date:' "$saved") <(grep -v '^"POT-Creation-Date:' "$POT") >/dev/null; then
-    diff -u <(grep -v '^"POT-Creation-Date:' "$saved") <(grep -v '^"POT-Creation-Date:' "$POT") | head -40 >&2
-    cp "$saved" "$POT"; rm -f "$saved"
+  # Extract into a temporary POT: the committed file is never rewritten, so
+  # parallel runs (ctest -j) cannot see a half-written template.
+  local committed=$POT tmp; tmp=$(mktemp --suffix=.pot)
+  cp "$committed" "$tmp"
+  POT=$tmp cmd_extract >/dev/null
+  if ! diff -q <(grep -v '^"POT-Creation-Date:' "$committed") <(grep -v '^"POT-Creation-Date:' "$tmp") >/dev/null; then
+    diff -u <(grep -v '^"POT-Creation-Date:' "$committed") <(grep -v '^"POT-Creation-Date:' "$tmp") | head -40 >&2
+    rm -f "$tmp"
     echo "i18n.sh: POT is out of date — run po/i18n.sh extract && po/i18n.sh update" >&2; exit 1
   fi
-  cp "$saved" "$POT"; rm -f "$saved"; echo "POT is up to date"
+  rm -f "$tmp"; echo "POT is up to date"
 }
 
 cmd_add() {
