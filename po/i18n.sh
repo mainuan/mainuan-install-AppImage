@@ -88,6 +88,13 @@ xgettext_group() {  # $1 language, $2 output, rest: files
     [ -f "$out" ] && join=(--join-existing)
   done
   [ -f "$out" ] && sed -i 's/charset=CHARSET/charset=UTF-8/' "$out"
+  # QML strings (qsTr/i18n) use Qt/KDE %1 placeholders, not JavaScript printf
+  # formats; xgettext's heuristic javascript-format flag would make msgfmt
+  # reject correct translations such as "%1 %" (fr/de). Placeholders are
+  # still checked by "validate".
+  if [ -f "$out" ] && [ "$lang" = JavaScript ]; then
+    sed -i -e '/^#, javascript-format$/d' -e 's/^\(#,.*\), javascript-format/\1/' -e 's/^#, javascript-format, /#, /' "$out"
+  fi
   return 0
 }
 
@@ -241,7 +248,10 @@ for lang in langs:
                 # every form may only use the source's placeholders and must keep the
                 # non-count ones; the count itself may be spelled out in a singular form
                 allowed = set(toks(e['msgid'])) | set(toks(e['msgid_plural'])); got = toks(v)
-                needed = set(toks(e['msgid_plural'])) - {'%1', '%n', '%d', '{count}', '{n}'}
+                # the count may be spelled out in a form (ar: zero/one/two): numeric
+                # placeholders of the source are optional, the others are required
+                numeric = {t for t in allowed if re.fullmatch(r"%\d+|%n|%d|%\(\w+\)d|\{(count|n|num|number)\}", t)}
+                needed = set(toks(e['msgid_plural'])) - numeric
                 if set(got) - allowed or needed - set(got):
                     print(f"PLACEHOLDER {lang} {k}: {e['msgid_plural']!r} -> {v!r}"); bad += 1
                 continue
