@@ -1,0 +1,12 @@
+# Files with translatable strings, relative to the repository root.
+src/mainuan_install_appimage/gui.py
+src/mainuan_install_appimage/staging.py
+src/mainuan_install_appimage/inspector.py
+src/mainuan_install_appimage/installer.py
+src/mainuan_install_appimage/boundary.py
+src/mainuan_install_appimage/categories.py
+src/mainuan_install_appimage/reduced.py
+src/mainuan_install_appimage/privileged.py
+packaging/mainuan-install-appimage.desktop
+[ITS] packaging/br.com.mainuan.install-appimage.policy
+[ITS] packaging/appimage-mime.xml
