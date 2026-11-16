@@ -76,10 +76,19 @@ xgettext_group() {  # $1 language, $2 output, rest: files
   esac
   local langarg=()
   case "$lang" in auto) ;; ITS) ;; *) langarg=(--language="$lang") ;; esac
-  (cd "$ROOT" && xgettext --from-code=UTF-8 --add-comments=Translators: --add-comments=i18n: \
-      --sort-by-file --package-name="$PACKAGE_NAME" ${PACKAGE_VERSION:+--package-version="$PACKAGE_VERSION"} \
-      --msgid-bugs-address="$BUGS_ADDRESS" --copyright-holder="$COPYRIGHT_HOLDER" \
-      "${langarg[@]}" "${kw[@]}" -o "$out" "$@")
+  # xgettext honours only the last --add-comments tag, so extract once per tag
+  # (GNU "Translators:" and KDE "i18n:"); --join-existing unions the notes.
+  local tag join=()
+  rm -f "$out"
+  for tag in ${COMMENT_TAGS:-Translators: i18n:}; do
+    (cd "$ROOT" && xgettext --from-code=UTF-8 --add-comments="$tag" "${join[@]}" \
+        --sort-by-file --package-name="$PACKAGE_NAME" ${PACKAGE_VERSION:+--package-version="$PACKAGE_VERSION"} \
+        --msgid-bugs-address="$BUGS_ADDRESS" --copyright-holder="$COPYRIGHT_HOLDER" \
+        "${langarg[@]}" "${kw[@]}" -o "$out" "$@")
+    [ -f "$out" ] && join=(--join-existing)
+  done
+  [ -f "$out" ] && sed -i 's/charset=CHARSET/charset=UTF-8/' "$out"
+  return 0
 }
 
 cmd_extract() {

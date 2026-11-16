@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: mainuan-install-appimage 2.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/mainuan/mainuan-install-AppImage/"
 "issues\n"
-"POT-Creation-Date: 2026-11-16 11:24-0300\n"
+"POT-Creation-Date: 2026-11-16 11:30-0300\n"
 "PO-Revision-Date: 2026-11-16 11:24-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -18,6 +18,26 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: packaging/appimage-mime.xml:4
+msgid "AppImage application"
+msgstr "Aplicativo AppImage"
+
+#: packaging/br.com.mainuan.install-appimage.policy:7
+msgid "Install a verified AppImage as a Debian package"
+msgstr "Instalar um AppImage verificado como pacote Debian"
+
+#: packaging/br.com.mainuan.install-appimage.policy:8
+msgid "Authenticate to install this AppImage on Mainuan"
+msgstr "Autentique-se para instalar este AppImage no Mainuan"
+
+#: packaging/mainuan-install-appimage.desktop:3
+msgid "Mainuan AppImage Installer"
+msgstr "Mainuan Instalador de AppImage"
+
+#: packaging/mainuan-install-appimage.desktop:4
+msgid "Inspects and installs AppImage files as Debian packages"
+msgstr "Inspeciona e instala arquivos AppImage como pacotes Debian"
 
 #: src/mainuan_install_appimage/boundary.py:39
 msgid "Oversized inspection response."
@@ -293,6 +313,7 @@ msgstr "Informe somente um arquivo AppImage por vez."
 msgid "Format or metadata"
 msgstr "Formato ou metadados"
 
+#. Translators: {category} is a failure class such as "Format or metadata".
 #: src/mainuan_install_appimage/inspector.py:56
 #, python-brace-format
 msgid "{category}: {message}"
@@ -302,6 +323,7 @@ msgstr "{category}: {message}"
 msgid "Operational limit (does not determine whether the file is valid)"
 msgstr "Limite operacional (não determina a validade do arquivo)"
 
+#. Translators: {resource} names the limited resource; keep observed= and limit= readable.
 #: src/mainuan_install_appimage/inspector.py:65
 #, python-brace-format
 msgid "{resource}; observed={observed}, limit={allowed}"
@@ -899,23 +921,3 @@ msgstr "Validando ELF, arquitetura, SquashFS e metadados…"
 #: src/mainuan_install_appimage/staging.py:119
 msgid "The temporary copy does not match the selected file."
 msgstr "A cópia temporária não corresponde ao arquivo selecionado."
-
-#: packaging/mainuan-install-appimage.desktop:3
-msgid "Mainuan AppImage Installer"
-msgstr "Mainuan Instalador de AppImage"
-
-#: packaging/mainuan-install-appimage.desktop:4
-msgid "Inspects and installs AppImage files as Debian packages"
-msgstr "Inspeciona e instala arquivos AppImage como pacotes Debian"
-
-#: packaging/appimage-mime.xml:4
-msgid "AppImage application"
-msgstr "Aplicativo AppImage"
-
-#: packaging/br.com.mainuan.install-appimage.policy:7
-msgid "Install a verified AppImage as a Debian package"
-msgstr "Instalar um AppImage verificado como pacote Debian"
-
-#: packaging/br.com.mainuan.install-appimage.policy:8
-msgid "Authenticate to install this AppImage on Mainuan"
-msgstr "Autentique-se para instalar este AppImage no Mainuan"

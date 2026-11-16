@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: mainuan-install-appimage 2.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/mainuan/mainuan-install-AppImage/"
 "issues\n"
-"POT-Creation-Date: 2026-11-16 11:24-0300\n"
+"POT-Creation-Date: 2026-11-16 11:30-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,26 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: packaging/appimage-mime.xml:4
+msgid "AppImage application"
+msgstr ""
+
+#: packaging/br.com.mainuan.install-appimage.policy:7
+msgid "Install a verified AppImage as a Debian package"
+msgstr ""
+
+#: packaging/br.com.mainuan.install-appimage.policy:8
+msgid "Authenticate to install this AppImage on Mainuan"
+msgstr ""
+
+#: packaging/mainuan-install-appimage.desktop:3
+msgid "Mainuan AppImage Installer"
+msgstr ""
+
+#: packaging/mainuan-install-appimage.desktop:4
+msgid "Inspects and installs AppImage files as Debian packages"
+msgstr ""
 
 #: src/mainuan_install_appimage/boundary.py:39
 msgid "Oversized inspection response."
@@ -287,6 +307,7 @@ msgstr ""
 msgid "Format or metadata"
 msgstr ""
 
+#. Translators: {category} is a failure class such as "Format or metadata".
 #: src/mainuan_install_appimage/inspector.py:56
 #, python-brace-format
 msgid "{category}: {message}"
@@ -296,6 +317,7 @@ msgstr ""
 msgid "Operational limit (does not determine whether the file is valid)"
 msgstr ""
 
+#. Translators: {resource} names the limited resource; keep observed= and limit= readable.
 #: src/mainuan_install_appimage/inspector.py:65
 #, python-brace-format
 msgid "{resource}; observed={observed}, limit={allowed}"
@@ -870,24 +892,4 @@ msgstr ""
 
 #: src/mainuan_install_appimage/staging.py:119
 msgid "The temporary copy does not match the selected file."
-msgstr ""
-
-#: packaging/mainuan-install-appimage.desktop:3
-msgid "Mainuan AppImage Installer"
-msgstr ""
-
-#: packaging/mainuan-install-appimage.desktop:4
-msgid "Inspects and installs AppImage files as Debian packages"
-msgstr ""
-
-#: packaging/appimage-mime.xml:4
-msgid "AppImage application"
-msgstr ""
-
-#: packaging/br.com.mainuan.install-appimage.policy:7
-msgid "Install a verified AppImage as a Debian package"
-msgstr ""
-
-#: packaging/br.com.mainuan.install-appimage.policy:8
-msgid "Authenticate to install this AppImage on Mainuan"
 msgstr ""
