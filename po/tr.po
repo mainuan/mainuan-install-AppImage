@@ -1,0 +1,917 @@
+# Turkish translations for mainuan-install-appimage package.
+# Copyright (C) 2026 Mainuan
+# This file is distributed under the same license as the mainuan-install-appimage package.
+# Automatically generated, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mainuan-install-appimage 2.0.1\n"
+"Report-Msgid-Bugs-To: https://github.com/mainuan/mainuan-install-AppImage/"
+"issues\n"
+"POT-Creation-Date: 2026-11-16 12:37-0300\n"
+"PO-Revision-Date: 2026-11-16 12:37-0300\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: tr <https://github.com/mainuan>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: packaging/appimage-mime.xml:4
+msgid "AppImage application"
+msgstr "AppImage uygulaması"
+
+# reviewed: consistência: Comment de .desktop no imperativo formal (-in) como
+# os demais
+#: packaging/br.com.mainuan.install-appimage.policy:7
+msgid "Install a verified AppImage as a Debian package"
+msgstr "Doğrulanmış bir AppImage’ı Debian paketi olarak kurun"
+
+#: packaging/br.com.mainuan.install-appimage.policy:8
+msgid "Authenticate to install this AppImage on Mainuan"
+msgstr "Bu AppImage’ı Mainuan’a kurmak için kimlik doğrulaması yapın"
+
+#: packaging/mainuan-install-appimage.desktop:3
+msgid "Mainuan AppImage Installer"
+msgstr "Mainuan AppImage Kurucu"
+
+#: packaging/mainuan-install-appimage.desktop:4
+msgid "Inspects and installs AppImage files as Debian packages"
+msgstr "AppImage dosyalarını inceler ve Debian paketi olarak kurar"
+
+#: src/mainuan_install_appimage/boundary.py:39
+msgid "Oversized inspection response."
+msgstr "İnceleme yanıtı çok büyük."
+
+#: src/mainuan_install_appimage/boundary.py:45
+msgid "duplicate JSON field"
+msgstr "yinelenen JSON alanı"
+
+#: src/mainuan_install_appimage/boundary.py:51
+msgid "object expected"
+msgstr "nesne bekleniyordu"
+
+#: src/mainuan_install_appimage/boundary.py:53
+msgid "Protocol categories must be a JSON list."
+msgstr "Protokol kategorileri bir JSON listesi olmalıdır."
+
+#: src/mainuan_install_appimage/boundary.py:57
+msgid "invalid text"
+msgstr "geçersiz metin"
+
+#: src/mainuan_install_appimage/boundary.py:60
+msgid "control character or line break in text"
+msgstr "metinde denetim karakteri ya da satır sonu var"
+
+#: src/mainuan_install_appimage/boundary.py:63
+msgid "invalid identity"
+msgstr "geçersiz kimlik"
+
+#: src/mainuan_install_appimage/boundary.py:66
+msgid "package does not match the identity"
+msgstr "paket kimlikle eşleşmiyor"
+
+#: src/mainuan_install_appimage/boundary.py:68
+msgid "divergent content"
+msgstr "farklılaşan içerik"
+
+#: src/mainuan_install_appimage/boundary.py:70
+msgid "invalid size"
+msgstr "geçersiz boyut"
+
+#: src/mainuan_install_appimage/boundary.py:72
+msgid "invalid offset"
+msgstr "geçersiz konum"
+
+#: src/mainuan_install_appimage/boundary.py:74
+msgid "invalid architecture"
+msgstr "geçersiz mimari"
+
+#: src/mainuan_install_appimage/boundary.py:77
+msgid "invalid Debian version"
+msgstr "geçersiz Debian sürümü"
+
+#: src/mainuan_install_appimage/boundary.py:80
+msgid "invalid icons"
+msgstr "geçersiz simgeler"
+
+#: src/mainuan_install_appimage/boundary.py:84
+msgid "oversized icon"
+msgstr "simge çok büyük"
+
+#: src/mainuan_install_appimage/boundary.py:87
+msgid "incompatible icon"
+msgstr "uyumsuz simge"
+
+#: src/mainuan_install_appimage/boundary.py:95
+#, python-brace-format
+msgid "The inspection response was refused: {error}"
+msgstr "İnceleme yanıtı reddedildi: {error}"
+
+# reviewed: "Yetkisiz" = não autorizado; unprivileged = ayrıcalıksız (como
+# "ayrıcalık" usado no resto do lote)
+#: src/mainuan_install_appimage/boundary.py:101
+msgid "Unprivileged inspection account unavailable."
+msgstr "Ayrıcalıksız inceleme hesabı kullanılamıyor."
+
+#: src/mainuan_install_appimage/boundary.py:112
+msgid "The administrative copy is not regular."
+msgstr "Yönetimsel kopya olağan bir dosya değil."
+
+#: src/mainuan_install_appimage/boundary.py:127
+#, python-brace-format
+msgid "Operational limit: administrative inspection time; limit={limit} s."
+msgstr "İşletim sınırı: yönetimsel inceleme süresi; sınır={limit} sn."
+
+#: src/mainuan_install_appimage/boundary.py:135
+#, python-brace-format
+msgid ""
+"Operational limit: parser output; observed={observed}, limit={limit} bytes."
+msgstr ""
+"İşletim sınırı: ayrıştırıcı çıktısı; gözlenen={observed}, sınır={limit} bayt."
+
+# reviewed: unprivileged = ayrıcalıksız, não "yetkisiz" (não autorizado)
+#: src/mainuan_install_appimage/boundary.py:138
+#, python-brace-format
+msgid ""
+"Unprivileged inspection failed: code={code}; limits CPU=120 s, address "
+"space=1073741824 bytes. {detail}"
+msgstr ""
+"Ayrıcalıksız inceleme başarısız oldu: kod={code}; sınırlar CPU=120 sn, adres "
+"alanı=1073741824 bayt. {detail}"
+
+# reviewed: unprivileged = ayrıcalıksız, não "yetkisiz" (não autorizado)
+#: src/mainuan_install_appimage/boundary.py:141
+#, python-brace-format
+msgid "Could not run the unprivileged inspection: {error}"
+msgstr "Ayrıcalıksız inceleme çalıştırılamadı: {error}"
+
+#: src/mainuan_install_appimage/categories.py:82
+msgid "Invalid category list."
+msgstr "Geçersiz kategori listesi."
+
+#: src/mainuan_install_appimage/categories.py:85
+msgid "Unknown, malformed or non-canonical categories."
+msgstr "Bilinmeyen, hatalı biçimlendirilmiş ya da standart dışı kategoriler."
+
+#: src/mainuan_install_appimage/gui.py:32
+msgid "AppImage Installer"
+msgstr "AppImage Kurucu"
+
+#: src/mainuan_install_appimage/gui.py:135
+msgid "Show Details"
+msgstr "Ayrıntıları Göster"
+
+#: src/mainuan_install_appimage/gui.py:147
+msgid "Select File"
+msgstr "Dosya Seç"
+
+#: src/mainuan_install_appimage/gui.py:148
+msgctxt "@action:button"
+msgid "Cancel"
+msgstr "İptal"
+
+#: src/mainuan_install_appimage/gui.py:149
+#: src/mainuan_install_appimage/gui.py:287
+#: src/mainuan_install_appimage/gui.py:299
+msgctxt "@action:button"
+msgid "Install"
+msgstr "Kur"
+
+#: src/mainuan_install_appimage/gui.py:151
+msgid "Open Application"
+msgstr "Uygulamayı Aç"
+
+#: src/mainuan_install_appimage/gui.py:152
+msgctxt "@action:button"
+msgid "Close"
+msgstr "Kapat"
+
+#: src/mainuan_install_appimage/gui.py:177
+msgid "Select a file."
+msgstr "Bir dosya seçin."
+
+#: src/mainuan_install_appimage/gui.py:179
+msgid "No application selected"
+msgstr "Seçili uygulama yok"
+
+#: src/mainuan_install_appimage/gui.py:198
+msgid "Select AppImage"
+msgstr "AppImage Seç"
+
+#: src/mainuan_install_appimage/gui.py:200
+msgid "All Files (*)"
+msgstr "Tüm Dosyalar (*)"
+
+#: src/mainuan_install_appimage/gui.py:200
+msgid "AppImages (*.AppImage *.appimage)"
+msgstr "AppImage dosyaları (*.AppImage *.appimage)"
+
+#: src/mainuan_install_appimage/gui.py:219
+msgid "Preparing…"
+msgstr "Hazırlanıyor…"
+
+#: src/mainuan_install_appimage/gui.py:231
+msgid "Inspecting…"
+msgstr "İnceleniyor…"
+
+#: src/mainuan_install_appimage/gui.py:248
+msgid "Could not inspect the file."
+msgstr "Dosya incelenemedi."
+
+#: src/mainuan_install_appimage/gui.py:258
+#: src/mainuan_install_appimage/gui.py:436
+#, python-brace-format
+msgid "Version: {version}"
+msgstr "Sürüm: {version}"
+
+#: src/mainuan_install_appimage/gui.py:291
+msgid "The application will be reinstalled."
+msgstr "Uygulama yeniden kurulacak."
+
+#: src/mainuan_install_appimage/gui.py:292
+msgctxt "@action:button"
+msgid "Reinstall"
+msgstr "Yeniden Kur"
+
+#: src/mainuan_install_appimage/gui.py:294
+msgid "The current installation will be replaced."
+msgstr "Geçerli kurulum değiştirilecek."
+
+#: src/mainuan_install_appimage/gui.py:295
+msgctxt "@action:button"
+msgid "Replace Version"
+msgstr "Sürümü Değiştir"
+
+#: src/mainuan_install_appimage/gui.py:319
+#: src/mainuan_install_appimage/staging.py:99
+#: src/mainuan_install_appimage/staging.py:121
+msgid "Inspection canceled."
+msgstr "İnceleme iptal edildi."
+
+#: src/mainuan_install_appimage/gui.py:339
+msgid "Waiting for authentication…"
+msgstr "Kimlik doğrulaması bekleniyor…"
+
+#: src/mainuan_install_appimage/gui.py:370
+msgid "Installing…"
+msgstr "Kuruluyor…"
+
+#: src/mainuan_install_appimage/gui.py:370
+msgid "Preparing installation…"
+msgstr "Kurulum hazırlanıyor…"
+
+#: src/mainuan_install_appimage/gui.py:370
+msgid "Verifying…"
+msgstr "Doğrulanıyor…"
+
+#: src/mainuan_install_appimage/gui.py:383
+msgid "Could not start PolicyKit."
+msgstr "PolicyKit başlatılamadı."
+
+#: src/mainuan_install_appimage/gui.py:394
+msgid ""
+"Authentication was denied or canceled. The installation was not completed."
+msgstr ""
+"Kimlik doğrulaması reddedildi ya da iptal edildi. Kurulum tamamlanmadı."
+
+#: src/mainuan_install_appimage/gui.py:399
+msgid "The installation was not completed."
+msgstr "Kurulum tamamlanmadı."
+
+#: src/mainuan_install_appimage/gui.py:400
+#, python-brace-format
+msgid "Exit code: {code}."
+msgstr "Çıkış kodu: {code}."
+
+#: src/mainuan_install_appimage/gui.py:410
+msgid "Installation not completed."
+msgstr "Kurulum tamamlanmadı."
+
+#: src/mainuan_install_appimage/gui.py:430
+msgid "Installation completed."
+msgstr "Kurulum tamamlandı."
+
+#: src/mainuan_install_appimage/gui.py:461
+msgid "The installed file is not available to be opened."
+msgstr "Kurulu dosya açılmak için kullanılabilir değil."
+
+#: src/mainuan_install_appimage/gui.py:469
+msgid "Could not start the application as a regular user."
+msgstr "Uygulama olağan bir kullanıcı olarak başlatılamadı."
+
+#: src/mainuan_install_appimage/gui.py:474
+msgid "Wait for the operation to finish."
+msgstr "İşlemin bitmesini bekleyin."
+
+#: src/mainuan_install_appimage/gui.py:502
+msgid "Run the interface as a regular user."
+msgstr "Arayüzü olağan bir kullanıcı olarak çalıştırın."
+
+#: src/mainuan_install_appimage/gui.py:513
+msgid "Provide only one AppImage file at a time."
+msgstr "Bir seferde yalnızca bir AppImage dosyası belirtin."
+
+#: src/mainuan_install_appimage/inspector.py:52
+msgid "Format or metadata"
+msgstr "Biçim ya da üst veri"
+
+#. Translators: {category} is a failure class such as "Format or metadata".
+#: src/mainuan_install_appimage/inspector.py:56
+#, python-brace-format
+msgid "{category}: {message}"
+msgstr "{category}: {message}"
+
+#: src/mainuan_install_appimage/inspector.py:60
+msgid "Operational limit (does not determine whether the file is valid)"
+msgstr "İşletim sınırı (dosyanın geçerli olup olmadığını belirlemez)"
+
+#. Translators: {resource} names the limited resource; keep observed= and limit= readable.
+#: src/mainuan_install_appimage/inspector.py:65
+#, python-brace-format
+msgid "{resource}; observed={observed}, limit={allowed}"
+msgstr "{resource}; gözlenen={observed}, sınır={allowed}"
+
+#: src/mainuan_install_appimage/inspector.py:71
+msgid "SquashFS reading tool"
+msgstr "SquashFS okuma aracı"
+
+#: src/mainuan_install_appimage/inspector.py:114
+msgid "The file is not an ELF executable."
+msgstr "Dosya bir ELF yürütülebilir dosyası değil."
+
+#: src/mainuan_install_appimage/inspector.py:118
+msgid "Incompatible format: only little-endian ELF AppImages are accepted."
+msgstr "Uyumsuz biçim: yalnızca little-endian ELF AppImage’lar kabul edilir."
+
+#: src/mainuan_install_appimage/inspector.py:121
+msgid "The AppImage uses an incompatible ELF class."
+msgstr "AppImage uyumsuz bir ELF sınıfı kullanıyor."
+
+#: src/mainuan_install_appimage/inspector.py:124
+msgid "The ELF header is truncated."
+msgstr "ELF başlığı kesik."
+
+#: src/mainuan_install_appimage/inspector.py:129
+msgid "The AppImage ELF header is invalid."
+msgstr "AppImage ELF başlığı geçersiz."
+
+#: src/mainuan_install_appimage/inspector.py:143
+msgid ""
+"Incompatible architecture. Accepted formats: amd64, arm64, i386 and armhf."
+msgstr "Uyumsuz mimari. Kabul edilen biçimler: amd64, arm64, i386 ve armhf."
+
+#: src/mainuan_install_appimage/inspector.py:222
+#: src/mainuan_install_appimage/inspector.py:235
+msgid "SquashFS search (s)"
+msgstr "SquashFS arama (sn)"
+
+#: src/mainuan_install_appimage/inspector.py:233
+msgid "superblock candidates"
+msgstr "süper blok adayları"
+
+#: src/mainuan_install_appimage/inspector.py:245
+msgid "structural superblocks"
+msgstr "yapısal süper bloklar"
+
+#: src/mainuan_install_appimage/inspector.py:256
+msgid "unsquashfs is not installed."
+msgstr "unsquashfs kurulu değil."
+
+#: src/mainuan_install_appimage/inspector.py:258
+msgid "inspection time (s)"
+msgstr "inceleme süresi (sn)"
+
+#: src/mainuan_install_appimage/inspector.py:267
+#, python-brace-format
+msgid "Could not start unsquashfs: {error}"
+msgstr "unsquashfs başlatılamadı: {error}"
+
+#: src/mainuan_install_appimage/inspector.py:278
+#: src/mainuan_install_appimage/inspector.py:318
+msgid "command time (s)"
+msgstr "komut süresi (sn)"
+
+#: src/mainuan_install_appimage/inspector.py:287
+msgid "unsquashfs stderr (bytes)"
+msgstr "unsquashfs stderr (bayt)"
+
+#: src/mainuan_install_appimage/inspector.py:292
+msgid "unsquashfs stdout (bytes)"
+msgstr "unsquashfs stdout (bayt)"
+
+#: src/mainuan_install_appimage/inspector.py:301
+#: src/mainuan_install_appimage/inspector.py:304
+msgid "listing line (bytes)"
+msgstr "listeleme satırı (bayt)"
+
+#: src/mainuan_install_appimage/inspector.py:311
+msgid "allocation refused"
+msgstr "bellek ayırma reddedildi"
+
+#: src/mainuan_install_appimage/inspector.py:311
+msgid "unsquashfs memory (bytes; exact usage unavailable)"
+msgstr "unsquashfs belleği (bayt; tam kullanım bilinmiyor)"
+
+#: src/mainuan_install_appimage/inspector.py:313
+msgid "SIGXCPU signal"
+msgstr "SIGXCPU sinyali"
+
+#: src/mainuan_install_appimage/inspector.py:313
+msgid "unsquashfs CPU (s)"
+msgstr "unsquashfs CPU (sn)"
+
+#: src/mainuan_install_appimage/inspector.py:314
+#, python-brace-format
+msgid "unsquashfs exited with code {code}. {detail}"
+msgstr "unsquashfs {code} koduyla çıktı. {detail}"
+
+#: src/mainuan_install_appimage/inspector.py:316
+msgid "The listing is not valid UTF-8."
+msgstr "Listeleme geçerli UTF-8 değil."
+
+#: src/mainuan_install_appimage/inspector.py:347
+msgid "The -lln listing is malformed (fields/mode/UID/GID)."
+msgstr "-lln listelemesi hatalı biçimlendirilmiş (alanlar/kip/UID/GID)."
+
+#: src/mainuan_install_appimage/inspector.py:351
+msgid "The listing contains an invalid size."
+msgstr "Listeleme geçersiz bir boyut içeriyor."
+
+#: src/mainuan_install_appimage/inspector.py:355
+msgid "The SquashFS root is not a directory."
+msgstr "SquashFS kökü bir dizin değil."
+
+#: src/mainuan_install_appimage/inspector.py:358
+msgid "Path outside the SquashFS root in the listing."
+msgstr "Listelemede SquashFS kökünün dışında yol."
+
+#: src/mainuan_install_appimage/inspector.py:364
+msgid "link target (characters)"
+msgstr "bağlantı hedefi (karakter)"
+
+#: src/mainuan_install_appimage/inspector.py:366
+msgid "Invalid symbolic link."
+msgstr "Geçersiz sembolik bağ."
+
+#: src/mainuan_install_appimage/inspector.py:368
+#: src/mainuan_install_appimage/inspector.py:438
+msgid "metadata path (characters)"
+msgstr "üst veri yolu (karakter)"
+
+#: src/mainuan_install_appimage/inspector.py:370
+msgid "Invalid or unsafe path in the listing."
+msgstr "Listelemede geçersiz ya da güvenli olmayan yol."
+
+#: src/mainuan_install_appimage/inspector.py:387
+#: src/mainuan_install_appimage/inspector.py:638
+#: src/mainuan_install_appimage/inspector.py:652
+msgid "total inspection time (s)"
+msgstr "toplam inceleme süresi (sn)"
+
+#: src/mainuan_install_appimage/inspector.py:393
+msgid "metadata path depth"
+msgstr "üst veri yolu derinliği"
+
+#: src/mainuan_install_appimage/inspector.py:396
+msgid "exact metadata queries"
+msgstr "tam üst veri sorguları"
+
+#: src/mainuan_install_appimage/inspector.py:402
+msgid "accumulated listings (bytes)"
+msgstr "biriken listelemeler (bayt)"
+
+#: src/mainuan_install_appimage/inspector.py:408
+msgid "records examined in the selected listings"
+msgstr "seçilen listelemelerde incelenen kayıtlar"
+
+#: src/mainuan_install_appimage/inspector.py:410
+msgid "Duplicate path in the same listing."
+msgstr "Aynı listelemede yinelenen yol."
+
+#: src/mainuan_install_appimage/inspector.py:412
+msgid "unsquashfs returned entries outside the requested selection/depth."
+msgstr "unsquashfs, istenen seçimin/derinliğin dışında girdiler döndürdü."
+
+#: src/mainuan_install_appimage/inspector.py:415
+msgid "Metadata differs between queries to the same image."
+msgstr "Aynı görüntüye yapılan sorgular arasında üst veri farklı."
+
+#: src/mainuan_install_appimage/inspector.py:421
+msgid "Invalid metadata directory tree."
+msgstr "Geçersiz üst veri dizin ağacı."
+
+#: src/mainuan_install_appimage/inspector.py:440
+msgid "Unsafe metadata path."
+msgstr "Güvenli olmayan üst veri yolu."
+
+#: src/mainuan_install_appimage/inspector.py:470
+msgid "symbolic link hops"
+msgstr "sembolik bağ atlamaları"
+
+#: src/mainuan_install_appimage/inspector.py:482
+msgid "The AppImage metadata path is invalid."
+msgstr "AppImage üst veri yolu geçersiz."
+
+#: src/mainuan_install_appimage/inspector.py:502
+#: src/mainuan_install_appimage/inspector.py:674
+msgid ".desktop metadata (bytes)"
+msgstr ".desktop üst verisi (bayt)"
+
+#: src/mainuan_install_appimage/inspector.py:506
+msgid "The .desktop file is not encoded in UTF-8."
+msgstr ".desktop dosyası UTF-8 ile kodlanmamış."
+
+#: src/mainuan_install_appimage/inspector.py:512
+msgid ".desktop line (characters)"
+msgstr ".desktop satırı (karakter)"
+
+#: src/mainuan_install_appimage/inspector.py:523
+msgid "The .desktop file is malformed."
+msgstr ".desktop dosyası hatalı biçimlendirilmiş."
+
+#: src/mainuan_install_appimage/inspector.py:526
+msgid "The .desktop file contains an invalid key."
+msgstr ".desktop dosyası geçersiz bir anahtar içeriyor."
+
+#: src/mainuan_install_appimage/inspector.py:529
+msgid "The .desktop file contains duplicate keys."
+msgstr ".desktop dosyası yinelenen anahtarlar içeriyor."
+
+#: src/mainuan_install_appimage/inspector.py:532
+msgid "The AppImage does not contain a valid [Desktop Entry] section."
+msgstr "AppImage geçerli bir [Desktop Entry] bölümü içermiyor."
+
+#: src/mainuan_install_appimage/inspector.py:534
+msgid "The .desktop file does not describe an application."
+msgstr ".desktop dosyası bir uygulamayı tanımlamıyor."
+
+#: src/mainuan_install_appimage/inspector.py:562
+msgid "icon reference (characters)"
+msgstr "simge başvurusu (karakter)"
+
+#: src/mainuan_install_appimage/inspector.py:586
+msgid "icons read (bytes)"
+msgstr "okunan simgeler (bayt)"
+
+#: src/mainuan_install_appimage/inspector.py:595
+msgid "PNG dimensions (width,height,pixels)"
+msgstr "PNG boyutları (genişlik,yükseklik,piksel)"
+
+#: src/mainuan_install_appimage/inspector.py:620
+#, python-brace-format
+msgid "Could not open the selected file: {error}"
+msgstr "Seçilen dosya açılamadı: {error}"
+
+#: src/mainuan_install_appimage/inspector.py:622
+msgid "The selected file is not a regular file."
+msgstr "Seçilen dosya olağan bir dosya değil."
+
+#: src/mainuan_install_appimage/inspector.py:624
+msgid "Truncated ELF header: file smaller than 64 bytes."
+msgstr "ELF başlığı kesik: dosya 64 bayttan küçük."
+
+#: src/mainuan_install_appimage/inspector.py:626
+msgid "AppImage file (bytes)"
+msgstr "AppImage dosyası (bayt)"
+
+#: src/mainuan_install_appimage/inspector.py:632
+msgid ""
+"Incompatible format: only AppImage Type 2 with a type 2 AI signature is "
+"accepted."
+msgstr "Uyumsuz biçim: yalnızca tür 2 AI imzalı AppImage Tür 2 kabul edilir."
+
+#: src/mainuan_install_appimage/inspector.py:645
+msgid ""
+"Incompatible or invalid format. Only AppImages Type 2 with a validated "
+"SquashFS 4.0 are accepted."
+msgstr ""
+"Uyumsuz ya da geçersiz biçim. Yalnızca doğrulanmış SquashFS 4.0 içeren "
+"AppImage Tür 2 dosyaları kabul edilir."
+
+#: src/mainuan_install_appimage/inspector.py:664
+msgid "The AppImage does not contain a regular .desktop file at its root."
+msgstr "AppImage, kökünde olağan bir .desktop dosyası içermiyor."
+
+#: src/mainuan_install_appimage/inspector.py:667
+msgid ".desktop candidates at the root"
+msgstr "kökteki .desktop adayları"
+
+#: src/mainuan_install_appimage/inspector.py:676
+msgid "The .desktop link is invalid or escapes the tree."
+msgstr ".desktop bağı geçersiz ya da ağacın dışına çıkıyor."
+
+#: src/mainuan_install_appimage/inspector.py:687
+msgid "The AppImage does not contain valid .desktop metadata."
+msgstr "AppImage geçerli .desktop üst verisi içermiyor."
+
+#: src/mainuan_install_appimage/inspector.py:709
+msgid "Could not validate the AppImage."
+msgstr "AppImage doğrulanamadı."
+
+#: src/mainuan_install_appimage/installer.py:49
+#, python-brace-format
+msgid "Could not query the package manager: {error}"
+msgstr "Paket yöneticisi sorgulanamadı: {error}"
+
+#: src/mainuan_install_appimage/installer.py:65
+msgid "dpkg-query failed; it is not safe to continue."
+msgstr "dpkg-query başarısız oldu; sürdürmek güvenli değil."
+
+#: src/mainuan_install_appimage/installer.py:68
+msgid "The dpkg-query response is malformed."
+msgstr "dpkg-query yanıtı hatalı biçimlendirilmiş."
+
+#: src/mainuan_install_appimage/installer.py:70
+msgid ""
+"The package is in a partial state in dpkg. Examine it before continuing."
+msgstr "Paket dpkg içinde yarım durumda. Sürdürmeden önce inceleyin."
+
+#: src/mainuan_install_appimage/installer.py:105
+msgid ""
+"A package with this identifier already exists that was not installed by this "
+"tool. It will be preserved."
+msgstr ""
+"Bu tanımlayıcıya sahip, bu araçla kurulmamış bir paket zaten var. Korunacak."
+
+#: src/mainuan_install_appimage/installer.py:117
+msgid ""
+"The package identifier belongs to another installation. No file will be "
+"replaced."
+msgstr ""
+"Paket tanımlayıcısı başka bir kuruluma ait. Hiçbir dosya değiştirilmeyecek."
+
+#: src/mainuan_install_appimage/installer.py:139
+msgid ""
+"A legacy installation with this name was detected. The dpkg database and the "
+"existing files will not be repaired automatically."
+msgstr ""
+"Bu ada sahip eski bir kurulum algılandı. dpkg veritabanı ve mevcut dosyalar "
+"otomatik olarak onarılmayacak."
+
+#: src/mainuan_install_appimage/installer.py:158
+msgid "The installer's fallback icon is not available."
+msgstr "Kurucunun yedek simgesi kullanılamıyor."
+
+#: src/mainuan_install_appimage/installer.py:172
+msgid "Icon conversion cannot run as root."
+msgstr "Simge dönüştürme root olarak çalıştırılamaz."
+
+#: src/mainuan_install_appimage/installer.py:188
+msgid "Could not prepare the package icons."
+msgstr "Paket simgeleri hazırlanamadı."
+
+#: src/mainuan_install_appimage/installer.py:216
+#, python-brace-format
+msgid "Launcher categories refused: {error}"
+msgstr "Başlatıcı kategorileri reddedildi: {error}"
+
+#: src/mainuan_install_appimage/installer.py:295
+#, python-brace-format
+msgid "The destination {path} is not a secure directory."
+msgstr "Hedef güvenli bir dizin değil: {path}"
+
+#: src/mainuan_install_appimage/installer.py:303
+#, python-brace-format
+msgid "The destination {path} already exists and is not a regular file."
+msgstr "Hedef zaten var ve olağan bir dosya değil: {path}"
+
+#: src/mainuan_install_appimage/installer.py:305
+#, python-brace-format
+msgid ""
+"The destination {path} already exists without a valid managed installation."
+msgstr "Hedef, geçerli bir yönetilen kurulum olmadan zaten var: {path}"
+
+#: src/mainuan_install_appimage/installer.py:312
+#, python-brace-format
+msgid "The file {path} does not belong to a package managed by this tool."
+msgstr "Dosya, bu araçla yönetilen bir pakete ait değil: {path}"
+
+#: src/mainuan_install_appimage/installer.py:326
+#, python-brace-format
+msgid "Could not prepare the package: {error}"
+msgstr "Paket hazırlanamadı: {error}"
+
+#: src/mainuan_install_appimage/installer.py:338
+#, python-brace-format
+msgid "dpkg-deb could not build the package: {detail}"
+msgstr "dpkg-deb paketi oluşturamadı: {detail}"
+
+#: src/mainuan_install_appimage/installer.py:339
+#: src/mainuan_install_appimage/installer.py:497
+msgid "unknown error"
+msgstr "bilinmeyen hata"
+
+#: src/mainuan_install_appimage/installer.py:350
+msgid "The prepared package's control data does not match the installation."
+msgstr "Hazırlanan paketin denetim verileri kurulumla eşleşmiyor."
+
+#: src/mainuan_install_appimage/installer.py:354
+msgid "Invalid or oversized Debian control data."
+msgstr "Geçersiz ya da çok büyük Debian denetim verileri."
+
+#: src/mainuan_install_appimage/installer.py:359
+msgid "The package contains control files that are not allowed."
+msgstr "Paket, izin verilmeyen denetim dosyaları içeriyor."
+
+#: src/mainuan_install_appimage/installer.py:362
+msgid "Invalid Debian control ownership."
+msgstr "Geçersiz Debian denetim sahipliği."
+
+#: src/mainuan_install_appimage/installer.py:365
+msgid "Invalid Debian control file."
+msgstr "Geçersiz Debian denetim dosyası."
+
+#: src/mainuan_install_appimage/installer.py:367
+msgid "Debian control fields not allowed."
+msgstr "İzin verilmeyen Debian denetim alanları."
+
+#: src/mainuan_install_appimage/installer.py:369
+msgid "Invalid Debian control directory."
+msgstr "Geçersiz Debian denetim dizini."
+
+#: src/mainuan_install_appimage/installer.py:404
+msgid "Duplicate or oversized Debian manifest."
+msgstr "Yinelenen ya da çok büyük Debian bildirimi."
+
+#: src/mainuan_install_appimage/installer.py:407
+msgid "Invalid Debian ownership metadata."
+msgstr "Geçersiz Debian sahiplik üst verisi."
+
+#: src/mainuan_install_appimage/installer.py:410
+msgid "Directory outside the allowed manifest."
+msgstr "Dizin, izin verilen bildirimin dışında."
+
+#: src/mainuan_install_appimage/installer.py:413
+msgid "File or link outside the allowed manifest."
+msgstr "Dosya ya da bağ, izin verilen bildirimin dışında."
+
+#: src/mainuan_install_appimage/installer.py:416
+msgid "Invalid Debian file permissions."
+msgstr "Geçersiz Debian dosya izinleri."
+
+#: src/mainuan_install_appimage/installer.py:418
+msgid "Size outside the allowed manifest."
+msgstr "Boyut, izin verilen bildirimin dışında."
+
+#: src/mainuan_install_appimage/installer.py:424
+msgid "The AppImage in the package does not match the validated snapshot."
+msgstr "Paketteki AppImage, doğrulanmış anlık görüntüyle eşleşmiyor."
+
+#: src/mainuan_install_appimage/installer.py:426
+msgid "Incomplete or invalid Debian manifest."
+msgstr "Eksik ya da geçersiz Debian bildirimi."
+
+#: src/mainuan_install_appimage/installer.py:428
+#, python-brace-format
+msgid "Could not validate the package files: {error}"
+msgstr "Paket dosyaları doğrulanamadı: {error}"
+
+#: src/mainuan_install_appimage/installer.py:443
+msgid "Could not identify the system architecture."
+msgstr "Sistem mimarisi belirlenemedi."
+
+#: src/mainuan_install_appimage/installer.py:447
+#, python-brace-format
+msgid ""
+"The AppImage is {architecture}, but the system is {host_architecture}. The "
+"installation was canceled."
+msgstr ""
+"AppImage mimarisi: {architecture}; sistem mimarisi: {host_architecture}. "
+"Kurulum iptal edildi."
+
+#: src/mainuan_install_appimage/installer.py:464
+msgid "The package manager is busy. Try again after the other transaction."
+msgstr "Paket yöneticisi meşgul. Diğer işlem bittikten sonra yeniden deneyin."
+
+#: src/mainuan_install_appimage/installer.py:477
+msgid "The file changed since the inspection. Select it again."
+msgstr "Dosya incelemeden bu yana değişti. Yeniden seçin."
+
+#: src/mainuan_install_appimage/installer.py:499
+#, python-brace-format
+msgid ""
+"dpkg did not complete the transaction. The previous installation was not "
+"removed beforehand; dpkg itself may leave a partially configured "
+"transaction. Details: {details}"
+msgstr ""
+"dpkg işlemi tamamlamadı. Önceki kurulum önceden kaldırılmadı; dpkg kendisi "
+"kısmen yapılandırılmış bir işlem bırakabilir. Ayrıntılar: {details}"
+
+#: src/mainuan_install_appimage/installer.py:504
+msgid "Installation completed by dpkg."
+msgstr "Kurulum dpkg tarafından tamamlandı."
+
+#: src/mainuan_install_appimage/installer.py:509
+msgid "The temporary copy identifier is invalid."
+msgstr "Geçici kopya tanımlayıcısı geçersiz."
+
+#: src/mainuan_install_appimage/installer.py:518
+msgid "The file is not in the allowed temporary area."
+msgstr "Dosya izin verilen geçici alanda değil."
+
+#: src/mainuan_install_appimage/installer.py:533
+msgid "Could not validate the secure temporary file."
+msgstr "Güvenli geçici dosya doğrulanamadı."
+
+#: src/mainuan_install_appimage/installer.py:549
+msgid "The temporary area or the file has invalid permissions."
+msgstr "Geçici alan ya da dosya geçersiz izinlere sahip."
+
+#: src/mainuan_install_appimage/installer.py:566
+msgid "The copy exceeded the size or time limit."
+msgstr "Kopyalama boyut ya da süre sınırını aştı."
+
+#: src/mainuan_install_appimage/installer.py:573
+msgid "The temporary copy does not match the inspected file."
+msgstr "Geçici kopya, incelenen dosyayla eşleşmiyor."
+
+#: src/mainuan_install_appimage/privileged.py:24
+msgid "This helper can only be started by PolicyKit."
+msgstr "Bu yardımcı yalnızca PolicyKit tarafından başlatılabilir."
+
+#: src/mainuan_install_appimage/privileged.py:31
+msgid "Could not identify the user who requested the installation."
+msgstr "Kurulumu isteyen kullanıcı belirlenemedi."
+
+#: src/mainuan_install_appimage/privileged.py:34
+msgid "Unrecognized administrative operation."
+msgstr "Tanınmayan yönetimsel işlem."
+
+#: src/mainuan_install_appimage/privileged.py:52
+msgid "File received and hash verified."
+msgstr "Dosya alındı ve sağlama değeri doğrulandı."
+
+#: src/mainuan_install_appimage/reduced.py:35
+msgid "The inspection process did not drop all privileges."
+msgstr "İnceleme süreci tüm ayrıcalıkları bırakmadı."
+
+#: src/mainuan_install_appimage/reduced.py:37
+msgid "Could not block new privileges."
+msgstr "Yeni ayrıcalıklar engellenemedi."
+
+#: src/mainuan_install_appimage/reduced.py:41
+msgid "The inspection process still has capabilities."
+msgstr "İnceleme sürecinin hâlâ yetenekleri var."
+
+#: src/mainuan_install_appimage/reduced.py:73
+msgid "Invalid input descriptor."
+msgstr "Geçersiz girdi tanımlayıcısı."
+
+#: src/mainuan_install_appimage/reduced.py:77
+msgid ""
+"Operational limit: parser memory; address space limit=1073741824 bytes; "
+"exact usage unavailable."
+msgstr ""
+"İşletim sınırı: ayrıştırıcı belleği; adres alanı sınırı=1073741824 bayt; tam "
+"kullanım bilinmiyor."
+
+#: src/mainuan_install_appimage/staging.py:27
+msgid "The environment does not provide a secure temporary directory."
+msgstr "Ortam güvenli bir geçici dizin sağlamıyor."
+
+#: src/mainuan_install_appimage/staging.py:32
+msgid "The secure temporary directory is not available."
+msgstr "Güvenli geçici dizin kullanılamıyor."
+
+#: src/mainuan_install_appimage/staging.py:39
+msgid "The secure temporary directory has invalid permissions."
+msgstr "Güvenli geçici dizin geçersiz izinlere sahip."
+
+#: src/mainuan_install_appimage/staging.py:52
+#, python-brace-format
+msgid "Could not read the selected file: {error}"
+msgstr "Seçilen dosya okunamadı: {error}"
+
+#: src/mainuan_install_appimage/staging.py:64
+msgid "Could not prepare the secure temporary area."
+msgstr "Güvenli geçici alan hazırlanamadı."
+
+#: src/mainuan_install_appimage/staging.py:72
+msgid "The secure temporary area has invalid permissions."
+msgstr "Güvenli geçici alan geçersiz izinlere sahip."
+
+#: src/mainuan_install_appimage/staging.py:79
+msgid "The selected file is not regular or exceeds the limit."
+msgstr "Seçilen dosya olağan bir dosya değil ya da sınırı aşıyor."
+
+#: src/mainuan_install_appimage/staging.py:93
+msgid "Copying the file to a protected temporary area…"
+msgstr "Dosya korumalı bir geçici alana kopyalanıyor…"
+
+#: src/mainuan_install_appimage/staging.py:102
+msgid "The selected file exceeds the size limit."
+msgstr "Seçilen dosya boyut sınırını aşıyor."
+
+#: src/mainuan_install_appimage/staging.py:114
+msgid "The file was changed during the copy; select it again."
+msgstr "Dosya kopyalama sırasında değişti; yeniden seçin."
+
+#: src/mainuan_install_appimage/staging.py:116
+msgid "Validating ELF, architecture, SquashFS and metadata…"
+msgstr "ELF, mimari, SquashFS ve üst veri doğrulanıyor…"
+
+#: src/mainuan_install_appimage/staging.py:119
+msgid "The temporary copy does not match the selected file."
+msgstr "Geçici kopya, seçilen dosyayla eşleşmiyor."

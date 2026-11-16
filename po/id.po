@@ -1,0 +1,921 @@
+# Indonesian translations for mainuan-install-appimage package.
+# Copyright (C) 2026 Mainuan
+# This file is distributed under the same license as the mainuan-install-appimage package.
+# Automatically generated, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mainuan-install-appimage 2.0.1\n"
+"Report-Msgid-Bugs-To: https://github.com/mainuan/mainuan-install-AppImage/"
+"issues\n"
+"POT-Creation-Date: 2026-11-16 12:37-0300\n"
+"PO-Revision-Date: 2026-11-16 12:37-0300\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: id <https://github.com/mainuan>\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: packaging/appimage-mime.xml:4
+msgid "AppImage application"
+msgstr "Aplikasi AppImage"
+
+#: packaging/br.com.mainuan.install-appimage.policy:7
+msgid "Install a verified AppImage as a Debian package"
+msgstr "Instal AppImage terverifikasi sebagai paket Debian"
+
+#: packaging/br.com.mainuan.install-appimage.policy:8
+msgid "Authenticate to install this AppImage on Mainuan"
+msgstr "Autentikasi untuk menginstal AppImage ini di Mainuan"
+
+#: packaging/mainuan-install-appimage.desktop:3
+msgid "Mainuan AppImage Installer"
+msgstr "Penginstal AppImage Mainuan"
+
+#: packaging/mainuan-install-appimage.desktop:4
+msgid "Inspects and installs AppImage files as Debian packages"
+msgstr "Memeriksa dan menginstal file AppImage sebagai paket Debian"
+
+#: src/mainuan_install_appimage/boundary.py:39
+msgid "Oversized inspection response."
+msgstr "Respons pemeriksaan terlalu besar."
+
+#: src/mainuan_install_appimage/boundary.py:45
+msgid "duplicate JSON field"
+msgstr "kolom JSON ganda"
+
+#: src/mainuan_install_appimage/boundary.py:51
+msgid "object expected"
+msgstr "diharapkan sebuah objek"
+
+#: src/mainuan_install_appimage/boundary.py:53
+msgid "Protocol categories must be a JSON list."
+msgstr "Kategori protokol harus berupa daftar JSON."
+
+#: src/mainuan_install_appimage/boundary.py:57
+msgid "invalid text"
+msgstr "teks tidak valid"
+
+#: src/mainuan_install_appimage/boundary.py:60
+msgid "control character or line break in text"
+msgstr "karakter kontrol atau pemisah baris dalam teks"
+
+#: src/mainuan_install_appimage/boundary.py:63
+msgid "invalid identity"
+msgstr "identitas tidak valid"
+
+#: src/mainuan_install_appimage/boundary.py:66
+msgid "package does not match the identity"
+msgstr "paket tidak cocok dengan identitas"
+
+#: src/mainuan_install_appimage/boundary.py:68
+msgid "divergent content"
+msgstr "konten berbeda"
+
+#: src/mainuan_install_appimage/boundary.py:70
+msgid "invalid size"
+msgstr "ukuran tidak valid"
+
+#: src/mainuan_install_appimage/boundary.py:72
+msgid "invalid offset"
+msgstr "offset tidak valid"
+
+#: src/mainuan_install_appimage/boundary.py:74
+msgid "invalid architecture"
+msgstr "arsitektur tidak valid"
+
+#: src/mainuan_install_appimage/boundary.py:77
+msgid "invalid Debian version"
+msgstr "versi Debian tidak valid"
+
+#: src/mainuan_install_appimage/boundary.py:80
+msgid "invalid icons"
+msgstr "ikon tidak valid"
+
+#: src/mainuan_install_appimage/boundary.py:84
+msgid "oversized icon"
+msgstr "ikon terlalu besar"
+
+#: src/mainuan_install_appimage/boundary.py:87
+msgid "incompatible icon"
+msgstr "ikon tidak kompatibel"
+
+#: src/mainuan_install_appimage/boundary.py:95
+#, python-brace-format
+msgid "The inspection response was refused: {error}"
+msgstr "Respons pemeriksaan ditolak: {error}"
+
+#: src/mainuan_install_appimage/boundary.py:101
+msgid "Unprivileged inspection account unavailable."
+msgstr "Akun pemeriksaan tanpa hak istimewa tidak tersedia."
+
+#: src/mainuan_install_appimage/boundary.py:112
+msgid "The administrative copy is not regular."
+msgstr "Salinan administratif bukan file biasa."
+
+#: src/mainuan_install_appimage/boundary.py:127
+#, python-brace-format
+msgid "Operational limit: administrative inspection time; limit={limit} s."
+msgstr "Batas operasional: waktu pemeriksaan administratif; batas={limit} d."
+
+#: src/mainuan_install_appimage/boundary.py:135
+#, python-brace-format
+msgid ""
+"Operational limit: parser output; observed={observed}, limit={limit} bytes."
+msgstr ""
+"Batas operasional: keluaran pengurai; teramati={observed}, batas={limit} "
+"bita."
+
+#: src/mainuan_install_appimage/boundary.py:138
+#, python-brace-format
+msgid ""
+"Unprivileged inspection failed: code={code}; limits CPU=120 s, address "
+"space=1073741824 bytes. {detail}"
+msgstr ""
+"Pemeriksaan tanpa hak istimewa gagal: kode={code}; batas CPU=120 d, ruang "
+"alamat=1073741824 bita. {detail}"
+
+#: src/mainuan_install_appimage/boundary.py:141
+#, python-brace-format
+msgid "Could not run the unprivileged inspection: {error}"
+msgstr "Tidak dapat menjalankan pemeriksaan tanpa hak istimewa: {error}"
+
+#: src/mainuan_install_appimage/categories.py:82
+msgid "Invalid category list."
+msgstr "Daftar kategori tidak valid."
+
+#: src/mainuan_install_appimage/categories.py:85
+msgid "Unknown, malformed or non-canonical categories."
+msgstr "Kategori tidak dikenal, salah format, atau tidak kanonis."
+
+#: src/mainuan_install_appimage/gui.py:32
+msgid "AppImage Installer"
+msgstr "Penginstal AppImage"
+
+#: src/mainuan_install_appimage/gui.py:135
+msgid "Show Details"
+msgstr "Tampilkan Perincian"
+
+#: src/mainuan_install_appimage/gui.py:147
+msgid "Select File"
+msgstr "Pilih File"
+
+#: src/mainuan_install_appimage/gui.py:148
+msgctxt "@action:button"
+msgid "Cancel"
+msgstr "Batal"
+
+#: src/mainuan_install_appimage/gui.py:149
+#: src/mainuan_install_appimage/gui.py:287
+#: src/mainuan_install_appimage/gui.py:299
+msgctxt "@action:button"
+msgid "Install"
+msgstr "Instal"
+
+#: src/mainuan_install_appimage/gui.py:151
+msgid "Open Application"
+msgstr "Buka Aplikasi"
+
+#: src/mainuan_install_appimage/gui.py:152
+msgctxt "@action:button"
+msgid "Close"
+msgstr "Tutup"
+
+#: src/mainuan_install_appimage/gui.py:177
+msgid "Select a file."
+msgstr "Pilih sebuah file."
+
+#: src/mainuan_install_appimage/gui.py:179
+msgid "No application selected"
+msgstr "Tidak ada aplikasi yang dipilih"
+
+#: src/mainuan_install_appimage/gui.py:198
+msgid "Select AppImage"
+msgstr "Pilih AppImage"
+
+#: src/mainuan_install_appimage/gui.py:200
+msgid "All Files (*)"
+msgstr "Semua File (*)"
+
+#: src/mainuan_install_appimage/gui.py:200
+msgid "AppImages (*.AppImage *.appimage)"
+msgstr "AppImage (*.AppImage *.appimage)"
+
+#: src/mainuan_install_appimage/gui.py:219
+msgid "Preparing…"
+msgstr "Menyiapkan…"
+
+#: src/mainuan_install_appimage/gui.py:231
+msgid "Inspecting…"
+msgstr "Memeriksa…"
+
+#: src/mainuan_install_appimage/gui.py:248
+msgid "Could not inspect the file."
+msgstr "Tidak dapat memeriksa file."
+
+#: src/mainuan_install_appimage/gui.py:258
+#: src/mainuan_install_appimage/gui.py:436
+#, python-brace-format
+msgid "Version: {version}"
+msgstr "Versi: {version}"
+
+#: src/mainuan_install_appimage/gui.py:291
+msgid "The application will be reinstalled."
+msgstr "Aplikasi akan diinstal ulang."
+
+#: src/mainuan_install_appimage/gui.py:292
+msgctxt "@action:button"
+msgid "Reinstall"
+msgstr "Instal Ulang"
+
+#: src/mainuan_install_appimage/gui.py:294
+msgid "The current installation will be replaced."
+msgstr "Pemasangan saat ini akan diganti."
+
+#: src/mainuan_install_appimage/gui.py:295
+msgctxt "@action:button"
+msgid "Replace Version"
+msgstr "Ganti Versi"
+
+#: src/mainuan_install_appimage/gui.py:319
+#: src/mainuan_install_appimage/staging.py:99
+#: src/mainuan_install_appimage/staging.py:121
+msgid "Inspection canceled."
+msgstr "Pemeriksaan dibatalkan."
+
+#: src/mainuan_install_appimage/gui.py:339
+msgid "Waiting for authentication…"
+msgstr "Menunggu autentikasi…"
+
+#: src/mainuan_install_appimage/gui.py:370
+msgid "Installing…"
+msgstr "Menginstal…"
+
+#: src/mainuan_install_appimage/gui.py:370
+msgid "Preparing installation…"
+msgstr "Menyiapkan pemasangan…"
+
+#: src/mainuan_install_appimage/gui.py:370
+msgid "Verifying…"
+msgstr "Memverifikasi…"
+
+#: src/mainuan_install_appimage/gui.py:383
+msgid "Could not start PolicyKit."
+msgstr "Tidak dapat memulai PolicyKit."
+
+#: src/mainuan_install_appimage/gui.py:394
+msgid ""
+"Authentication was denied or canceled. The installation was not completed."
+msgstr "Autentikasi ditolak atau dibatalkan. Pemasangan tidak selesai."
+
+#: src/mainuan_install_appimage/gui.py:399
+msgid "The installation was not completed."
+msgstr "Pemasangan tidak selesai."
+
+#: src/mainuan_install_appimage/gui.py:400
+#, python-brace-format
+msgid "Exit code: {code}."
+msgstr "Kode keluar: {code}."
+
+#: src/mainuan_install_appimage/gui.py:410
+msgid "Installation not completed."
+msgstr "Pemasangan tidak selesai."
+
+#: src/mainuan_install_appimage/gui.py:430
+msgid "Installation completed."
+msgstr "Pemasangan selesai."
+
+#: src/mainuan_install_appimage/gui.py:461
+msgid "The installed file is not available to be opened."
+msgstr "File yang terinstal tidak tersedia untuk dibuka."
+
+#: src/mainuan_install_appimage/gui.py:469
+msgid "Could not start the application as a regular user."
+msgstr "Tidak dapat memulai aplikasi sebagai pengguna biasa."
+
+#: src/mainuan_install_appimage/gui.py:474
+msgid "Wait for the operation to finish."
+msgstr "Tunggu hingga operasi selesai."
+
+#: src/mainuan_install_appimage/gui.py:502
+msgid "Run the interface as a regular user."
+msgstr "Jalankan antarmuka sebagai pengguna biasa."
+
+#: src/mainuan_install_appimage/gui.py:513
+msgid "Provide only one AppImage file at a time."
+msgstr "Berikan hanya satu file AppImage dalam satu waktu."
+
+#: src/mainuan_install_appimage/inspector.py:52
+msgid "Format or metadata"
+msgstr "Format atau metadata"
+
+#. Translators: {category} is a failure class such as "Format or metadata".
+#: src/mainuan_install_appimage/inspector.py:56
+#, python-brace-format
+msgid "{category}: {message}"
+msgstr "{category}: {message}"
+
+#: src/mainuan_install_appimage/inspector.py:60
+msgid "Operational limit (does not determine whether the file is valid)"
+msgstr "Batas operasional (tidak menentukan apakah file valid)"
+
+#. Translators: {resource} names the limited resource; keep observed= and limit= readable.
+#: src/mainuan_install_appimage/inspector.py:65
+#, python-brace-format
+msgid "{resource}; observed={observed}, limit={allowed}"
+msgstr "{resource}; teramati={observed}, batas={allowed}"
+
+#: src/mainuan_install_appimage/inspector.py:71
+msgid "SquashFS reading tool"
+msgstr "Alat pembaca SquashFS"
+
+#: src/mainuan_install_appimage/inspector.py:114
+msgid "The file is not an ELF executable."
+msgstr "File ini bukan executable ELF."
+
+#: src/mainuan_install_appimage/inspector.py:118
+msgid "Incompatible format: only little-endian ELF AppImages are accepted."
+msgstr ""
+"Format tidak kompatibel: hanya AppImage ELF little-endian yang diterima."
+
+#: src/mainuan_install_appimage/inspector.py:121
+msgid "The AppImage uses an incompatible ELF class."
+msgstr "AppImage menggunakan kelas ELF yang tidak kompatibel."
+
+#: src/mainuan_install_appimage/inspector.py:124
+msgid "The ELF header is truncated."
+msgstr "Header ELF terpotong."
+
+#: src/mainuan_install_appimage/inspector.py:129
+msgid "The AppImage ELF header is invalid."
+msgstr "Header ELF AppImage tidak valid."
+
+#: src/mainuan_install_appimage/inspector.py:143
+msgid ""
+"Incompatible architecture. Accepted formats: amd64, arm64, i386 and armhf."
+msgstr ""
+"Arsitektur tidak kompatibel. Format yang diterima: amd64, arm64, i386, dan "
+"armhf."
+
+#: src/mainuan_install_appimage/inspector.py:222
+#: src/mainuan_install_appimage/inspector.py:235
+msgid "SquashFS search (s)"
+msgstr "Pencarian SquashFS (d)"
+
+#: src/mainuan_install_appimage/inspector.py:233
+msgid "superblock candidates"
+msgstr "kandidat superblock"
+
+#: src/mainuan_install_appimage/inspector.py:245
+msgid "structural superblocks"
+msgstr "superblock struktural"
+
+#: src/mainuan_install_appimage/inspector.py:256
+msgid "unsquashfs is not installed."
+msgstr "unsquashfs tidak terinstal."
+
+#: src/mainuan_install_appimage/inspector.py:258
+msgid "inspection time (s)"
+msgstr "waktu pemeriksaan (d)"
+
+#: src/mainuan_install_appimage/inspector.py:267
+#, python-brace-format
+msgid "Could not start unsquashfs: {error}"
+msgstr "Tidak dapat memulai unsquashfs: {error}"
+
+#: src/mainuan_install_appimage/inspector.py:278
+#: src/mainuan_install_appimage/inspector.py:318
+msgid "command time (s)"
+msgstr "waktu perintah (d)"
+
+#: src/mainuan_install_appimage/inspector.py:287
+msgid "unsquashfs stderr (bytes)"
+msgstr "stderr unsquashfs (bita)"
+
+#: src/mainuan_install_appimage/inspector.py:292
+msgid "unsquashfs stdout (bytes)"
+msgstr "stdout unsquashfs (bita)"
+
+#: src/mainuan_install_appimage/inspector.py:301
+#: src/mainuan_install_appimage/inspector.py:304
+msgid "listing line (bytes)"
+msgstr "baris daftar (bita)"
+
+#: src/mainuan_install_appimage/inspector.py:311
+msgid "allocation refused"
+msgstr "alokasi ditolak"
+
+#: src/mainuan_install_appimage/inspector.py:311
+msgid "unsquashfs memory (bytes; exact usage unavailable)"
+msgstr "memori unsquashfs (bita; penggunaan pasti tidak tersedia)"
+
+#: src/mainuan_install_appimage/inspector.py:313
+msgid "SIGXCPU signal"
+msgstr "sinyal SIGXCPU"
+
+#: src/mainuan_install_appimage/inspector.py:313
+msgid "unsquashfs CPU (s)"
+msgstr "CPU unsquashfs (d)"
+
+#: src/mainuan_install_appimage/inspector.py:314
+#, python-brace-format
+msgid "unsquashfs exited with code {code}. {detail}"
+msgstr "unsquashfs keluar dengan kode {code}. {detail}"
+
+#: src/mainuan_install_appimage/inspector.py:316
+msgid "The listing is not valid UTF-8."
+msgstr "Daftar bukan UTF-8 yang valid."
+
+#: src/mainuan_install_appimage/inspector.py:347
+msgid "The -lln listing is malformed (fields/mode/UID/GID)."
+msgstr "Daftar -lln salah format (kolom/mode/UID/GID)."
+
+#: src/mainuan_install_appimage/inspector.py:351
+msgid "The listing contains an invalid size."
+msgstr "Daftar berisi ukuran yang tidak valid."
+
+#: src/mainuan_install_appimage/inspector.py:355
+msgid "The SquashFS root is not a directory."
+msgstr "Root SquashFS bukan direktori."
+
+#: src/mainuan_install_appimage/inspector.py:358
+msgid "Path outside the SquashFS root in the listing."
+msgstr "Jalur di luar root SquashFS dalam daftar."
+
+#: src/mainuan_install_appimage/inspector.py:364
+msgid "link target (characters)"
+msgstr "target tautan (karakter)"
+
+#: src/mainuan_install_appimage/inspector.py:366
+msgid "Invalid symbolic link."
+msgstr "Tautan simbolis tidak valid."
+
+#: src/mainuan_install_appimage/inspector.py:368
+#: src/mainuan_install_appimage/inspector.py:438
+msgid "metadata path (characters)"
+msgstr "jalur metadata (karakter)"
+
+#: src/mainuan_install_appimage/inspector.py:370
+msgid "Invalid or unsafe path in the listing."
+msgstr "Jalur tidak valid atau tidak aman dalam daftar."
+
+#: src/mainuan_install_appimage/inspector.py:387
+#: src/mainuan_install_appimage/inspector.py:638
+#: src/mainuan_install_appimage/inspector.py:652
+msgid "total inspection time (s)"
+msgstr "total waktu pemeriksaan (d)"
+
+#: src/mainuan_install_appimage/inspector.py:393
+msgid "metadata path depth"
+msgstr "kedalaman jalur metadata"
+
+#: src/mainuan_install_appimage/inspector.py:396
+msgid "exact metadata queries"
+msgstr "kueri metadata eksak"
+
+#: src/mainuan_install_appimage/inspector.py:402
+msgid "accumulated listings (bytes)"
+msgstr "akumulasi daftar (bita)"
+
+#: src/mainuan_install_appimage/inspector.py:408
+msgid "records examined in the selected listings"
+msgstr "rekaman yang diperiksa dalam daftar terpilih"
+
+#: src/mainuan_install_appimage/inspector.py:410
+msgid "Duplicate path in the same listing."
+msgstr "Jalur ganda dalam daftar yang sama."
+
+#: src/mainuan_install_appimage/inspector.py:412
+msgid "unsquashfs returned entries outside the requested selection/depth."
+msgstr "unsquashfs mengembalikan entri di luar pilihan/kedalaman yang diminta."
+
+#: src/mainuan_install_appimage/inspector.py:415
+msgid "Metadata differs between queries to the same image."
+msgstr "Metadata berbeda antar-kueri ke image yang sama."
+
+#: src/mainuan_install_appimage/inspector.py:421
+msgid "Invalid metadata directory tree."
+msgstr "Pohon direktori metadata tidak valid."
+
+#: src/mainuan_install_appimage/inspector.py:440
+msgid "Unsafe metadata path."
+msgstr "Jalur metadata tidak aman."
+
+#: src/mainuan_install_appimage/inspector.py:470
+msgid "symbolic link hops"
+msgstr "lompatan tautan simbolis"
+
+#: src/mainuan_install_appimage/inspector.py:482
+msgid "The AppImage metadata path is invalid."
+msgstr "Jalur metadata AppImage tidak valid."
+
+#: src/mainuan_install_appimage/inspector.py:502
+#: src/mainuan_install_appimage/inspector.py:674
+msgid ".desktop metadata (bytes)"
+msgstr "metadata .desktop (bita)"
+
+#: src/mainuan_install_appimage/inspector.py:506
+msgid "The .desktop file is not encoded in UTF-8."
+msgstr "File .desktop tidak dienkode dalam UTF-8."
+
+#: src/mainuan_install_appimage/inspector.py:512
+msgid ".desktop line (characters)"
+msgstr "baris .desktop (karakter)"
+
+#: src/mainuan_install_appimage/inspector.py:523
+msgid "The .desktop file is malformed."
+msgstr "File .desktop salah format."
+
+#: src/mainuan_install_appimage/inspector.py:526
+msgid "The .desktop file contains an invalid key."
+msgstr "File .desktop berisi kunci yang tidak valid."
+
+#: src/mainuan_install_appimage/inspector.py:529
+msgid "The .desktop file contains duplicate keys."
+msgstr "File .desktop berisi kunci ganda."
+
+#: src/mainuan_install_appimage/inspector.py:532
+msgid "The AppImage does not contain a valid [Desktop Entry] section."
+msgstr "AppImage tidak berisi bagian [Desktop Entry] yang valid."
+
+#: src/mainuan_install_appimage/inspector.py:534
+msgid "The .desktop file does not describe an application."
+msgstr "File .desktop tidak menjelaskan sebuah aplikasi."
+
+#: src/mainuan_install_appimage/inspector.py:562
+msgid "icon reference (characters)"
+msgstr "referensi ikon (karakter)"
+
+#: src/mainuan_install_appimage/inspector.py:586
+msgid "icons read (bytes)"
+msgstr "ikon yang dibaca (bita)"
+
+#: src/mainuan_install_appimage/inspector.py:595
+msgid "PNG dimensions (width,height,pixels)"
+msgstr "dimensi PNG (lebar,tinggi,piksel)"
+
+#: src/mainuan_install_appimage/inspector.py:620
+#, python-brace-format
+msgid "Could not open the selected file: {error}"
+msgstr "Tidak dapat membuka file yang dipilih: {error}"
+
+#: src/mainuan_install_appimage/inspector.py:622
+msgid "The selected file is not a regular file."
+msgstr "File yang dipilih bukan file biasa."
+
+#: src/mainuan_install_appimage/inspector.py:624
+msgid "Truncated ELF header: file smaller than 64 bytes."
+msgstr "Header ELF terpotong: ukuran file kurang dari 64 bita."
+
+#: src/mainuan_install_appimage/inspector.py:626
+msgid "AppImage file (bytes)"
+msgstr "File AppImage (bita)"
+
+#: src/mainuan_install_appimage/inspector.py:632
+msgid ""
+"Incompatible format: only AppImage Type 2 with a type 2 AI signature is "
+"accepted."
+msgstr ""
+"Format tidak kompatibel: hanya AppImage Tipe 2 dengan tanda AI tipe 2 yang "
+"diterima."
+
+#: src/mainuan_install_appimage/inspector.py:645
+msgid ""
+"Incompatible or invalid format. Only AppImages Type 2 with a validated "
+"SquashFS 4.0 are accepted."
+msgstr ""
+"Format tidak kompatibel atau tidak valid. Hanya AppImage Tipe 2 dengan "
+"SquashFS 4.0 yang tervalidasi yang diterima."
+
+#: src/mainuan_install_appimage/inspector.py:664
+msgid "The AppImage does not contain a regular .desktop file at its root."
+msgstr "AppImage tidak berisi file .desktop biasa di root-nya."
+
+#: src/mainuan_install_appimage/inspector.py:667
+msgid ".desktop candidates at the root"
+msgstr "kandidat .desktop di root"
+
+#: src/mainuan_install_appimage/inspector.py:676
+msgid "The .desktop link is invalid or escapes the tree."
+msgstr "Tautan .desktop tidak valid atau keluar dari pohon direktori."
+
+#: src/mainuan_install_appimage/inspector.py:687
+msgid "The AppImage does not contain valid .desktop metadata."
+msgstr "AppImage tidak berisi metadata .desktop yang valid."
+
+#: src/mainuan_install_appimage/inspector.py:709
+msgid "Could not validate the AppImage."
+msgstr "Tidak dapat memvalidasi AppImage."
+
+#: src/mainuan_install_appimage/installer.py:49
+#, python-brace-format
+msgid "Could not query the package manager: {error}"
+msgstr "Tidak dapat memeriksa pengelola paket: {error}"
+
+#: src/mainuan_install_appimage/installer.py:65
+msgid "dpkg-query failed; it is not safe to continue."
+msgstr "dpkg-query gagal; tidak aman untuk melanjutkan."
+
+#: src/mainuan_install_appimage/installer.py:68
+msgid "The dpkg-query response is malformed."
+msgstr "Respons dpkg-query salah format."
+
+#: src/mainuan_install_appimage/installer.py:70
+msgid ""
+"The package is in a partial state in dpkg. Examine it before continuing."
+msgstr ""
+"Paket berada dalam status parsial di dpkg. Periksa paket tersebut sebelum "
+"melanjutkan."
+
+#: src/mainuan_install_appimage/installer.py:105
+msgid ""
+"A package with this identifier already exists that was not installed by this "
+"tool. It will be preserved."
+msgstr ""
+"Sudah ada paket dengan pengenal ini yang tidak diinstal oleh alat ini. Paket "
+"tersebut akan dipertahankan."
+
+#: src/mainuan_install_appimage/installer.py:117
+msgid ""
+"The package identifier belongs to another installation. No file will be "
+"replaced."
+msgstr ""
+"Pengenal paket ini milik pemasangan lain. Tidak ada file yang akan diganti."
+
+#: src/mainuan_install_appimage/installer.py:139
+msgid ""
+"A legacy installation with this name was detected. The dpkg database and the "
+"existing files will not be repaired automatically."
+msgstr ""
+"Terdeteksi pemasangan lama dengan nama ini. Basis data dpkg dan file yang "
+"ada tidak akan diperbaiki secara otomatis."
+
+#: src/mainuan_install_appimage/installer.py:158
+msgid "The installer's fallback icon is not available."
+msgstr "Ikon cadangan penginstal tidak tersedia."
+
+#: src/mainuan_install_appimage/installer.py:172
+msgid "Icon conversion cannot run as root."
+msgstr "Konversi ikon tidak dapat dijalankan sebagai root."
+
+#: src/mainuan_install_appimage/installer.py:188
+msgid "Could not prepare the package icons."
+msgstr "Tidak dapat menyiapkan ikon paket."
+
+#: src/mainuan_install_appimage/installer.py:216
+#, python-brace-format
+msgid "Launcher categories refused: {error}"
+msgstr "Kategori peluncur ditolak: {error}"
+
+#: src/mainuan_install_appimage/installer.py:295
+#, python-brace-format
+msgid "The destination {path} is not a secure directory."
+msgstr "Tujuan {path} bukan direktori yang aman."
+
+#: src/mainuan_install_appimage/installer.py:303
+#, python-brace-format
+msgid "The destination {path} already exists and is not a regular file."
+msgstr "Tujuan {path} sudah ada dan bukan file biasa."
+
+#: src/mainuan_install_appimage/installer.py:305
+#, python-brace-format
+msgid ""
+"The destination {path} already exists without a valid managed installation."
+msgstr "Tujuan {path} sudah ada tanpa pemasangan terkelola yang valid."
+
+#: src/mainuan_install_appimage/installer.py:312
+#, python-brace-format
+msgid "The file {path} does not belong to a package managed by this tool."
+msgstr "File {path} bukan milik paket yang dikelola oleh alat ini."
+
+#: src/mainuan_install_appimage/installer.py:326
+#, python-brace-format
+msgid "Could not prepare the package: {error}"
+msgstr "Tidak dapat menyiapkan paket: {error}"
+
+#: src/mainuan_install_appimage/installer.py:338
+#, python-brace-format
+msgid "dpkg-deb could not build the package: {detail}"
+msgstr "dpkg-deb tidak dapat membangun paket: {detail}"
+
+#: src/mainuan_install_appimage/installer.py:339
+#: src/mainuan_install_appimage/installer.py:497
+msgid "unknown error"
+msgstr "galat tidak dikenal"
+
+#: src/mainuan_install_appimage/installer.py:350
+msgid "The prepared package's control data does not match the installation."
+msgstr "Data kontrol paket yang disiapkan tidak cocok dengan pemasangan."
+
+#: src/mainuan_install_appimage/installer.py:354
+msgid "Invalid or oversized Debian control data."
+msgstr "Data kontrol Debian tidak valid atau terlalu besar."
+
+#: src/mainuan_install_appimage/installer.py:359
+msgid "The package contains control files that are not allowed."
+msgstr "Paket berisi file kontrol yang tidak diizinkan."
+
+#: src/mainuan_install_appimage/installer.py:362
+msgid "Invalid Debian control ownership."
+msgstr "Kepemilikan kontrol Debian tidak valid."
+
+#: src/mainuan_install_appimage/installer.py:365
+msgid "Invalid Debian control file."
+msgstr "File kontrol Debian tidak valid."
+
+#: src/mainuan_install_appimage/installer.py:367
+msgid "Debian control fields not allowed."
+msgstr "Kolom kontrol Debian tidak diizinkan."
+
+#: src/mainuan_install_appimage/installer.py:369
+msgid "Invalid Debian control directory."
+msgstr "Direktori kontrol Debian tidak valid."
+
+#: src/mainuan_install_appimage/installer.py:404
+msgid "Duplicate or oversized Debian manifest."
+msgstr "Manifes Debian ganda atau terlalu besar."
+
+#: src/mainuan_install_appimage/installer.py:407
+msgid "Invalid Debian ownership metadata."
+msgstr "Metadata kepemilikan Debian tidak valid."
+
+#: src/mainuan_install_appimage/installer.py:410
+msgid "Directory outside the allowed manifest."
+msgstr "Direktori di luar manifes yang diizinkan."
+
+#: src/mainuan_install_appimage/installer.py:413
+msgid "File or link outside the allowed manifest."
+msgstr "File atau tautan di luar manifes yang diizinkan."
+
+#: src/mainuan_install_appimage/installer.py:416
+msgid "Invalid Debian file permissions."
+msgstr "Izin file Debian tidak valid."
+
+#: src/mainuan_install_appimage/installer.py:418
+msgid "Size outside the allowed manifest."
+msgstr "Ukuran di luar manifes yang diizinkan."
+
+#: src/mainuan_install_appimage/installer.py:424
+msgid "The AppImage in the package does not match the validated snapshot."
+msgstr ""
+"AppImage di dalam paket tidak cocok dengan snapshot yang telah divalidasi."
+
+#: src/mainuan_install_appimage/installer.py:426
+msgid "Incomplete or invalid Debian manifest."
+msgstr "Manifes Debian tidak lengkap atau tidak valid."
+
+#: src/mainuan_install_appimage/installer.py:428
+#, python-brace-format
+msgid "Could not validate the package files: {error}"
+msgstr "Tidak dapat memvalidasi file paket: {error}"
+
+#: src/mainuan_install_appimage/installer.py:443
+msgid "Could not identify the system architecture."
+msgstr "Tidak dapat mengidentifikasi arsitektur sistem."
+
+#: src/mainuan_install_appimage/installer.py:447
+#, python-brace-format
+msgid ""
+"The AppImage is {architecture}, but the system is {host_architecture}. The "
+"installation was canceled."
+msgstr ""
+"AppImage ini berarsitektur {architecture}, tetapi sistem berarsitektur "
+"{host_architecture}. Pemasangan dibatalkan."
+
+#: src/mainuan_install_appimage/installer.py:464
+msgid "The package manager is busy. Try again after the other transaction."
+msgstr ""
+"Pengelola paket sedang sibuk. Coba lagi setelah transaksi lain selesai."
+
+#: src/mainuan_install_appimage/installer.py:477
+msgid "The file changed since the inspection. Select it again."
+msgstr "File telah berubah sejak diperiksa. Pilih lagi file tersebut."
+
+#: src/mainuan_install_appimage/installer.py:499
+#, python-brace-format
+msgid ""
+"dpkg did not complete the transaction. The previous installation was not "
+"removed beforehand; dpkg itself may leave a partially configured "
+"transaction. Details: {details}"
+msgstr ""
+"dpkg tidak menyelesaikan transaksi. Pemasangan sebelumnya tidak dihapus "
+"terlebih dahulu; dpkg sendiri mungkin meninggalkan transaksi yang "
+"terkonfigurasi sebagian. Perincian: {details}"
+
+#: src/mainuan_install_appimage/installer.py:504
+msgid "Installation completed by dpkg."
+msgstr "Pemasangan diselesaikan oleh dpkg."
+
+#: src/mainuan_install_appimage/installer.py:509
+msgid "The temporary copy identifier is invalid."
+msgstr "Pengenal salinan sementara tidak valid."
+
+#: src/mainuan_install_appimage/installer.py:518
+msgid "The file is not in the allowed temporary area."
+msgstr "File tidak berada di area sementara yang diizinkan."
+
+#: src/mainuan_install_appimage/installer.py:533
+msgid "Could not validate the secure temporary file."
+msgstr "Tidak dapat memvalidasi file sementara yang aman."
+
+#: src/mainuan_install_appimage/installer.py:549
+msgid "The temporary area or the file has invalid permissions."
+msgstr "Area sementara atau file memiliki izin yang tidak valid."
+
+#: src/mainuan_install_appimage/installer.py:566
+msgid "The copy exceeded the size or time limit."
+msgstr "Penyalinan melebihi batas ukuran atau waktu."
+
+#: src/mainuan_install_appimage/installer.py:573
+msgid "The temporary copy does not match the inspected file."
+msgstr "Salinan sementara tidak cocok dengan file yang diperiksa."
+
+#: src/mainuan_install_appimage/privileged.py:24
+msgid "This helper can only be started by PolicyKit."
+msgstr "Pembantu ini hanya dapat dijalankan oleh PolicyKit."
+
+#: src/mainuan_install_appimage/privileged.py:31
+msgid "Could not identify the user who requested the installation."
+msgstr "Tidak dapat mengidentifikasi pengguna yang meminta pemasangan."
+
+#: src/mainuan_install_appimage/privileged.py:34
+msgid "Unrecognized administrative operation."
+msgstr "Operasi administratif tidak dikenali."
+
+#: src/mainuan_install_appimage/privileged.py:52
+msgid "File received and hash verified."
+msgstr "File diterima dan hash telah diverifikasi."
+
+#: src/mainuan_install_appimage/reduced.py:35
+msgid "The inspection process did not drop all privileges."
+msgstr "Proses pemeriksaan tidak melepaskan semua hak istimewa."
+
+#: src/mainuan_install_appimage/reduced.py:37
+msgid "Could not block new privileges."
+msgstr "Tidak dapat memblokir hak istimewa baru."
+
+#: src/mainuan_install_appimage/reduced.py:41
+msgid "The inspection process still has capabilities."
+msgstr "Proses pemeriksaan masih memiliki capability."
+
+#: src/mainuan_install_appimage/reduced.py:73
+msgid "Invalid input descriptor."
+msgstr "Deskriptor masukan tidak valid."
+
+#: src/mainuan_install_appimage/reduced.py:77
+msgid ""
+"Operational limit: parser memory; address space limit=1073741824 bytes; "
+"exact usage unavailable."
+msgstr ""
+"Batas operasional: memori pengurai; batas ruang alamat=1073741824 bita; "
+"penggunaan pasti tidak tersedia."
+
+#: src/mainuan_install_appimage/staging.py:27
+msgid "The environment does not provide a secure temporary directory."
+msgstr "Lingkungan tidak menyediakan direktori sementara yang aman."
+
+#: src/mainuan_install_appimage/staging.py:32
+msgid "The secure temporary directory is not available."
+msgstr "Direktori sementara yang aman tidak tersedia."
+
+#: src/mainuan_install_appimage/staging.py:39
+msgid "The secure temporary directory has invalid permissions."
+msgstr "Direktori sementara yang aman memiliki izin yang tidak valid."
+
+#: src/mainuan_install_appimage/staging.py:52
+#, python-brace-format
+msgid "Could not read the selected file: {error}"
+msgstr "Tidak dapat membaca file yang dipilih: {error}"
+
+#: src/mainuan_install_appimage/staging.py:64
+msgid "Could not prepare the secure temporary area."
+msgstr "Tidak dapat menyiapkan area sementara yang aman."
+
+#: src/mainuan_install_appimage/staging.py:72
+msgid "The secure temporary area has invalid permissions."
+msgstr "Area sementara yang aman memiliki izin yang tidak valid."
+
+#: src/mainuan_install_appimage/staging.py:79
+msgid "The selected file is not regular or exceeds the limit."
+msgstr "File yang dipilih bukan file biasa atau melebihi batas."
+
+#: src/mainuan_install_appimage/staging.py:93
+msgid "Copying the file to a protected temporary area…"
+msgstr "Menyalin file ke area sementara yang terlindungi…"
+
+#: src/mainuan_install_appimage/staging.py:102
+msgid "The selected file exceeds the size limit."
+msgstr "File yang dipilih melebihi batas ukuran."
+
+#: src/mainuan_install_appimage/staging.py:114
+msgid "The file was changed during the copy; select it again."
+msgstr "File berubah selama penyalinan; pilih lagi file tersebut."
+
+#: src/mainuan_install_appimage/staging.py:116
+msgid "Validating ELF, architecture, SquashFS and metadata…"
+msgstr "Memvalidasi ELF, arsitektur, SquashFS, dan metadata…"
+
+#: src/mainuan_install_appimage/staging.py:119
+msgid "The temporary copy does not match the selected file."
+msgstr "Salinan sementara tidak cocok dengan file yang dipilih."
