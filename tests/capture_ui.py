@@ -44,6 +44,10 @@ else:
     os.environ['LANGUAGE'] = _session_language
 
 app = QApplication([])
+# Same start-up as gui.main(): Qt standard texts and the layout direction
+# (right-to-left for Arabic, Hebrew, Persian) come from the qtbase catalog.
+from mainuan_install_appimage.gui import _install_qt_translator
+_install_qt_translator(app)
 if args.large:
     font = app.font()
     font.setPointSize(20)
