@@ -212,7 +212,7 @@ cmd_validate() {
   for lang in $(linguas); do
     po=$(po_path "$lang")
     [ -f "$po" ] || { echo "MISSING $lang"; rc=1; continue; }
-    if ! msgfmt --check --check-accelerators=\& -o /dev/null "$po" 2>/tmp/i18n-msgfmt.$$; then
+    if ! msgfmt --check -o /dev/null "$po" 2>/tmp/i18n-msgfmt.$$; then
       echo "FAIL msgfmt $lang"; cat /tmp/i18n-msgfmt.$$; rc=1
     fi
     rm -f /tmp/i18n-msgfmt.$$
@@ -243,7 +243,14 @@ for lang in langs:
         if not e.get('msgid') or 'fuzzy' in e['flags']: continue
         src = [e['msgid']] + ([e['msgid_plural']] if 'msgid_plural' in e else [])
         outs = [(k, v) for k, v in e.items() if k.startswith('msgstr') and v]
+        def accels(t):
+            # a keyboard accelerator is "&" followed by a visible character;
+            # "&&" (literal), "& " (literal in labels) and entities do not count
+            t = re.sub(r"&[a-zA-Z]+;|&#\d+;|&&", "", t)
+            return len(re.findall(r"&(?=[^\s&])", t))
         for k, v in outs:
+            if accels(e['msgid']) == 1 and accels(v) != 1:
+                print(f"ACCELERATOR {lang}: {e['msgid']!r} -> {v!r}"); bad += 1
             if 'msgid_plural' in e:
                 # every form may only use the source's placeholders and must keep the
                 # non-count ones; the count itself may be spelled out in a singular form
@@ -257,6 +264,8 @@ for lang in langs:
                 continue
             if toks(v) != toks(e['msgid']):
                 print(f"PLACEHOLDER {lang}: {e['msgid']!r} -> {v!r}"); bad += 1
+            if not re.search(r"\w", e['msgid']):
+                continue  # pure separators (", ", "; "): CJK typography drops the spaces
             for edge in ('startswith', 'endswith'):
                 for ws in ('\n', ' '):
                     if getattr(e['msgid'], edge)(ws) != getattr(v, edge)(ws):

@@ -685,7 +685,7 @@ msgstr "パッケージのアイコンを準備できませんでした。"
 #: src/mainuan_install_appimage/installer.py:216
 #, python-brace-format
 msgid "Launcher categories refused: {error}"
-msgstr "ランチャーのカテゴリが拒否されました: {error}"
+msgstr "ランチャのカテゴリが拒否されました: {error}"
 
 #: src/mainuan_install_appimage/installer.py:295
 #, python-brace-format
