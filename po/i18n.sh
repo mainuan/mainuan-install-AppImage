@@ -15,6 +15,10 @@ set -euo pipefail
 
 PODIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 ROOT=$(cd "$PODIR/.." && pwd)
+# Settings come only from i18n.conf: build systems export variables such as
+# PACKAGE_VERSION (dpkg-buildpackage does), which would change the POT header
+# and make check-pot fail inside package builds.
+unset PACKAGE_NAME PACKAGE_VERSION POT PO_NAME POTFILES LINGUAS_FILE
 # shellcheck source=/dev/null
 . "$PODIR/i18n.conf"
 
