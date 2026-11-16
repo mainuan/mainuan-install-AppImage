@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: mainuan-install-appimage 2.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/mainuan/mainuan-install-AppImage/"
 "issues\n"
-"POT-Creation-Date: 2026-11-16 11:30-0300\n"
+"POT-Creation-Date: 2026-11-16 12:37-0300\n"
 "PO-Revision-Date: 2026-11-16 11:30-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: ru <https://github.com/mainuan>\n"
@@ -304,11 +304,11 @@ msgstr "Не удалось запустить приложение от име�
 msgid "Wait for the operation to finish."
 msgstr "Дождитесь завершения операции."
 
-#: src/mainuan_install_appimage/gui.py:497
+#: src/mainuan_install_appimage/gui.py:502
 msgid "Run the interface as a regular user."
 msgstr "Запускайте интерфейс от имени обычного пользователя."
 
-#: src/mainuan_install_appimage/gui.py:508
+#: src/mainuan_install_appimage/gui.py:513
 msgid "Provide only one AppImage file at a time."
 msgstr "Укажите только один файл AppImage за раз."
 

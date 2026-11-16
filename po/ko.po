@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: mainuan-install-appimage 2.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/mainuan/mainuan-install-AppImage/"
 "issues\n"
-"POT-Creation-Date: 2026-11-16 11:30-0300\n"
+"POT-Creation-Date: 2026-11-16 12:37-0300\n"
 "PO-Revision-Date: 2026-11-16 11:30-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: ko <https://github.com/mainuan>\n"
@@ -297,11 +297,11 @@ msgstr "일반 사용자로 앱을 시작할 수 없습니다."
 msgid "Wait for the operation to finish."
 msgstr "작업이 끝날 때까지 기다리십시오."
 
-#: src/mainuan_install_appimage/gui.py:497
+#: src/mainuan_install_appimage/gui.py:502
 msgid "Run the interface as a regular user."
 msgstr "일반 사용자로 인터페이스를 실행하십시오."
 
-#: src/mainuan_install_appimage/gui.py:508
+#: src/mainuan_install_appimage/gui.py:513
 msgid "Provide only one AppImage file at a time."
 msgstr "한 번에 AppImage 파일 하나만 지정하십시오."
 

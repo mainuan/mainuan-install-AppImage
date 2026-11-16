@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: mainuan-install-appimage 2.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/mainuan/mainuan-install-AppImage/"
 "issues\n"
-"POT-Creation-Date: 2026-11-16 11:30-0300\n"
+"POT-Creation-Date: 2026-11-16 12:37-0300\n"
 "PO-Revision-Date: 2026-11-16 11:30-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: bn <https://github.com/mainuan>\n"
@@ -296,11 +296,11 @@ msgstr "সাধারণ ব্যবহারকারী হিসেবে 
 msgid "Wait for the operation to finish."
 msgstr "প্রক্রিয়াটি শেষ হওয়া পর্যন্ত অপেক্ষা করুন।"
 
-#: src/mainuan_install_appimage/gui.py:497
+#: src/mainuan_install_appimage/gui.py:502
 msgid "Run the interface as a regular user."
 msgstr "ইন্টারফেসটি সাধারণ ব্যবহারকারী হিসেবে চালান।"
 
-#: src/mainuan_install_appimage/gui.py:508
+#: src/mainuan_install_appimage/gui.py:513
 msgid "Provide only one AppImage file at a time."
 msgstr "একবারে শুধুমাত্র একটি AppImage ফাইল দিন।"
 

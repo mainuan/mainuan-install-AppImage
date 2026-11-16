@@ -199,3 +199,8 @@ def render_line(line: str) -> str:
     """Translate a helper output line when it is a protocol message."""
     message = parse_wire(line)
     return line if message is None else str(message)
+
+
+def catalog_language() -> str | None:
+    """Language header of the application catalog in use; None when untranslated."""
+    return _catalog().info().get("language") or None

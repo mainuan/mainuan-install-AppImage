@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: mainuan-install-appimage 2.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/mainuan/mainuan-install-AppImage/"
 "issues\n"
-"POT-Creation-Date: 2026-11-16 11:30-0300\n"
+"POT-Creation-Date: 2026-11-16 12:37-0300\n"
 "PO-Revision-Date: 2026-11-16 11:30-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: it <https://github.com/mainuan>\n"
@@ -301,11 +301,11 @@ msgstr "Impossibile avviare l'applicazione come utente normale."
 msgid "Wait for the operation to finish."
 msgstr "Attendi il termine dell'operazione."
 
-#: src/mainuan_install_appimage/gui.py:497
+#: src/mainuan_install_appimage/gui.py:502
 msgid "Run the interface as a regular user."
 msgstr "Esegui l'interfaccia come utente normale."
 
-#: src/mainuan_install_appimage/gui.py:508
+#: src/mainuan_install_appimage/gui.py:513
 msgid "Provide only one AppImage file at a time."
 msgstr "Fornisci un solo file AppImage alla volta."
 

@@ -23,7 +23,7 @@ from PyQt6.QtWidgets import (
 )
 
 from . import __version__
-from .i18n import N_, _, pgettext, render_line
+from .i18n import N_, _, catalog_language, pgettext, render_line
 from .inspector import InspectionError
 from .installer import InstallationError, installation_state
 from .staging import StagedImage, remove_staged, stage_and_inspect
@@ -490,6 +490,11 @@ def _install_qt_translator(application: QApplication) -> None:
     if translator.load(QLocale.system(), "qtbase", "_", QLibraryInfo.path(QLibraryInfo.LibraryPath.TranslationsPath)):
         application.installTranslator(translator)
         application._mainuan_qt_translator = translator
+    # Qt mirrors only when qtbase_<lang> says so (Urdu has none; qtbase may be
+    # missing): follow the direction of the application catalog in use.
+    language = catalog_language()
+    if language and QLocale(language).textDirection() == Qt.LayoutDirection.RightToLeft:
+        application.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
 
 
 def main() -> int:
