@@ -48,7 +48,9 @@ msgfmt --xml --template="${ROOT}/packaging/appimage-mime.xml" -d "${ROOT}/po" \
   -o "${PACKAGE_DIR}/usr/share/mime/packages/mainuan-appimage.xml"
 # msgfmt writes BCP 47 tags (xml:lang="pt-BR"); polkitd looks translations up by
 # POSIX locale (pt_BR, then pt), and so do Qt/KDE MIME comments. Use underscores.
-sed -i -E 's/xml:lang="([a-z]{2,3})-([A-Za-z0-9]+)"/xml:lang="\1_\2"/g' \
+# zh-Hans-CN / zh-Hant-TW (language-script-region) become zh_CN / zh_TW.
+sed -i -E -e 's/xml:lang="([a-z]{2,3})-[A-Z][a-z]{3}-([A-Z]{2})"/xml:lang="\1_\2"/g' \
+    -e 's/xml:lang="([a-z]{2,3})-([A-Za-z0-9]+)"/xml:lang="\1_\2"/g' \
   "${PACKAGE_DIR}/usr/share/polkit-1/actions/br.com.mainuan.install-appimage.policy" \
   "${PACKAGE_DIR}/usr/share/mime/packages/mainuan-appimage.xml"
 chmod 0644 \
