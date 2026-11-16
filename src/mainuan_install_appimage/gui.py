@@ -5,7 +5,7 @@ import sys
 import threading
 from pathlib import Path
 
-from PyQt6.QtCore import QObject, QProcess, QRunnable, QThreadPool, QTimer, Qt, pyqtSignal
+from PyQt6.QtCore import QLibraryInfo, QLocale, QObject, QProcess, QRunnable, QThreadPool, QTimer, QTranslator, Qt, pyqtSignal
 from PyQt6.QtGui import QIcon, QPixmap
 from PyQt6.QtWidgets import (
     QApplication,
@@ -23,12 +23,13 @@ from PyQt6.QtWidgets import (
 )
 
 from . import __version__
+from .i18n import N_, _, catalog_language, pgettext, render_line
 from .inspector import InspectionError
 from .installer import InstallationError, installation_state
 from .staging import StagedImage, remove_staged, stage_and_inspect
 
 
-DISPLAY_NAME = "Instalador de AppImage"
+DISPLAY_NAME = N_("AppImage Installer")
 PRIVILEGED_HELPER = "/usr/lib/mainuan-install-appimage/privileged-install"
 
 
@@ -71,7 +72,7 @@ class _InspectionWorker(QRunnable):
 class MainWindow(QMainWindow):
     def __init__(self) -> None:
         super().__init__()
-        self.setWindowTitle(DISPLAY_NAME)
+        self.setWindowTitle(_(DISPLAY_NAME))
         self.setWindowIcon(QIcon.fromTheme("mainuan-install-appimage", QIcon.fromTheme("package-x-generic")))
         self.setMinimumWidth(440)
         self.resize(440, 190)
@@ -131,7 +132,7 @@ class MainWindow(QMainWindow):
         self.details.setReadOnly(True)
         self.details.setMaximumHeight(180)
         layout.addWidget(self.details)
-        self.details_button = QPushButton("Mostrar detalhes", central)
+        self.details_button = QPushButton(_("Show Details"), central)
         self.details_button.setCheckable(True)
         self.details_button.toggled.connect(self.details.setVisible)
         layout.addWidget(self.details_button)
@@ -143,12 +144,12 @@ class MainWindow(QMainWindow):
         buttons = QHBoxLayout(button_bar)
         buttons.setContentsMargins(0, 0, 0, 0)
         buttons.addStretch(1)
-        self.select_button = QPushButton("Selecionar arquivo", central)
-        self.cancel_button = QPushButton("Cancelar", central)
-        self.install_button = QPushButton("Instalar", central)
+        self.select_button = QPushButton(_("Select File"), central)
+        self.cancel_button = QPushButton(pgettext("@action:button", "Cancel"), central)
+        self.install_button = QPushButton(pgettext("@action:button", "Install"), central)
         self.install_button.setDefault(True)
-        self.open_button = QPushButton("Abrir aplicativo", central)
-        self.close_button = QPushButton("Fechar", central)
+        self.open_button = QPushButton(_("Open Application"), central)
+        self.close_button = QPushButton(pgettext("@action:button", "Close"), central)
         for button in (
             self.select_button,
             self.cancel_button,
@@ -171,9 +172,11 @@ class MainWindow(QMainWindow):
         self.open_button.clicked.connect(self._open_application)
         self.close_button.clicked.connect(self.close)
 
-    def _show_selection(self, message: str = "Selecione um arquivo.") -> None:
+    def _show_selection(self, message: str | None = None) -> None:
+        if message is None:
+            message = _("Select a file.")
         self.icon.clear()
-        self.app_name.setText("Nenhum aplicativo selecionado")
+        self.app_name.setText(_("No application selected"))
         self.app_details.clear()
         self.details.hide()
         self.details_button.setChecked(False)
@@ -190,11 +193,11 @@ class MainWindow(QMainWindow):
         self.close_button.show()
 
     def _choose_file(self) -> None:
-        file_path, _ = QFileDialog.getOpenFileName(
+        file_path, _filter = QFileDialog.getOpenFileName(
             self,
-            "Selecionar AppImage",
+            _("Select AppImage"),
             str(Path.home()),
-            "AppImages (*.AppImage *.appimage);;Todos os arquivos (*)",
+            ";;".join((_("AppImages (*.AppImage *.appimage)"), _("All Files (*)"))),
         )
         if file_path:
             self.inspect_file(file_path)
@@ -213,7 +216,7 @@ class MainWindow(QMainWindow):
         self.app_name.clear()
 
         self.step_label.show()
-        self.step_label.setText("Preparando…")
+        self.step_label.setText(_("Preparing…"))
         self.progress.show()
         self.select_button.hide()
         self.cancel_button.show()
@@ -225,7 +228,7 @@ class MainWindow(QMainWindow):
 
     def _inspection_progress(self, generation: int, message: str) -> None:
         if generation == self._generation:
-            self.step_label.setText("Inspecionando…")
+            self.step_label.setText(_("Inspecting…"))
 
     def _inspection_completed(self, generation: int, result: object) -> None:
         if not isinstance(result, tuple):
@@ -242,7 +245,7 @@ class MainWindow(QMainWindow):
     def _inspection_failed(self, generation: int, message: str) -> None:
         if generation != self._generation:
             return
-        self._finish_failure("Não foi possível inspecionar o arquivo.", message)
+        self._finish_failure(_("Could not inspect the file."), message)
         self.cancel_button.hide()
         self.select_button.setEnabled(True)
         if self._staged:
@@ -252,7 +255,7 @@ class MainWindow(QMainWindow):
     def _show_inspection(self, staged: StagedImage, state: object) -> None:
         info = staged.inspection
         self.app_name.setText(info.name)
-        self.app_details.setText(f"Versão: {info.version}" if info.version != "Não informada" else "")
+        self.app_details.setText(_("Version: {version}").format(version=info.version) if info.version != "Não informada" else "")
         self.app_details.setVisible(bool(self.app_details.text()))
 
         self.step_label.clear()
@@ -281,19 +284,19 @@ class MainWindow(QMainWindow):
 
         if state.kind == "new":
             self.status_label.clear()
-            install_text = "Instalar"
+            install_text = pgettext("@action:button", "Install")
             can_install = True
         elif state.kind == "managed":
             if state.image_sha256 == info.image_sha256:
-                self.status_label.setText("O aplicativo será reinstalado.")
-                install_text = "Reinstalar"
+                self.status_label.setText(_("The application will be reinstalled."))
+                install_text = pgettext("@action:button", "Reinstall")
             else:
-                self.status_label.setText("A instalação atual será substituída.")
-                install_text = "Substituir versão"
+                self.status_label.setText(_("The current installation will be replaced."))
+                install_text = pgettext("@action:button", "Replace Version")
             can_install = True
         else:
-            self.status_label.setText(state.message)
-            install_text = "Instalar"
+            self.status_label.setText(str(state.message))
+            install_text = pgettext("@action:button", "Install")
             can_install = False
 
         self.status_label.setVisible(bool(self.status_label.text()))
@@ -313,7 +316,7 @@ class MainWindow(QMainWindow):
         if self._worker:
             self._worker.cancelled.set()
         self._generation += 1
-        self.step_label.setText("Inspeção cancelada.")
+        self.step_label.setText(_("Inspection canceled."))
         if self._staged:
             remove_staged(self._staged.staged_path)
             self._staged = None
@@ -333,7 +336,7 @@ class MainWindow(QMainWindow):
         self.progress.show()
         self.step_label.show()
         self.step_label.setText(
-            "Aguardando autenticação…"
+            _("Waiting for authentication…")
         )
         self.status_label.hide()
         self._messages = []
@@ -362,9 +365,9 @@ class MainWindow(QMainWindow):
         lines = text.split("\n")
         self._stdout_tail = lines.pop()
         for line in lines:
-            self._messages.append(line)
+            self._messages.append(render_line(line))
             self._messages = self._messages[-80:]
-            stages = {"STAGE:inspect": "Verificando…", "STAGE:build": "Preparando instalação…", "STAGE:install": "Instalando…"}
+            stages = {"STAGE:inspect": _("Verifying…"), "STAGE:build": _("Preparing installation…"), "STAGE:install": _("Installing…")}
             if line in stages:
                 self.step_label.setText(stages[line])
 
@@ -372,12 +375,12 @@ class MainWindow(QMainWindow):
         if not self._process:
             return
         text = bytes(self._process.readAllStandardError()).decode("utf-8", "replace")
-        self._messages.extend(line for line in text.splitlines() if line)
+        self._messages.extend(render_line(line) for line in text.splitlines() if line)
         self._messages = self._messages[-80:]
 
     def _process_error(self, error: QProcess.ProcessError) -> None:
         if error == QProcess.ProcessError.FailedToStart:
-            self._finish_failure("Não foi possível iniciar o PolicyKit.")
+            self._finish_failure(_("Could not start PolicyKit."))
 
     def _install_finished(self, exit_code: int, _exit_status: QProcess.ExitStatus) -> None:
         self._read_process_output()
@@ -388,13 +391,13 @@ class MainWindow(QMainWindow):
             self._show_result()
         elif exit_code in (126, 127):
             self._finish_failure(
-                "Autenticação recusada ou cancelada. A instalação não foi concluída."
+                _("Authentication was denied or canceled. The installation was not completed.")
             )
         else:
             detail = "\n".join(self._messages[-80:]).strip()
             self._finish_failure(
-                "A instalação não foi concluída.",
-                detail or f"Código de saída: {exit_code}."
+                _("The installation was not completed."),
+                detail or _("Exit code: {code}.").format(code=exit_code)
             )
 
     def _finish_failure(self, message: str, details: str = "") -> None:
@@ -404,7 +407,7 @@ class MainWindow(QMainWindow):
         self.progress.hide()
         self.step_label.setText(message)
         self.step_label.show()
-        self.status_label.setText("Instalação não concluída.")
+        self.status_label.setText(_("Installation not completed."))
         self.status_label.hide()
         self.details.setPlainText(details)
         self.details.hide()
@@ -424,13 +427,13 @@ class MainWindow(QMainWindow):
         staged = self._staged
         self._staged = None
         self.progress.hide()
-        self.status_label.setText("Instalação concluída.")
+        self.status_label.setText(_("Installation completed."))
         self.status_label.show()
         self.step_label.clear()
         self.step_label.hide()
         if staged:
             self.app_name.setText(staged.inspection.name)
-            self.app_details.setText(f"Versão: {staged.inspection.version}" if staged.inspection.version != "Não informada" else "")
+            self.app_details.setText(_("Version: {version}").format(version=staged.inspection.version) if staged.inspection.version != "Não informada" else "")
             self._installed_application = Path(
                 "/opt/mainuan-appimages"
                 f"/{staged.inspection.package_name}/AppImage"
@@ -454,21 +457,21 @@ class MainWindow(QMainWindow):
         if not application or not application.is_file():
             QMessageBox.warning(
                 self,
-                DISPLAY_NAME,
-                "O arquivo instalado não está disponível para ser aberto.",
+                _(DISPLAY_NAME),
+                _("The installed file is not available to be opened."),
             )
             return
         started, _pid = QProcess.startDetached(str(application), [], str(Path.home()))
         if not started:
             QMessageBox.warning(
                 self,
-                DISPLAY_NAME,
-                "Não foi possível iniciar o aplicativo como usuário comum.",
+                _(DISPLAY_NAME),
+                _("Could not start the application as a regular user."),
             )
 
     def closeEvent(self, event) -> None:
         if self._process and self._process.state() != QProcess.ProcessState.NotRunning:
-            self.step_label.setText("Aguarde a conclusão da operação.")
+            self.step_label.setText(_("Wait for the operation to finish."))
             self.step_label.show()
             event.ignore()
             return
@@ -481,19 +484,33 @@ class MainWindow(QMainWindow):
         event.accept()
 
 
+def _install_qt_translator(application: QApplication) -> None:
+    """Standard Qt dialogs (file picker, message box buttons) in the session language."""
+    translator = QTranslator(application)
+    if translator.load(QLocale.system(), "qtbase", "_", QLibraryInfo.path(QLibraryInfo.LibraryPath.TranslationsPath)):
+        application.installTranslator(translator)
+        application._mainuan_qt_translator = translator
+    # Qt mirrors only when qtbase_<lang> says so (Urdu has none; qtbase may be
+    # missing): follow the direction of the application catalog in use.
+    language = catalog_language()
+    if language and QLocale(language).textDirection() == Qt.LayoutDirection.RightToLeft:
+        application.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
+
+
 def main() -> int:
     if os.geteuid() == 0:
-        print("Execute a interface como usuário comum.", file=sys.stderr)
+        print(_("Run the interface as a regular user."), file=sys.stderr)
         return 1
     application = QApplication(sys.argv[:1])
+    _install_qt_translator(application)
     application.setApplicationName("mainuan-install-appimage")
-    application.setApplicationDisplayName(DISPLAY_NAME)
+    application.setApplicationDisplayName(_(DISPLAY_NAME))
     application.setApplicationVersion(__version__)
     window = MainWindow()
     window.show()
     supplied = sys.argv[1:]
     if len(supplied) > 1:
-        window._show_selection("Informe somente um arquivo AppImage por vez.")
+        window._show_selection(_("Provide only one AppImage file at a time."))
         QTimer.singleShot(0, window._choose_file)
     elif supplied:
         QTimer.singleShot(0, lambda: window.inspect_file(supplied[0]))

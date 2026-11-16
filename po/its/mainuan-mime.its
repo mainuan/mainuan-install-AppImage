@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!-- Translatable parts of a shared-mime-info package: the type <comment>. -->
+<its:rules xmlns:its="http://www.w3.org/2005/11/its"
+           xmlns:mi="http://www.freedesktop.org/standards/shared-mime-info"
+           version="2.0">
+  <its:translateRule selector="//mi:comment" translate="yes"/>
+  <its:translateRule selector="//mi:acronym | //mi:expanded-acronym" translate="no"/>
+</its:rules>

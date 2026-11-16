@@ -6,6 +6,7 @@ import sys
 import tempfile
 from pathlib import Path
 
+from .i18n import LocalizedError, Message, N_, _, disable_translation, wire_line
 from .installer import (
     InstallationError,
     copy_verified_source,
@@ -20,14 +21,17 @@ def main() -> int:
     parser.add_argument("--install", nargs=2, metavar=("ARQUIVO_TEMPORARIO", "SHA256"))
     arguments = parser.parse_args()
     if os.geteuid() != 0:
-        print("Este helper só pode ser iniciado pelo PolicyKit.", file=sys.stderr)
+        print(_("This helper can only be started by PolicyKit."), file=sys.stderr)
         return 1
+    # Root never renders text with its own environment: messages travel to the
+    # GUI as msgids and are translated there (see i18n.py).
+    disable_translation()
     uid_text = os.environ.get("PKEXEC_UID", "")
     if not uid_text.isdecimal() or int(uid_text) == 0:
-        print("Não foi possível identificar o usuário que solicitou a instalação.", file=sys.stderr)
+        print(wire_line(Message(N_("Could not identify the user who requested the installation."))), file=sys.stderr)
         return 1
     if not arguments.install:
-        print("Operação administrativa não reconhecida.", file=sys.stderr)
+        print(wire_line(Message(N_("Unrecognized administrative operation."))), file=sys.stderr)
         return 1
 
     os.environ.clear()
@@ -45,13 +49,13 @@ def main() -> int:
             copy_verified_source(source_fd_path, snapshot, arguments.install[1])
             os.close(int(source_fd_path.name.rsplit("/", 1)[-1]))
             source_fd_path = None
-            print("Arquivo recebido e hash conferido.", flush=True)
+            print(wire_line(Message(N_("File received and hash verified."))), flush=True)
             with package_manager_lock():
                 os.environ["DPKG_FRONTEND_LOCKED"] = "1"
                 prepare_and_install(snapshot, arguments.install[1])
         return 0
     except (InstallationError, OSError, ValueError) as error:
-        print(str(error), file=sys.stderr, flush=True)
+        print(wire_line(error) if isinstance(error, LocalizedError) else str(error), file=sys.stderr, flush=True)
         return 1
     finally:
         if source_fd_path is not None:

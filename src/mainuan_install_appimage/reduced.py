@@ -15,16 +15,30 @@ import tempfile
 from dataclasses import asdict
 from pathlib import Path
 
+from .i18n import LocalizedError, Message, N_, disable_translation, wire_line
+
+
+class _PrivilegeError(LocalizedError, RuntimeError):
+    pass
+
+
+class _PrctlError(LocalizedError, OSError):
+    pass
+
+
+class _ArgumentError(LocalizedError, ValueError):
+    pass
+
 
 def restrict_process() -> None:
     if 0 in os.getresuid() or 0 in os.getresgid() or os.getgroups():
-        raise RuntimeError("O processo de inspeção não perdeu todos os privilégios.")
+        raise _PrivilegeError(N_("The inspection process did not drop all privileges."))
     if ctypes.CDLL(None, use_errno=True).prctl(38, 1, 0, 0, 0) != 0:  # PR_SET_NO_NEW_PRIVS
-        raise OSError("Não foi possível bloquear novos privilégios.")
+        raise _PrctlError(N_("Could not block new privileges."))
     status = Path("/proc/self/status").read_text()
     for line in status.splitlines():
         if line.startswith(("CapEff:", "CapPrm:", "CapAmb:")) and int(line.split()[1], 16):
-            raise RuntimeError("O processo de inspeção ainda possui capabilities.")
+            raise _PrivilegeError(N_("The inspection process still has capabilities."))
     resource.setrlimit(resource.RLIMIT_CORE, (0, 0))
     resource.setrlimit(resource.RLIMIT_CPU, (120, 120))
     resource.setrlimit(resource.RLIMIT_AS, (1024**3, 1024**3))
@@ -51,17 +65,19 @@ def inspect_descriptor(descriptor: int) -> dict:
 
 
 def main() -> int:
+    # Messages go to the root helper and on to the GUI untranslated (see i18n.py).
+    disable_translation()
     try:
         restrict_process()
         if len(sys.argv) != 2 or not sys.argv[1].isdecimal():
-            raise ValueError("Descritor de entrada inválido.")
+            raise _ArgumentError(N_("Invalid input descriptor."))
         print(json.dumps(inspect_descriptor(int(sys.argv[1])), ensure_ascii=True))
         return 0
     except MemoryError:
-        print("Limite operacional: memória do parser; limite de espaço de endereçamento=1073741824 bytes; uso exato indisponível.", file=sys.stderr)
+        print(wire_line(Message(N_("Operational limit: parser memory; address space limit=1073741824 bytes; exact usage unavailable."))), file=sys.stderr)
         return 1
     except Exception as error:
-        print(str(error), file=sys.stderr)
+        print(wire_line(error) if isinstance(error, LocalizedError) else str(error), file=sys.stderr)
         return 1
 
 

@@ -14,6 +14,7 @@ from PyQt6.QtWidgets import QApplication, QLabel
 
 from mainuan_install_appimage.boundary import validate_response
 from mainuan_install_appimage.gui import MainWindow, DISPLAY_NAME
+from mainuan_install_appimage.i18n import _ as translate
 from mainuan_install_appimage.installer import InstallationError, InstallationState, build_deb, validate_built_package
 from mainuan_install_appimage.reduced import inspect_descriptor, restrict_process
 from mainuan_install_appimage.staging import StagedImage
@@ -80,9 +81,9 @@ class BoundaryTests(unittest.TestCase):
             self.assertTrue(window.app_name.font().bold())
             self.assertTrue(window.install_button.isDefault())
             self.assertLess(window.install_button.x(), window.close_button.x())
-            self.assertEqual(window.windowTitle(), DISPLAY_NAME)
+            self.assertEqual(window.windowTitle(), translate(DISPLAY_NAME))
             texts = ' '.join(label.text() for label in window.findChildren(QLabel))
-            self.assertNotIn(DISPLAY_NAME, texts)
+            self.assertNotIn(translate(DISPLAY_NAME), texts)
             self.assertNotIn(str(source), texts)
             self.assertNotIn('Não instalado', texts)
             window._show_inspection(StagedImage(source, source, replace(info, version='Não informada')), InstallationState('new'))

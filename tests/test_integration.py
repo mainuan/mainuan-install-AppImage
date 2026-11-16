@@ -47,7 +47,7 @@ class IntegrationTests(unittest.TestCase):
                 self.assertEqual(path, '/var/lib/dpkg/lock-frontend')
                 return real_open(lock, flags, mode)
             with patch('mainuan_install_appimage.installer.os.open', side_effect=isolated_open), patch('fcntl.lockf', side_effect=BlockingIOError):
-                with self.assertRaisesRegex(InstallationError, 'ocupado'):
+                with self.assertRaisesRegex(InstallationError, 'busy'):
                     with package_manager_lock():
                         self.fail('must not acquire busy lock')
 

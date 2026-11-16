@@ -29,14 +29,25 @@ if args.theme != 'system':
 
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtCore import QTimer
-from mainuan_install_appimage.gui import MainWindow
+from mainuan_install_appimage.gui import DISPLAY_NAME, MainWindow
+from mainuan_install_appimage.i18n import _ as tr
 from mainuan_install_appimage.installer import InstallationState
 from mainuan_install_appimage.reduced import inspect_descriptor
 from mainuan_install_appimage.boundary import validate_response
 from mainuan_install_appimage.staging import StagedImage
+_session_language = os.environ.get('LANGUAGE')
 from test_installer import make_appimage
+# test_installer pins LANGUAGE=C for assertions; captures use the session language.
+if _session_language is None:
+    os.environ.pop('LANGUAGE', None)
+else:
+    os.environ['LANGUAGE'] = _session_language
 
 app = QApplication([])
+# Same start-up as gui.main(): Qt standard texts and the layout direction
+# (right-to-left for Arabic, Hebrew, Persian) come from the qtbase catalog.
+from mainuan_install_appimage.gui import _install_qt_translator
+_install_qt_translator(app)
 if args.large:
     font = app.font()
     font.setPointSize(20)
@@ -65,13 +76,13 @@ def show_state(state):
     if state == 'progress':
         window.install_button.hide()
         window.close_button.setEnabled(False)
-        window.step_label.setText('Instalando…')
+        window.step_label.setText(tr('Installing…'))
         window.step_label.show()
         window.progress.show()
     if state == 'result':
         window._show_result()
     if state == 'error':
-        window._finish_failure('A instalação não foi concluída.', 'dpkg: falha simulada em /var/tmp/arquivo-interno')
+        window._finish_failure(tr('The installation was not completed.'), 'dpkg: falha simulada em /var/tmp/arquivo-interno')
     window.show()
     window.adjustSize()
 
@@ -89,7 +100,7 @@ def next_state():
     def capture():
         try:
             app.processEvents()
-            assert window.windowTitle() == "Instalador de AppImage"
+            assert window.windowTitle() == tr(DISPLAY_NAME)
             print("title:", repr(window.windowTitle()), "active:", window.isActiveWindow(), flush=True)
             assert window.grab().save(str(args.output / f'{platform}-{mode}-{state}.png'))
             if state == 'loaded' and args.decoration and platform == 'wayland':

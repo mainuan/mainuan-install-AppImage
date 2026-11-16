@@ -76,7 +76,7 @@ class TargetedInspectionTests(unittest.TestCase):
             for number in range(inspector.MAX_TREE_ENTRIES):
                 (base / 'root' / f'root-{number:05}').touch()
             repack(base, image)
-            with self.assertRaisesRegex(inspector.InspectionLimitError, r'registros.*observado=10001, limite=10000'):
+            with self.assertRaisesRegex(inspector.InspectionLimitError, r'records.*observed=10001, limit=10000'):
                 inspector.inspect_appimage(image)
 
     def test_duplicate_and_malformed_listing_are_not_silently_accepted(self):
@@ -92,11 +92,11 @@ class TargetedInspectionTests(unittest.TestCase):
 
     def test_listing_output_and_line_limits_are_incremental(self):
         with patch.object(inspector, 'MAX_TREE_OUTPUT', 100):
-            with self.assertRaisesRegex(inspector.InspectionLimitError, 'stdout|listagens'):
+            with self.assertRaisesRegex(inspector.InspectionLimitError, 'stdout|listings'):
                 inspector._read_tree(self.image, 64)
         # Use an isolated Python producer instead of unsquashfs: real bounded pipes.
         with patch.object(inspector.shutil, 'which', return_value='/usr/bin/python3'):
-            with self.assertRaisesRegex(inspector.InspectionLimitError, 'linha'):
+            with self.assertRaisesRegex(inspector.InspectionLimitError, 'line'):
                 inspector._run_bounded(['unsquashfs', '-c', 'print("x"*5000)'], 10000, 5, on_line=lambda _: None)
             records = []
             captured = inspector._run_bounded(['unsquashfs', '-c', 'print("a"); print("b")'], 100, 5, on_line=records.append)
@@ -105,9 +105,9 @@ class TargetedInspectionTests(unittest.TestCase):
 
     def test_tool_exit_and_timeout_have_distinct_diagnostics(self):
         with patch.object(inspector.shutil, 'which', return_value='/usr/bin/python3'):
-            with self.assertRaisesRegex(inspector.InspectionToolError, 'código 7.*test diagnostic'):
+            with self.assertRaisesRegex(inspector.InspectionToolError, 'code 7.*test diagnostic'):
                 inspector._run_bounded(['unsquashfs', '-c', 'import sys; print("test diagnostic", file=sys.stderr); sys.exit(7)'], 1000, 5)
-            with self.assertRaisesRegex(inspector.InspectionLimitError, 'tempo.*limite=0.05'):
+            with self.assertRaisesRegex(inspector.InspectionLimitError, 'time.*limit=0.05'):
                 inspector._run_bounded(['unsquashfs', '-c', 'import time; time.sleep(5)'], 1000, 0.05)
 
     def test_metadata_limit_is_failure_not_fallback(self):
@@ -139,17 +139,17 @@ class TargetedInspectionTests(unittest.TestCase):
             (root / 'Editor.desktop').unlink()
             (root / 'Editor.desktop').symlink_to('../../etc/passwd')
             repack(base, image)
-            with self.assertRaisesRegex(inspector.InspectionError, 'link .desktop'):
+            with self.assertRaisesRegex(inspector.InspectionError, '.desktop link'):
                 inspector.inspect_appimage(image)
 
     def test_query_depth_and_record_budget_preserve_operational_limits(self):
-        with self.assertRaisesRegex(inspector.InspectionLimitError, "busca SquashFS"):
+        with self.assertRaisesRegex(inspector.InspectionLimitError, "SquashFS search"):
             inspector._find_superblocks(self.image, self.image.stat().st_size, time.monotonic() - 1)
         tree = inspector._read_tree(self.image, 64)
         with patch.object(inspector, 'MAX_LIST_QUERIES', tree.queries):
-            with self.assertRaisesRegex(inspector.InspectionLimitError, 'consultas exatas'):
+            with self.assertRaisesRegex(inspector.InspectionLimitError, 'exact metadata queries'):
                 tree.get('not-there')
-        with self.assertRaisesRegex(inspector.InspectionLimitError, 'profundidade'):
+        with self.assertRaisesRegex(inspector.InspectionLimitError, 'depth'):
             tree.get('/'.join(['dir']*13))
 
     def test_window_title_exact_in_loaded_progress_result_and_error(self):
@@ -161,14 +161,14 @@ class TargetedInspectionTests(unittest.TestCase):
         window = MainWindow()
         info = inspector.inspect_appimage(self.image)
         window._show_inspection(StagedImage(self.image, self.image, info), InstallationState('new'))
-        self.assertEqual(window.windowTitle(), 'Instalador de AppImage')
+        self.assertEqual(window.windowTitle(), 'AppImage Installer')
         window._inspection_progress(window._generation, 'test')
-        self.assertEqual(window.windowTitle(), 'Instalador de AppImage')
+        self.assertEqual(window.windowTitle(), 'AppImage Installer')
         window._show_result()
-        self.assertEqual(window.windowTitle(), 'Instalador de AppImage')
+        self.assertEqual(window.windowTitle(), 'AppImage Installer')
         window._finish_failure('Falha.', 'limite excedido')
-        self.assertEqual(window.windowTitle(), 'Instalador de AppImage')
-        self.assertNotIn('Instalador de AppImage', [label.text() for label in window.findChildren(QLabel)])
+        self.assertEqual(window.windowTitle(), 'AppImage Installer')
+        self.assertNotIn('AppImage Installer', [label.text() for label in window.findChildren(QLabel)])
         window.close()
 
     def test_no_root_reader_and_memory_cap_configured(self):

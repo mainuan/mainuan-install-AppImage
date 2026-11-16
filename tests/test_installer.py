@@ -28,6 +28,10 @@ from mainuan_install_appimage.installer import (
 
 
 ROOT = Path(__file__).resolve().parents[1]
+
+# Every test module imports this one. Assertions compare the English msgids, so
+# never pick up the developer's catalog (test_i18n covers the translations).
+os.environ["LANGUAGE"] = "C"
 PACKAGE = "mainuan-appimage-editor-617d6b9c9b"
 
 
@@ -119,13 +123,13 @@ class InspectorTests(unittest.TestCase):
             with self.assertRaisesRegex(InspectionError, "ELF"):
                 inspect_appimage(path)
             path.write_bytes(_elf_header() + b"random hsqs marker")
-            with self.assertRaisesRegex(InspectionError, "Formato incompatível"):
+            with self.assertRaisesRegex(InspectionError, "Incompatible or invalid format"):
                 inspect_appimage(path)
 
     def test_incompatible_architecture_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             image = make_appimage(Path(temporary), machine=3)
-            with self.assertRaisesRegex(InspectionError, "Arquitetura incompatível"):
+            with self.assertRaisesRegex(InspectionError, "Incompatible architecture"):
                 inspect_appimage(image)
 
     def test_metadata_and_paths_with_spaces_accents_and_punctuation(self) -> None:
@@ -146,7 +150,7 @@ class InspectorTests(unittest.TestCase):
                 Path(temporary),
                 desktop=b"[Desktop Entry]\nName=App\nmalformed-line\n",
             )
-            with self.assertRaisesRegex(InspectionError, "malformado"):
+            with self.assertRaisesRegex(InspectionError, "malformed"):
                 inspect_appimage(malformed)
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary) / "root"
@@ -308,13 +312,13 @@ class PackageTests(unittest.TestCase):
             ):
                 state = installation_state(info)
             self.assertEqual(state.kind, "conflict")
-            self.assertIn("preservado", state.message)
+            self.assertIn("preserved", str(state.message))
 
     def test_authentication_refusal_is_not_reported_as_success(self) -> None:
         window = MainWindow()
         window._install_finished(126, QProcess.ExitStatus.NormalExit)
-        self.assertIn("não foi concluída", window.step_label.text())
-        self.assertNotIn("Instalação concluída", window.status_label.text())
+        self.assertIn("was not completed", window.step_label.text())
+        self.assertNotIn("Installation completed", window.status_label.text())
         window.close()
 
 
@@ -326,10 +330,10 @@ class PackageTests(unittest.TestCase):
             info = inspect_appimage(image)
             staged = StagedImage(image, image, info)
             window = MainWindow()
-            for state, button in ((InstallationState("new"), "Instalar"), (InstallationState("managed", info.debian_version, image_sha256=info.image_sha256), "Reinstalar"), (InstallationState("managed", info.debian_version, image_sha256="0" * 64), "Substituir versão")):
+            for state, button in ((InstallationState("new"), "Install"), (InstallationState("managed", info.debian_version, image_sha256=info.image_sha256), "Reinstall"), (InstallationState("managed", info.debian_version, image_sha256="0" * 64), "Replace Version")):
                 window._show_inspection(staged, state)
                 self.assertEqual(window.install_button.text(), button)
-                self.assertNotIn("atualização", window.status_label.text().lower())
+                self.assertNotIn("update", window.status_label.text().lower())
             window.close()
 
     def test_staging_and_cancellation_discard_payload(self):
@@ -343,7 +347,7 @@ class PackageTests(unittest.TestCase):
                 self.assertEqual(staged.staged_path.read_bytes(), image.read_bytes())
                 remove_staged(staged.staged_path)
                 self.assertFalse(staged.staged_path.exists())
-                with self.assertRaisesRegex(InspectionError, "cancelada"):
+                with self.assertRaisesRegex(InspectionError, "canceled"):
                     stage_and_inspect(image, cancelled=lambda: True)
                 self.assertEqual(list((runtime / "mainuan-install-appimage").iterdir()), [])
 
@@ -351,7 +355,7 @@ class PackageTests(unittest.TestCase):
         window = MainWindow()
         window._install_finished(0, QProcess.ExitStatus.CrashExit)
         self.assertTrue(window.open_button.isHidden())
-        self.assertIn("não concluída", window.status_label.text())
+        self.assertIn("not completed", window.status_label.text())
         window.close()
 
     def test_identity_collision_between_apps_with_same_desktop_basename(self):
@@ -379,7 +383,7 @@ class PackageTests(unittest.TestCase):
     def test_partial_dpkg_state_is_not_treated_as_absent(self):
         result = subprocess.CompletedProcess([], 0, "unpacked\t1.0\tamd64", "")
         with patch("mainuan_install_appimage.installer._command", return_value=result):
-            with self.assertRaisesRegex(InstallationError, "parcial"):
+            with self.assertRaisesRegex(InstallationError, "partial"):
                 _package_query("mainuan-appimage-example")
 
     def test_legacy_package_is_preserved(self):
@@ -393,7 +397,7 @@ class PackageTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             info = inspect_appimage(make_appimage(Path(temporary)))
             with patch("mainuan_install_appimage.installer._command", return_value=subprocess.CompletedProcess([], 0, "arm64\n", "")):
-                with self.assertRaisesRegex(InstallationError, "sistema é arm64"):
+                with self.assertRaisesRegex(InstallationError, "system is arm64"):
                     ensure_host_architecture(info)
 
     def test_root_copy_rejects_changed_payload_and_arbitrary_path(self):
@@ -401,10 +405,10 @@ class PackageTests(unittest.TestCase):
             source = Path(temporary) / "source"
             source.write_bytes(b"changed data")
             target = Path(temporary) / "snapshot"
-            with self.assertRaisesRegex(InstallationError, "não corresponde"):
+            with self.assertRaisesRegex(InstallationError, "does not match"):
                 copy_verified_source(source, target, "0" * 64)
             self.assertFalse(target.exists())
-            with self.assertRaisesRegex(InstallationError, "área temporária"):
+            with self.assertRaisesRegex(InstallationError, "temporary area"):
                 verify_staged_source(str(source), "0" * 64, os.getuid())
 
     def test_manager_lock_and_install_failure_propagate(self):
@@ -423,7 +427,7 @@ class PackageTests(unittest.TestCase):
             window = MainWindow()
             window._install_finished(code, QProcess.ExitStatus.NormalExit)
             self.assertTrue(window.open_button.isHidden())
-            self.assertIn("não concluída", window.status_label.text())
+            self.assertIn("not completed", window.status_label.text())
             window.close()
 
     def test_untrusted_text_stays_plain_and_large_font_layout(self):

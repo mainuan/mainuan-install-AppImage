@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<locatingRules>
+  <locatingRule name="Mainuan shared-mime-info" pattern="*.xml">
+    <documentRule localName="mime-info" target="mainuan-mime.its"/>
+  </locatingRule>
+</locatingRules>
