@@ -76,10 +76,11 @@ class I18nTests(unittest.TestCase):
                 window.close()
 
     def test_right_to_left_catalog_mirrors_without_qtbase(self):
-        target = Path(self.locale.name) / "ar" / "LC_MESSAGES"
-        target.mkdir(parents=True, exist_ok=True)
-        subprocess.run(["msgfmt", "--check", "-o", str(target / f"{i18n.DOMAIN}.mo"),
-                        str(ROOT / "po" / "ar.po")], check=True)
+        for language in ("ar", "ur"):
+            target = Path(self.locale.name) / language / "LC_MESSAGES"
+            target.mkdir(parents=True, exist_ok=True)
+            subprocess.run(["msgfmt", "--check", "-o", str(target / f"{i18n.DOMAIN}.mo"),
+                            str(ROOT / "po" / f"{language}.po")], check=True)
         self.addCleanup(self.app.setLayoutDirection, Qt.LayoutDirection.LayoutDirectionAuto)
         with tempfile.TemporaryDirectory() as empty, \
                 mock.patch.object(gui.QLibraryInfo, "path", return_value=empty):
@@ -90,9 +91,14 @@ class I18nTests(unittest.TestCase):
             window = MainWindow()
             self.assertTrue(window.isRightToLeft())
             window.close()
-            # Urdu is right-to-left but has no application catalog: English, left to right.
+            # Urdu has an application catalog but no qtbase_ur: mirrored by the catalog.
             self.app.setLayoutDirection(Qt.LayoutDirection.LayoutDirectionAuto)
             _set_language("ur")
+            gui._install_qt_translator(self.app)
+            self.assertEqual(self.app.layoutDirection(), Qt.LayoutDirection.RightToLeft)
+            # Yiddish is right-to-left but has no application catalog: English, left to right.
+            self.app.setLayoutDirection(Qt.LayoutDirection.LayoutDirectionAuto)
+            _set_language("yi")
             gui._install_qt_translator(self.app)
             self.assertEqual(self.app.layoutDirection(), Qt.LayoutDirection.LeftToRight)
 

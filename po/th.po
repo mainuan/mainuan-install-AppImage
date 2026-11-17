@@ -1,0 +1,908 @@
+# Thai translations for mainuan-install-appimage package.
+# Copyright (C) 2026 Mainuan
+# This file is distributed under the same license as the mainuan-install-appimage package.
+# Automatically generated, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mainuan-install-appimage 2.0.1\n"
+"Report-Msgid-Bugs-To: https://github.com/mainuan/mainuan-install-AppImage/"
+"issues\n"
+"POT-Creation-Date: 2026-11-16 12:37-0300\n"
+"PO-Revision-Date: 2026-11-16 12:37-0300\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: th <https://github.com/mainuan>\n"
+"Language: th\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: packaging/appimage-mime.xml:4
+msgid "AppImage application"
+msgstr "แอปพลิเคชัน AppImage"
+
+#: packaging/br.com.mainuan.install-appimage.policy:7
+msgid "Install a verified AppImage as a Debian package"
+msgstr "ติดตั้ง AppImage ที่ตรวจสอบแล้วเป็นแพ็กเกจ Debian"
+
+#: packaging/br.com.mainuan.install-appimage.policy:8
+msgid "Authenticate to install this AppImage on Mainuan"
+msgstr "ยืนยันตัวตนเพื่อติดตั้ง AppImage นี้บน Mainuan"
+
+#: packaging/mainuan-install-appimage.desktop:3
+msgid "Mainuan AppImage Installer"
+msgstr "ตัวติดตั้ง AppImage ของ Mainuan"
+
+#: packaging/mainuan-install-appimage.desktop:4
+msgid "Inspects and installs AppImage files as Debian packages"
+msgstr "ตรวจสอบและติดตั้งไฟล์ AppImage เป็นแพ็กเกจ Debian"
+
+#: src/mainuan_install_appimage/boundary.py:39
+msgid "Oversized inspection response."
+msgstr "การตอบกลับของการตรวจสอบมีขนาดใหญ่เกิน"
+
+#: src/mainuan_install_appimage/boundary.py:45
+msgid "duplicate JSON field"
+msgstr "ฟิลด์ JSON ซ้ำกัน"
+
+#: src/mainuan_install_appimage/boundary.py:51
+msgid "object expected"
+msgstr "ต้องเป็นออบเจกต์"
+
+#: src/mainuan_install_appimage/boundary.py:53
+msgid "Protocol categories must be a JSON list."
+msgstr "หมวดหมู่ของโปรโตคอลต้องเป็นรายการ JSON"
+
+#: src/mainuan_install_appimage/boundary.py:57
+msgid "invalid text"
+msgstr "ข้อความไม่ถูกต้อง"
+
+#: src/mainuan_install_appimage/boundary.py:60
+msgid "control character or line break in text"
+msgstr "มีอักขระควบคุมหรือการขึ้นบรรทัดใหม่ในข้อความ"
+
+#: src/mainuan_install_appimage/boundary.py:63
+msgid "invalid identity"
+msgstr "ตัวตนไม่ถูกต้อง"
+
+#: src/mainuan_install_appimage/boundary.py:66
+msgid "package does not match the identity"
+msgstr "แพ็กเกจไม่ตรงกับตัวตน"
+
+#: src/mainuan_install_appimage/boundary.py:68
+msgid "divergent content"
+msgstr "เนื้อหาไม่ตรงกัน"
+
+#: src/mainuan_install_appimage/boundary.py:70
+msgid "invalid size"
+msgstr "ขนาดไม่ถูกต้อง"
+
+#: src/mainuan_install_appimage/boundary.py:72
+msgid "invalid offset"
+msgstr "ออฟเซ็ตไม่ถูกต้อง"
+
+#: src/mainuan_install_appimage/boundary.py:74
+msgid "invalid architecture"
+msgstr "สถาปัตยกรรมไม่ถูกต้อง"
+
+#: src/mainuan_install_appimage/boundary.py:77
+msgid "invalid Debian version"
+msgstr "รุ่น Debian ไม่ถูกต้อง"
+
+#: src/mainuan_install_appimage/boundary.py:80
+msgid "invalid icons"
+msgstr "ไอคอนไม่ถูกต้อง"
+
+#: src/mainuan_install_appimage/boundary.py:84
+msgid "oversized icon"
+msgstr "ไอคอนมีขนาดใหญ่เกิน"
+
+#: src/mainuan_install_appimage/boundary.py:87
+msgid "incompatible icon"
+msgstr "ไอคอนเข้ากันไม่ได้"
+
+#: src/mainuan_install_appimage/boundary.py:95
+#, python-brace-format
+msgid "The inspection response was refused: {error}"
+msgstr "การตอบกลับของการตรวจสอบถูกปฏิเสธ: {error}"
+
+#: src/mainuan_install_appimage/boundary.py:101
+msgid "Unprivileged inspection account unavailable."
+msgstr "บัญชีสำหรับตรวจสอบแบบไม่มีสิทธิ์พิเศษไม่พร้อมใช้งาน"
+
+#: src/mainuan_install_appimage/boundary.py:112
+msgid "The administrative copy is not regular."
+msgstr "สำเนาสำหรับผู้ดูแลไม่ใช่ไฟล์ปกติ"
+
+#: src/mainuan_install_appimage/boundary.py:127
+#, python-brace-format
+msgid "Operational limit: administrative inspection time; limit={limit} s."
+msgstr "ขีดจำกัดการทำงาน: เวลาตรวจสอบของผู้ดูแล limit={limit} s"
+
+#: src/mainuan_install_appimage/boundary.py:135
+#, python-brace-format
+msgid ""
+"Operational limit: parser output; observed={observed}, limit={limit} bytes."
+msgstr ""
+"ขีดจำกัดการทำงาน: เอาต์พุตของตัวแยกวิเคราะห์ observed={observed}, limit={limit} ไบต์"
+
+# reviewed: 'address space' e 's' deixados em inglês no meio do texto
+# tailandês; demais unidades já traduzidas
+#: src/mainuan_install_appimage/boundary.py:138
+#, python-brace-format
+msgid ""
+"Unprivileged inspection failed: code={code}; limits CPU=120 s, address "
+"space=1073741824 bytes. {detail}"
+msgstr ""
+"การตรวจสอบแบบไม่มีสิทธิ์พิเศษล้มเหลว: code={code}; ขีดจำกัด CPU=120 วินาที, "
+"พื้นที่ที่อยู่=1073741824 ไบต์ {detail}"
+
+#: src/mainuan_install_appimage/boundary.py:141
+#, python-brace-format
+msgid "Could not run the unprivileged inspection: {error}"
+msgstr "ไม่สามารถเรียกใช้การตรวจสอบแบบไม่มีสิทธิ์พิเศษ: {error}"
+
+#: src/mainuan_install_appimage/categories.py:82
+msgid "Invalid category list."
+msgstr "รายการหมวดหมู่ไม่ถูกต้อง"
+
+#: src/mainuan_install_appimage/categories.py:85
+msgid "Unknown, malformed or non-canonical categories."
+msgstr "หมวดหมู่ไม่รู้จัก ผิดรูปแบบ หรือไม่เป็นแบบมาตรฐาน"
+
+#: src/mainuan_install_appimage/gui.py:32
+msgid "AppImage Installer"
+msgstr "ตัวติดตั้ง AppImage"
+
+#: src/mainuan_install_appimage/gui.py:135
+msgid "Show Details"
+msgstr "แสดงรายละเอียด"
+
+#: src/mainuan_install_appimage/gui.py:147
+msgid "Select File"
+msgstr "เลือกไฟล์"
+
+#: src/mainuan_install_appimage/gui.py:148
+msgctxt "@action:button"
+msgid "Cancel"
+msgstr "ยกเลิก"
+
+#: src/mainuan_install_appimage/gui.py:149
+#: src/mainuan_install_appimage/gui.py:287
+#: src/mainuan_install_appimage/gui.py:299
+msgctxt "@action:button"
+msgid "Install"
+msgstr "ติดตั้ง"
+
+#: src/mainuan_install_appimage/gui.py:151
+msgid "Open Application"
+msgstr "เปิดแอปพลิเคชัน"
+
+#: src/mainuan_install_appimage/gui.py:152
+msgctxt "@action:button"
+msgid "Close"
+msgstr "ปิด"
+
+#: src/mainuan_install_appimage/gui.py:177
+msgid "Select a file."
+msgstr "เลือกไฟล์"
+
+#: src/mainuan_install_appimage/gui.py:179
+msgid "No application selected"
+msgstr "ไม่ได้เลือกแอปพลิเคชัน"
+
+#: src/mainuan_install_appimage/gui.py:198
+msgid "Select AppImage"
+msgstr "เลือก AppImage"
+
+#: src/mainuan_install_appimage/gui.py:200
+msgid "All Files (*)"
+msgstr "ไฟล์ทั้งหมด (*)"
+
+#: src/mainuan_install_appimage/gui.py:200
+msgid "AppImages (*.AppImage *.appimage)"
+msgstr "AppImage (*.AppImage *.appimage)"
+
+#: src/mainuan_install_appimage/gui.py:219
+msgid "Preparing…"
+msgstr "กำลังเตรียม…"
+
+#: src/mainuan_install_appimage/gui.py:231
+msgid "Inspecting…"
+msgstr "กำลังตรวจสอบ…"
+
+#: src/mainuan_install_appimage/gui.py:248
+msgid "Could not inspect the file."
+msgstr "ไม่สามารถตรวจสอบไฟล์"
+
+#: src/mainuan_install_appimage/gui.py:258
+#: src/mainuan_install_appimage/gui.py:436
+#, python-brace-format
+msgid "Version: {version}"
+msgstr "รุ่น: {version}"
+
+#: src/mainuan_install_appimage/gui.py:291
+msgid "The application will be reinstalled."
+msgstr "แอปพลิเคชันจะถูกติดตั้งใหม่"
+
+#: src/mainuan_install_appimage/gui.py:292
+msgctxt "@action:button"
+msgid "Reinstall"
+msgstr "ติดตั้งใหม่"
+
+#: src/mainuan_install_appimage/gui.py:294
+msgid "The current installation will be replaced."
+msgstr "การติดตั้งปัจจุบันจะถูกแทนที่"
+
+#: src/mainuan_install_appimage/gui.py:295
+msgctxt "@action:button"
+msgid "Replace Version"
+msgstr "แทนที่รุ่น"
+
+#: src/mainuan_install_appimage/gui.py:319
+#: src/mainuan_install_appimage/staging.py:99
+#: src/mainuan_install_appimage/staging.py:121
+msgid "Inspection canceled."
+msgstr "ยกเลิกการตรวจสอบแล้ว"
+
+#: src/mainuan_install_appimage/gui.py:339
+msgid "Waiting for authentication…"
+msgstr "กำลังรอการยืนยันตัวตน…"
+
+#: src/mainuan_install_appimage/gui.py:370
+msgid "Installing…"
+msgstr "กำลังติดตั้ง…"
+
+#: src/mainuan_install_appimage/gui.py:370
+msgid "Preparing installation…"
+msgstr "กำลังเตรียมการติดตั้ง…"
+
+#: src/mainuan_install_appimage/gui.py:370
+msgid "Verifying…"
+msgstr "กำลังตรวจยืนยัน…"
+
+#: src/mainuan_install_appimage/gui.py:383
+msgid "Could not start PolicyKit."
+msgstr "ไม่สามารถเริ่ม PolicyKit"
+
+#: src/mainuan_install_appimage/gui.py:394
+msgid ""
+"Authentication was denied or canceled. The installation was not completed."
+msgstr "การยืนยันตัวตนถูกปฏิเสธหรือยกเลิก การติดตั้งไม่เสร็จสมบูรณ์"
+
+#: src/mainuan_install_appimage/gui.py:399
+msgid "The installation was not completed."
+msgstr "การติดตั้งไม่เสร็จสมบูรณ์"
+
+#: src/mainuan_install_appimage/gui.py:400
+#, python-brace-format
+msgid "Exit code: {code}."
+msgstr "รหัสการออก: {code}"
+
+#: src/mainuan_install_appimage/gui.py:410
+msgid "Installation not completed."
+msgstr "การติดตั้งไม่เสร็จสมบูรณ์"
+
+#: src/mainuan_install_appimage/gui.py:430
+msgid "Installation completed."
+msgstr "ติดตั้งเสร็จสมบูรณ์"
+
+#: src/mainuan_install_appimage/gui.py:461
+msgid "The installed file is not available to be opened."
+msgstr "ไฟล์ที่ติดตั้งไม่พร้อมให้เปิด"
+
+#: src/mainuan_install_appimage/gui.py:469
+msgid "Could not start the application as a regular user."
+msgstr "ไม่สามารถเริ่มแอปพลิเคชันในฐานะผู้ใช้ทั่วไป"
+
+#: src/mainuan_install_appimage/gui.py:474
+msgid "Wait for the operation to finish."
+msgstr "โปรดรอให้การดำเนินการเสร็จสิ้น"
+
+#: src/mainuan_install_appimage/gui.py:502
+msgid "Run the interface as a regular user."
+msgstr "เรียกใช้อินเทอร์เฟซในฐานะผู้ใช้ทั่วไป"
+
+#: src/mainuan_install_appimage/gui.py:513
+msgid "Provide only one AppImage file at a time."
+msgstr "ระบุไฟล์ AppImage ได้ครั้งละหนึ่งไฟล์เท่านั้น"
+
+#: src/mainuan_install_appimage/inspector.py:52
+msgid "Format or metadata"
+msgstr "รูปแบบหรือเมทาดาทา"
+
+#. Translators: {category} is a failure class such as "Format or metadata".
+#: src/mainuan_install_appimage/inspector.py:56
+#, python-brace-format
+msgid "{category}: {message}"
+msgstr "{category}: {message}"
+
+#: src/mainuan_install_appimage/inspector.py:60
+msgid "Operational limit (does not determine whether the file is valid)"
+msgstr "ขีดจำกัดการทำงาน (ไม่ได้ใช้ตัดสินว่าไฟล์ถูกต้องหรือไม่)"
+
+#. Translators: {resource} names the limited resource; keep observed= and limit= readable.
+#: src/mainuan_install_appimage/inspector.py:65
+#, python-brace-format
+msgid "{resource}; observed={observed}, limit={allowed}"
+msgstr "{resource}; observed={observed}, limit={allowed}"
+
+#: src/mainuan_install_appimage/inspector.py:71
+msgid "SquashFS reading tool"
+msgstr "เครื่องมืออ่าน SquashFS"
+
+#: src/mainuan_install_appimage/inspector.py:114
+msgid "The file is not an ELF executable."
+msgstr "ไฟล์นี้ไม่ใช่ไฟล์ปฏิบัติการ ELF"
+
+#: src/mainuan_install_appimage/inspector.py:118
+msgid "Incompatible format: only little-endian ELF AppImages are accepted."
+msgstr "รูปแบบเข้ากันไม่ได้: รับเฉพาะ AppImage แบบ ELF little-endian เท่านั้น"
+
+#: src/mainuan_install_appimage/inspector.py:121
+msgid "The AppImage uses an incompatible ELF class."
+msgstr "AppImage ใช้คลาส ELF ที่เข้ากันไม่ได้"
+
+#: src/mainuan_install_appimage/inspector.py:124
+msgid "The ELF header is truncated."
+msgstr "ส่วนหัว ELF ถูกตัดทอน"
+
+#: src/mainuan_install_appimage/inspector.py:129
+msgid "The AppImage ELF header is invalid."
+msgstr "ส่วนหัว ELF ของ AppImage ไม่ถูกต้อง"
+
+#: src/mainuan_install_appimage/inspector.py:143
+msgid ""
+"Incompatible architecture. Accepted formats: amd64, arm64, i386 and armhf."
+msgstr "สถาปัตยกรรมเข้ากันไม่ได้ รูปแบบที่รับ: amd64, arm64, i386 และ armhf"
+
+#: src/mainuan_install_appimage/inspector.py:222
+#: src/mainuan_install_appimage/inspector.py:235
+msgid "SquashFS search (s)"
+msgstr "การค้นหา SquashFS (วินาที)"
+
+#: src/mainuan_install_appimage/inspector.py:233
+msgid "superblock candidates"
+msgstr "ซูเปอร์บล็อกที่เป็นตัวเลือก"
+
+#: src/mainuan_install_appimage/inspector.py:245
+msgid "structural superblocks"
+msgstr "ซูเปอร์บล็อกเชิงโครงสร้าง"
+
+#: src/mainuan_install_appimage/inspector.py:256
+msgid "unsquashfs is not installed."
+msgstr "ไม่ได้ติดตั้ง unsquashfs"
+
+#: src/mainuan_install_appimage/inspector.py:258
+msgid "inspection time (s)"
+msgstr "เวลาตรวจสอบ (วินาที)"
+
+#: src/mainuan_install_appimage/inspector.py:267
+#, python-brace-format
+msgid "Could not start unsquashfs: {error}"
+msgstr "ไม่สามารถเริ่ม unsquashfs: {error}"
+
+#: src/mainuan_install_appimage/inspector.py:278
+#: src/mainuan_install_appimage/inspector.py:318
+msgid "command time (s)"
+msgstr "เวลาของคำสั่ง (วินาที)"
+
+#: src/mainuan_install_appimage/inspector.py:287
+msgid "unsquashfs stderr (bytes)"
+msgstr "stderr ของ unsquashfs (ไบต์)"
+
+#: src/mainuan_install_appimage/inspector.py:292
+msgid "unsquashfs stdout (bytes)"
+msgstr "stdout ของ unsquashfs (ไบต์)"
+
+#: src/mainuan_install_appimage/inspector.py:301
+#: src/mainuan_install_appimage/inspector.py:304
+msgid "listing line (bytes)"
+msgstr "บรรทัดรายการ (ไบต์)"
+
+#: src/mainuan_install_appimage/inspector.py:311
+msgid "allocation refused"
+msgstr "การจัดสรรถูกปฏิเสธ"
+
+#: src/mainuan_install_appimage/inspector.py:311
+msgid "unsquashfs memory (bytes; exact usage unavailable)"
+msgstr "หน่วยความจำของ unsquashfs (ไบต์ ไม่มีข้อมูลการใช้งานที่แน่นอน)"
+
+#: src/mainuan_install_appimage/inspector.py:313
+msgid "SIGXCPU signal"
+msgstr "สัญญาณ SIGXCPU"
+
+#: src/mainuan_install_appimage/inspector.py:313
+msgid "unsquashfs CPU (s)"
+msgstr "CPU ของ unsquashfs (วินาที)"
+
+#: src/mainuan_install_appimage/inspector.py:314
+#, python-brace-format
+msgid "unsquashfs exited with code {code}. {detail}"
+msgstr "unsquashfs จบการทำงานด้วยรหัส {code} {detail}"
+
+#: src/mainuan_install_appimage/inspector.py:316
+msgid "The listing is not valid UTF-8."
+msgstr "รายการไม่ใช่ UTF-8 ที่ถูกต้อง"
+
+#: src/mainuan_install_appimage/inspector.py:347
+msgid "The -lln listing is malformed (fields/mode/UID/GID)."
+msgstr "รายการ -lln ผิดรูปแบบ (ฟิลด์/โหมด/UID/GID)"
+
+#: src/mainuan_install_appimage/inspector.py:351
+msgid "The listing contains an invalid size."
+msgstr "รายการมีขนาดที่ไม่ถูกต้อง"
+
+#: src/mainuan_install_appimage/inspector.py:355
+msgid "The SquashFS root is not a directory."
+msgstr "รากของ SquashFS ไม่ใช่ไดเรกทอรี"
+
+#: src/mainuan_install_appimage/inspector.py:358
+msgid "Path outside the SquashFS root in the listing."
+msgstr "มีพาธที่อยู่นอกรากของ SquashFS ในรายการ"
+
+#: src/mainuan_install_appimage/inspector.py:364
+msgid "link target (characters)"
+msgstr "เป้าหมายของลิงก์ (อักขระ)"
+
+#: src/mainuan_install_appimage/inspector.py:366
+msgid "Invalid symbolic link."
+msgstr "ลิงก์สัญลักษณ์ไม่ถูกต้อง"
+
+#: src/mainuan_install_appimage/inspector.py:368
+#: src/mainuan_install_appimage/inspector.py:438
+msgid "metadata path (characters)"
+msgstr "พาธเมทาดาทา (อักขระ)"
+
+#: src/mainuan_install_appimage/inspector.py:370
+msgid "Invalid or unsafe path in the listing."
+msgstr "พาธในรายการไม่ถูกต้องหรือไม่ปลอดภัย"
+
+#: src/mainuan_install_appimage/inspector.py:387
+#: src/mainuan_install_appimage/inspector.py:638
+#: src/mainuan_install_appimage/inspector.py:652
+msgid "total inspection time (s)"
+msgstr "เวลาตรวจสอบทั้งหมด (วินาที)"
+
+#: src/mainuan_install_appimage/inspector.py:393
+msgid "metadata path depth"
+msgstr "ความลึกของพาธเมทาดาทา"
+
+#: src/mainuan_install_appimage/inspector.py:396
+msgid "exact metadata queries"
+msgstr "การสอบถามเมทาดาทาแบบตรงตัว"
+
+#: src/mainuan_install_appimage/inspector.py:402
+msgid "accumulated listings (bytes)"
+msgstr "รายการสะสม (ไบต์)"
+
+#: src/mainuan_install_appimage/inspector.py:408
+msgid "records examined in the selected listings"
+msgstr "ระเบียนที่ตรวจสอบในรายการที่เลือก"
+
+#: src/mainuan_install_appimage/inspector.py:410
+msgid "Duplicate path in the same listing."
+msgstr "พาธซ้ำในรายการเดียวกัน"
+
+#: src/mainuan_install_appimage/inspector.py:412
+msgid "unsquashfs returned entries outside the requested selection/depth."
+msgstr "unsquashfs ส่งคืนรายการที่อยู่นอกการเลือก/ความลึกที่ร้องขอ"
+
+#: src/mainuan_install_appimage/inspector.py:415
+msgid "Metadata differs between queries to the same image."
+msgstr "เมทาดาทาแตกต่างกันระหว่างการสอบถามอิมเมจเดียวกัน"
+
+#: src/mainuan_install_appimage/inspector.py:421
+msgid "Invalid metadata directory tree."
+msgstr "ทรีไดเรกทอรีเมทาดาทาไม่ถูกต้อง"
+
+#: src/mainuan_install_appimage/inspector.py:440
+msgid "Unsafe metadata path."
+msgstr "พาธเมทาดาทาไม่ปลอดภัย"
+
+#: src/mainuan_install_appimage/inspector.py:470
+msgid "symbolic link hops"
+msgstr "จำนวนการข้ามลิงก์สัญลักษณ์"
+
+#: src/mainuan_install_appimage/inspector.py:482
+msgid "The AppImage metadata path is invalid."
+msgstr "พาธเมทาดาทาของ AppImage ไม่ถูกต้อง"
+
+#: src/mainuan_install_appimage/inspector.py:502
+#: src/mainuan_install_appimage/inspector.py:674
+msgid ".desktop metadata (bytes)"
+msgstr "เมทาดาทา .desktop (ไบต์)"
+
+#: src/mainuan_install_appimage/inspector.py:506
+msgid "The .desktop file is not encoded in UTF-8."
+msgstr "ไฟล์ .desktop ไม่ได้เข้ารหัสเป็น UTF-8"
+
+#: src/mainuan_install_appimage/inspector.py:512
+msgid ".desktop line (characters)"
+msgstr "บรรทัด .desktop (อักขระ)"
+
+#: src/mainuan_install_appimage/inspector.py:523
+msgid "The .desktop file is malformed."
+msgstr "ไฟล์ .desktop ผิดรูปแบบ"
+
+#: src/mainuan_install_appimage/inspector.py:526
+msgid "The .desktop file contains an invalid key."
+msgstr "ไฟล์ .desktop มีคีย์ที่ไม่ถูกต้อง"
+
+#: src/mainuan_install_appimage/inspector.py:529
+msgid "The .desktop file contains duplicate keys."
+msgstr "ไฟล์ .desktop มีคีย์ซ้ำกัน"
+
+#: src/mainuan_install_appimage/inspector.py:532
+msgid "The AppImage does not contain a valid [Desktop Entry] section."
+msgstr "AppImage ไม่มีส่วน [Desktop Entry] ที่ถูกต้อง"
+
+#: src/mainuan_install_appimage/inspector.py:534
+msgid "The .desktop file does not describe an application."
+msgstr "ไฟล์ .desktop ไม่ได้อธิบายแอปพลิเคชัน"
+
+#: src/mainuan_install_appimage/inspector.py:562
+msgid "icon reference (characters)"
+msgstr "การอ้างอิงไอคอน (อักขระ)"
+
+#: src/mainuan_install_appimage/inspector.py:586
+msgid "icons read (bytes)"
+msgstr "ไอคอนที่อ่าน (ไบต์)"
+
+#: src/mainuan_install_appimage/inspector.py:595
+msgid "PNG dimensions (width,height,pixels)"
+msgstr "ขนาด PNG (กว้าง,สูง,พิกเซล)"
+
+#: src/mainuan_install_appimage/inspector.py:620
+#, python-brace-format
+msgid "Could not open the selected file: {error}"
+msgstr "ไม่สามารถเปิดไฟล์ที่เลือก: {error}"
+
+#: src/mainuan_install_appimage/inspector.py:622
+msgid "The selected file is not a regular file."
+msgstr "ไฟล์ที่เลือกไม่ใช่ไฟล์ปกติ"
+
+#: src/mainuan_install_appimage/inspector.py:624
+msgid "Truncated ELF header: file smaller than 64 bytes."
+msgstr "ส่วนหัว ELF ถูกตัดทอน: ไฟล์มีขนาดเล็กกว่า 64 ไบต์"
+
+#: src/mainuan_install_appimage/inspector.py:626
+msgid "AppImage file (bytes)"
+msgstr "ไฟล์ AppImage (ไบต์)"
+
+#: src/mainuan_install_appimage/inspector.py:632
+msgid ""
+"Incompatible format: only AppImage Type 2 with a type 2 AI signature is "
+"accepted."
+msgstr "รูปแบบเข้ากันไม่ได้: รับเฉพาะ AppImage Type 2 ที่มีลายเซ็น AI ชนิด 2 เท่านั้น"
+
+#: src/mainuan_install_appimage/inspector.py:645
+msgid ""
+"Incompatible or invalid format. Only AppImages Type 2 with a validated "
+"SquashFS 4.0 are accepted."
+msgstr ""
+"รูปแบบเข้ากันไม่ได้หรือไม่ถูกต้อง รับเฉพาะ AppImage Type 2 ที่มี SquashFS 4.0 "
+"ซึ่งผ่านการตรวจสอบแล้วเท่านั้น"
+
+#: src/mainuan_install_appimage/inspector.py:664
+msgid "The AppImage does not contain a regular .desktop file at its root."
+msgstr "AppImage ไม่มีไฟล์ .desktop ปกติที่รากของอิมเมจ"
+
+#: src/mainuan_install_appimage/inspector.py:667
+msgid ".desktop candidates at the root"
+msgstr "ไฟล์ .desktop ที่เป็นตัวเลือกที่ราก"
+
+#: src/mainuan_install_appimage/inspector.py:676
+msgid "The .desktop link is invalid or escapes the tree."
+msgstr "ลิงก์ .desktop ไม่ถูกต้องหรือชี้ออกนอกทรี"
+
+#: src/mainuan_install_appimage/inspector.py:687
+msgid "The AppImage does not contain valid .desktop metadata."
+msgstr "AppImage ไม่มีเมทาดาทา .desktop ที่ถูกต้อง"
+
+#: src/mainuan_install_appimage/inspector.py:709
+msgid "Could not validate the AppImage."
+msgstr "ไม่สามารถตรวจสอบ AppImage"
+
+#: src/mainuan_install_appimage/installer.py:49
+#, python-brace-format
+msgid "Could not query the package manager: {error}"
+msgstr "ไม่สามารถสอบถามตัวจัดการแพ็กเกจ: {error}"
+
+#: src/mainuan_install_appimage/installer.py:65
+msgid "dpkg-query failed; it is not safe to continue."
+msgstr "dpkg-query ล้มเหลว ไม่ปลอดภัยที่จะดำเนินการต่อ"
+
+#: src/mainuan_install_appimage/installer.py:68
+msgid "The dpkg-query response is malformed."
+msgstr "การตอบกลับของ dpkg-query ผิดรูปแบบ"
+
+#: src/mainuan_install_appimage/installer.py:70
+msgid ""
+"The package is in a partial state in dpkg. Examine it before continuing."
+msgstr "แพ็กเกจอยู่ในสถานะไม่สมบูรณ์ใน dpkg โปรดตรวจสอบก่อนดำเนินการต่อ"
+
+#: src/mainuan_install_appimage/installer.py:105
+msgid ""
+"A package with this identifier already exists that was not installed by this "
+"tool. It will be preserved."
+msgstr "มีแพ็กเกจที่ใช้ตัวระบุนี้อยู่แล้วซึ่งไม่ได้ติดตั้งโดยเครื่องมือนี้ แพ็กเกจนั้นจะถูกเก็บไว้"
+
+#: src/mainuan_install_appimage/installer.py:117
+msgid ""
+"The package identifier belongs to another installation. No file will be "
+"replaced."
+msgstr "ตัวระบุแพ็กเกจเป็นของการติดตั้งอื่น จะไม่มีไฟล์ใดถูกแทนที่"
+
+#: src/mainuan_install_appimage/installer.py:139
+msgid ""
+"A legacy installation with this name was detected. The dpkg database and the "
+"existing files will not be repaired automatically."
+msgstr ""
+"ตรวจพบการติดตั้งแบบเก่าที่ใช้ชื่อนี้ ฐานข้อมูล dpkg และไฟล์ที่มีอยู่จะไม่ได้รับการซ่อมแซมโดยอัตโนมัติ"
+
+#: src/mainuan_install_appimage/installer.py:158
+msgid "The installer's fallback icon is not available."
+msgstr "ไอคอนสำรองของตัวติดตั้งไม่พร้อมใช้งาน"
+
+#: src/mainuan_install_appimage/installer.py:172
+msgid "Icon conversion cannot run as root."
+msgstr "ไม่สามารถแปลงไอคอนในฐานะ root"
+
+#: src/mainuan_install_appimage/installer.py:188
+msgid "Could not prepare the package icons."
+msgstr "ไม่สามารถเตรียมไอคอนของแพ็กเกจ"
+
+#: src/mainuan_install_appimage/installer.py:216
+#, python-brace-format
+msgid "Launcher categories refused: {error}"
+msgstr "หมวดหมู่ของตัวเรียกใช้ถูกปฏิเสธ: {error}"
+
+#: src/mainuan_install_appimage/installer.py:295
+#, python-brace-format
+msgid "The destination {path} is not a secure directory."
+msgstr "ปลายทาง {path} ไม่ใช่ไดเรกทอรีที่ปลอดภัย"
+
+#: src/mainuan_install_appimage/installer.py:303
+#, python-brace-format
+msgid "The destination {path} already exists and is not a regular file."
+msgstr "ปลายทาง {path} มีอยู่แล้วและไม่ใช่ไฟล์ปกติ"
+
+#: src/mainuan_install_appimage/installer.py:305
+#, python-brace-format
+msgid ""
+"The destination {path} already exists without a valid managed installation."
+msgstr "ปลายทาง {path} มีอยู่แล้วโดยไม่มีการติดตั้งที่จัดการไว้อย่างถูกต้อง"
+
+#: src/mainuan_install_appimage/installer.py:312
+#, python-brace-format
+msgid "The file {path} does not belong to a package managed by this tool."
+msgstr "ไฟล์ {path} ไม่ได้เป็นของแพ็กเกจที่เครื่องมือนี้จัดการ"
+
+#: src/mainuan_install_appimage/installer.py:326
+#, python-brace-format
+msgid "Could not prepare the package: {error}"
+msgstr "ไม่สามารถเตรียมแพ็กเกจ: {error}"
+
+#: src/mainuan_install_appimage/installer.py:338
+#, python-brace-format
+msgid "dpkg-deb could not build the package: {detail}"
+msgstr "dpkg-deb ไม่สามารถสร้างแพ็กเกจ: {detail}"
+
+#: src/mainuan_install_appimage/installer.py:339
+#: src/mainuan_install_appimage/installer.py:497
+msgid "unknown error"
+msgstr "ข้อผิดพลาดที่ไม่ทราบสาเหตุ"
+
+#: src/mainuan_install_appimage/installer.py:350
+msgid "The prepared package's control data does not match the installation."
+msgstr "ข้อมูลควบคุมของแพ็กเกจที่เตรียมไว้ไม่ตรงกับการติดตั้ง"
+
+#: src/mainuan_install_appimage/installer.py:354
+msgid "Invalid or oversized Debian control data."
+msgstr "ข้อมูลควบคุม Debian ไม่ถูกต้องหรือใหญ่เกิน"
+
+#: src/mainuan_install_appimage/installer.py:359
+msgid "The package contains control files that are not allowed."
+msgstr "แพ็กเกจมีไฟล์ควบคุมที่ไม่อนุญาต"
+
+#: src/mainuan_install_appimage/installer.py:362
+msgid "Invalid Debian control ownership."
+msgstr "ความเป็นเจ้าของข้อมูลควบคุม Debian ไม่ถูกต้อง"
+
+#: src/mainuan_install_appimage/installer.py:365
+msgid "Invalid Debian control file."
+msgstr "ไฟล์ควบคุม Debian ไม่ถูกต้อง"
+
+#: src/mainuan_install_appimage/installer.py:367
+msgid "Debian control fields not allowed."
+msgstr "ฟิลด์ควบคุม Debian ที่ไม่อนุญาต"
+
+#: src/mainuan_install_appimage/installer.py:369
+msgid "Invalid Debian control directory."
+msgstr "ไดเรกทอรีควบคุม Debian ไม่ถูกต้อง"
+
+#: src/mainuan_install_appimage/installer.py:404
+msgid "Duplicate or oversized Debian manifest."
+msgstr "รายการไฟล์ Debian ซ้ำกันหรือใหญ่เกิน"
+
+#: src/mainuan_install_appimage/installer.py:407
+msgid "Invalid Debian ownership metadata."
+msgstr "เมทาดาทาความเป็นเจ้าของของ Debian ไม่ถูกต้อง"
+
+#: src/mainuan_install_appimage/installer.py:410
+msgid "Directory outside the allowed manifest."
+msgstr "ไดเรกทอรีอยู่นอกรายการไฟล์ที่อนุญาต"
+
+#: src/mainuan_install_appimage/installer.py:413
+msgid "File or link outside the allowed manifest."
+msgstr "ไฟล์หรือลิงก์อยู่นอกรายการไฟล์ที่อนุญาต"
+
+#: src/mainuan_install_appimage/installer.py:416
+msgid "Invalid Debian file permissions."
+msgstr "สิทธิ์ของไฟล์ Debian ไม่ถูกต้อง"
+
+#: src/mainuan_install_appimage/installer.py:418
+msgid "Size outside the allowed manifest."
+msgstr "ขนาดไม่ตรงกับรายการไฟล์ที่อนุญาต"
+
+#: src/mainuan_install_appimage/installer.py:424
+msgid "The AppImage in the package does not match the validated snapshot."
+msgstr "AppImage ในแพ็กเกจไม่ตรงกับสแนปช็อตที่ผ่านการตรวจสอบ"
+
+#: src/mainuan_install_appimage/installer.py:426
+msgid "Incomplete or invalid Debian manifest."
+msgstr "รายการไฟล์ Debian ไม่ครบถ้วนหรือไม่ถูกต้อง"
+
+#: src/mainuan_install_appimage/installer.py:428
+#, python-brace-format
+msgid "Could not validate the package files: {error}"
+msgstr "ไม่สามารถตรวจสอบไฟล์ของแพ็กเกจ: {error}"
+
+#: src/mainuan_install_appimage/installer.py:443
+msgid "Could not identify the system architecture."
+msgstr "ไม่สามารถระบุสถาปัตยกรรมของระบบ"
+
+#: src/mainuan_install_appimage/installer.py:447
+#, python-brace-format
+msgid ""
+"The AppImage is {architecture}, but the system is {host_architecture}. The "
+"installation was canceled."
+msgstr ""
+"AppImage เป็น {architecture} แต่ระบบเป็น {host_architecture} การติดตั้งถูกยกเลิก"
+
+#: src/mainuan_install_appimage/installer.py:464
+msgid "The package manager is busy. Try again after the other transaction."
+msgstr "ตัวจัดการแพ็กเกจไม่ว่าง โปรดลองอีกครั้งหลังธุรกรรมอื่นเสร็จสิ้น"
+
+#: src/mainuan_install_appimage/installer.py:477
+msgid "The file changed since the inspection. Select it again."
+msgstr "ไฟล์มีการเปลี่ยนแปลงหลังการตรวจสอบ โปรดเลือกอีกครั้ง"
+
+#: src/mainuan_install_appimage/installer.py:499
+#, python-brace-format
+msgid ""
+"dpkg did not complete the transaction. The previous installation was not "
+"removed beforehand; dpkg itself may leave a partially configured "
+"transaction. Details: {details}"
+msgstr ""
+"dpkg ไม่ได้ทำธุรกรรมให้เสร็จสมบูรณ์ การติดตั้งก่อนหน้าไม่ได้ถูกเอาออกไว้ก่อน แต่ dpkg "
+"เองอาจทิ้งธุรกรรมที่กำหนดค่าไว้บางส่วน รายละเอียด: {details}"
+
+#: src/mainuan_install_appimage/installer.py:504
+msgid "Installation completed by dpkg."
+msgstr "dpkg ติดตั้งเสร็จสมบูรณ์"
+
+#: src/mainuan_install_appimage/installer.py:509
+msgid "The temporary copy identifier is invalid."
+msgstr "ตัวระบุสำเนาชั่วคราวไม่ถูกต้อง"
+
+#: src/mainuan_install_appimage/installer.py:518
+msgid "The file is not in the allowed temporary area."
+msgstr "ไฟล์ไม่ได้อยู่ในพื้นที่ชั่วคราวที่อนุญาต"
+
+#: src/mainuan_install_appimage/installer.py:533
+msgid "Could not validate the secure temporary file."
+msgstr "ไม่สามารถตรวจสอบไฟล์ชั่วคราวที่ปลอดภัย"
+
+#: src/mainuan_install_appimage/installer.py:549
+msgid "The temporary area or the file has invalid permissions."
+msgstr "พื้นที่ชั่วคราวหรือไฟล์มีสิทธิ์ไม่ถูกต้อง"
+
+#: src/mainuan_install_appimage/installer.py:566
+msgid "The copy exceeded the size or time limit."
+msgstr "การคัดลอกเกินขีดจำกัดขนาดหรือเวลา"
+
+#: src/mainuan_install_appimage/installer.py:573
+msgid "The temporary copy does not match the inspected file."
+msgstr "สำเนาชั่วคราวไม่ตรงกับไฟล์ที่ตรวจสอบ"
+
+#: src/mainuan_install_appimage/privileged.py:24
+msgid "This helper can only be started by PolicyKit."
+msgstr "ตัวช่วยนี้เริ่มได้โดย PolicyKit เท่านั้น"
+
+#: src/mainuan_install_appimage/privileged.py:31
+msgid "Could not identify the user who requested the installation."
+msgstr "ไม่สามารถระบุผู้ใช้ที่ร้องขอการติดตั้ง"
+
+#: src/mainuan_install_appimage/privileged.py:34
+msgid "Unrecognized administrative operation."
+msgstr "การดำเนินการของผู้ดูแลที่ไม่รู้จัก"
+
+#: src/mainuan_install_appimage/privileged.py:52
+msgid "File received and hash verified."
+msgstr "ได้รับไฟล์และตรวจสอบแฮชแล้ว"
+
+#: src/mainuan_install_appimage/reduced.py:35
+msgid "The inspection process did not drop all privileges."
+msgstr "โปรเซสตรวจสอบไม่ได้สละสิทธิ์ทั้งหมด"
+
+#: src/mainuan_install_appimage/reduced.py:37
+msgid "Could not block new privileges."
+msgstr "ไม่สามารถปิดกั้นสิทธิ์ใหม่"
+
+#: src/mainuan_install_appimage/reduced.py:41
+msgid "The inspection process still has capabilities."
+msgstr "โปรเซสตรวจสอบยังมี capabilities อยู่"
+
+#: src/mainuan_install_appimage/reduced.py:73
+msgid "Invalid input descriptor."
+msgstr "ตัวอธิบายอินพุตไม่ถูกต้อง"
+
+# reviewed: 'address space' deixado em inglês; termo traduzido como no lote 5
+#: src/mainuan_install_appimage/reduced.py:77
+msgid ""
+"Operational limit: parser memory; address space limit=1073741824 bytes; "
+"exact usage unavailable."
+msgstr ""
+"ขีดจำกัดการทำงาน: หน่วยความจำของตัวแยกวิเคราะห์ ขีดจำกัดพื้นที่ที่อยู่=1073741824 ไบต์ "
+"ไม่มีข้อมูลการใช้งานที่แน่นอน"
+
+#: src/mainuan_install_appimage/staging.py:27
+msgid "The environment does not provide a secure temporary directory."
+msgstr "สภาพแวดล้อมไม่มีไดเรกทอรีชั่วคราวที่ปลอดภัย"
+
+#: src/mainuan_install_appimage/staging.py:32
+msgid "The secure temporary directory is not available."
+msgstr "ไดเรกทอรีชั่วคราวที่ปลอดภัยไม่พร้อมใช้งาน"
+
+#: src/mainuan_install_appimage/staging.py:39
+msgid "The secure temporary directory has invalid permissions."
+msgstr "ไดเรกทอรีชั่วคราวที่ปลอดภัยมีสิทธิ์ไม่ถูกต้อง"
+
+#: src/mainuan_install_appimage/staging.py:52
+#, python-brace-format
+msgid "Could not read the selected file: {error}"
+msgstr "ไม่สามารถอ่านไฟล์ที่เลือก: {error}"
+
+#: src/mainuan_install_appimage/staging.py:64
+msgid "Could not prepare the secure temporary area."
+msgstr "ไม่สามารถเตรียมพื้นที่ชั่วคราวที่ปลอดภัย"
+
+#: src/mainuan_install_appimage/staging.py:72
+msgid "The secure temporary area has invalid permissions."
+msgstr "พื้นที่ชั่วคราวที่ปลอดภัยมีสิทธิ์ไม่ถูกต้อง"
+
+#: src/mainuan_install_appimage/staging.py:79
+msgid "The selected file is not regular or exceeds the limit."
+msgstr "ไฟล์ที่เลือกไม่ใช่ไฟล์ปกติหรือเกินขีดจำกัด"
+
+#: src/mainuan_install_appimage/staging.py:93
+msgid "Copying the file to a protected temporary area…"
+msgstr "กำลังคัดลอกไฟล์ไปยังพื้นที่ชั่วคราวที่ได้รับการป้องกัน…"
+
+#: src/mainuan_install_appimage/staging.py:102
+msgid "The selected file exceeds the size limit."
+msgstr "ไฟล์ที่เลือกเกินขีดจำกัดขนาด"
+
+#: src/mainuan_install_appimage/staging.py:114
+msgid "The file was changed during the copy; select it again."
+msgstr "ไฟล์ถูกเปลี่ยนแปลงระหว่างการคัดลอก โปรดเลือกอีกครั้ง"
+
+#: src/mainuan_install_appimage/staging.py:116
+msgid "Validating ELF, architecture, SquashFS and metadata…"
+msgstr "กำลังตรวจสอบ ELF, สถาปัตยกรรม, SquashFS และเมทาดาทา…"
+
+#: src/mainuan_install_appimage/staging.py:119
+msgid "The temporary copy does not match the selected file."
+msgstr "สำเนาชั่วคราวไม่ตรงกับไฟล์ที่เลือก"

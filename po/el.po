@@ -1,0 +1,927 @@
+# Greek translations for mainuan-install-appimage package.
+# Copyright (C) 2026 Mainuan
+# This file is distributed under the same license as the mainuan-install-appimage package.
+# Automatically generated, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mainuan-install-appimage 2.0.1\n"
+"Report-Msgid-Bugs-To: https://github.com/mainuan/mainuan-install-AppImage/"
+"issues\n"
+"POT-Creation-Date: 2026-11-16 12:37-0300\n"
+"PO-Revision-Date: 2026-11-16 12:37-0300\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: el <https://github.com/mainuan>\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: packaging/appimage-mime.xml:4
+msgid "AppImage application"
+msgstr "Εφαρμογή AppImage"
+
+#: packaging/br.com.mainuan.install-appimage.policy:7
+msgid "Install a verified AppImage as a Debian package"
+msgstr "Εγκατάσταση επαληθευμένου AppImage ως πακέτο Debian"
+
+#: packaging/br.com.mainuan.install-appimage.policy:8
+msgid "Authenticate to install this AppImage on Mainuan"
+msgstr "Ταυτοποιηθείτε για να εγκαταστήσετε αυτό το AppImage στο Mainuan"
+
+#: packaging/mainuan-install-appimage.desktop:3
+msgid "Mainuan AppImage Installer"
+msgstr "Εγκαταστάτης AppImage του Mainuan"
+
+#: packaging/mainuan-install-appimage.desktop:4
+msgid "Inspects and installs AppImage files as Debian packages"
+msgstr "Επιθεωρεί και εγκαθιστά αρχεία AppImage ως πακέτα Debian"
+
+#: src/mainuan_install_appimage/boundary.py:39
+msgid "Oversized inspection response."
+msgstr "Υπερμεγέθης απόκριση επιθεώρησης."
+
+#: src/mainuan_install_appimage/boundary.py:45
+msgid "duplicate JSON field"
+msgstr "διπλότυπο πεδίο JSON"
+
+#: src/mainuan_install_appimage/boundary.py:51
+msgid "object expected"
+msgstr "αναμενόταν αντικείμενο"
+
+#: src/mainuan_install_appimage/boundary.py:53
+msgid "Protocol categories must be a JSON list."
+msgstr "Οι κατηγορίες του πρωτοκόλλου πρέπει να είναι λίστα JSON."
+
+#: src/mainuan_install_appimage/boundary.py:57
+msgid "invalid text"
+msgstr "μη έγκυρο κείμενο"
+
+#: src/mainuan_install_appimage/boundary.py:60
+msgid "control character or line break in text"
+msgstr "χαρακτήρας ελέγχου ή αλλαγή γραμμής στο κείμενο"
+
+#: src/mainuan_install_appimage/boundary.py:63
+msgid "invalid identity"
+msgstr "μη έγκυρη ταυτότητα"
+
+#: src/mainuan_install_appimage/boundary.py:66
+msgid "package does not match the identity"
+msgstr "το πακέτο δεν αντιστοιχεί στην ταυτότητα"
+
+#: src/mainuan_install_appimage/boundary.py:68
+msgid "divergent content"
+msgstr "αποκλίνον περιεχόμενο"
+
+#: src/mainuan_install_appimage/boundary.py:70
+msgid "invalid size"
+msgstr "μη έγκυρο μέγεθος"
+
+#: src/mainuan_install_appimage/boundary.py:72
+msgid "invalid offset"
+msgstr "μη έγκυρη μετατόπιση"
+
+#: src/mainuan_install_appimage/boundary.py:74
+msgid "invalid architecture"
+msgstr "μη έγκυρη αρχιτεκτονική"
+
+#: src/mainuan_install_appimage/boundary.py:77
+msgid "invalid Debian version"
+msgstr "μη έγκυρη έκδοση Debian"
+
+#: src/mainuan_install_appimage/boundary.py:80
+msgid "invalid icons"
+msgstr "μη έγκυρα εικονίδια"
+
+#: src/mainuan_install_appimage/boundary.py:84
+msgid "oversized icon"
+msgstr "υπερμεγέθες εικονίδιο"
+
+#: src/mainuan_install_appimage/boundary.py:87
+msgid "incompatible icon"
+msgstr "μη συμβατό εικονίδιο"
+
+#: src/mainuan_install_appimage/boundary.py:95
+#, python-brace-format
+msgid "The inspection response was refused: {error}"
+msgstr "Η απόκριση επιθεώρησης απορρίφθηκε: {error}"
+
+#: src/mainuan_install_appimage/boundary.py:101
+msgid "Unprivileged inspection account unavailable."
+msgstr "Ο λογαριασμός επιθεώρησης χωρίς προνόμια δεν είναι διαθέσιμος."
+
+#: src/mainuan_install_appimage/boundary.py:112
+msgid "The administrative copy is not regular."
+msgstr "Το διαχειριστικό αντίγραφο δεν είναι κανονικό αρχείο."
+
+#: src/mainuan_install_appimage/boundary.py:127
+#, python-brace-format
+msgid "Operational limit: administrative inspection time; limit={limit} s."
+msgstr "Λειτουργικό όριο: χρόνος διαχειριστικής επιθεώρησης· όριο={limit} s."
+
+#: src/mainuan_install_appimage/boundary.py:135
+#, python-brace-format
+msgid ""
+"Operational limit: parser output; observed={observed}, limit={limit} bytes."
+msgstr ""
+"Λειτουργικό όριο: έξοδος αναλυτή· παρατηρήθηκε={observed}, όριο={limit} byte."
+
+#: src/mainuan_install_appimage/boundary.py:138
+#, python-brace-format
+msgid ""
+"Unprivileged inspection failed: code={code}; limits CPU=120 s, address "
+"space=1073741824 bytes. {detail}"
+msgstr ""
+"Η επιθεώρηση χωρίς προνόμια απέτυχε: κωδικός={code}· όρια CPU=120 s, χώρος "
+"διευθύνσεων=1073741824 byte. {detail}"
+
+#: src/mainuan_install_appimage/boundary.py:141
+#, python-brace-format
+msgid "Could not run the unprivileged inspection: {error}"
+msgstr "Δεν ήταν δυνατή η εκτέλεση της επιθεώρησης χωρίς προνόμια: {error}"
+
+#: src/mainuan_install_appimage/categories.py:82
+msgid "Invalid category list."
+msgstr "Μη έγκυρη λίστα κατηγοριών."
+
+#: src/mainuan_install_appimage/categories.py:85
+msgid "Unknown, malformed or non-canonical categories."
+msgstr "Άγνωστες, κακοσχηματισμένες ή μη κανονικές κατηγορίες."
+
+#: src/mainuan_install_appimage/gui.py:32
+msgid "AppImage Installer"
+msgstr "Εγκαταστάτης AppImage"
+
+#: src/mainuan_install_appimage/gui.py:135
+msgid "Show Details"
+msgstr "Εμφάνιση λεπτομερειών"
+
+#: src/mainuan_install_appimage/gui.py:147
+msgid "Select File"
+msgstr "Επιλογή αρχείου"
+
+#: src/mainuan_install_appimage/gui.py:148
+msgctxt "@action:button"
+msgid "Cancel"
+msgstr "Ακύρωση"
+
+#: src/mainuan_install_appimage/gui.py:149
+#: src/mainuan_install_appimage/gui.py:287
+#: src/mainuan_install_appimage/gui.py:299
+msgctxt "@action:button"
+msgid "Install"
+msgstr "Εγκατάσταση"
+
+#: src/mainuan_install_appimage/gui.py:151
+msgid "Open Application"
+msgstr "Άνοιγμα εφαρμογής"
+
+#: src/mainuan_install_appimage/gui.py:152
+msgctxt "@action:button"
+msgid "Close"
+msgstr "Κλείσιμο"
+
+#: src/mainuan_install_appimage/gui.py:177
+msgid "Select a file."
+msgstr "Επιλέξτε ένα αρχείο."
+
+#: src/mainuan_install_appimage/gui.py:179
+msgid "No application selected"
+msgstr "Δεν επιλέχθηκε εφαρμογή"
+
+#: src/mainuan_install_appimage/gui.py:198
+msgid "Select AppImage"
+msgstr "Επιλογή AppImage"
+
+#: src/mainuan_install_appimage/gui.py:200
+msgid "All Files (*)"
+msgstr "Όλα τα αρχεία (*)"
+
+#: src/mainuan_install_appimage/gui.py:200
+msgid "AppImages (*.AppImage *.appimage)"
+msgstr "AppImages (*.AppImage *.appimage)"
+
+#: src/mainuan_install_appimage/gui.py:219
+msgid "Preparing…"
+msgstr "Προετοιμασία…"
+
+#: src/mainuan_install_appimage/gui.py:231
+msgid "Inspecting…"
+msgstr "Επιθεώρηση…"
+
+#: src/mainuan_install_appimage/gui.py:248
+msgid "Could not inspect the file."
+msgstr "Δεν ήταν δυνατή η επιθεώρηση του αρχείου."
+
+#: src/mainuan_install_appimage/gui.py:258
+#: src/mainuan_install_appimage/gui.py:436
+#, python-brace-format
+msgid "Version: {version}"
+msgstr "Έκδοση: {version}"
+
+#: src/mainuan_install_appimage/gui.py:291
+msgid "The application will be reinstalled."
+msgstr "Η εφαρμογή θα επανεγκατασταθεί."
+
+#: src/mainuan_install_appimage/gui.py:292
+msgctxt "@action:button"
+msgid "Reinstall"
+msgstr "Επανεγκατάσταση"
+
+#: src/mainuan_install_appimage/gui.py:294
+msgid "The current installation will be replaced."
+msgstr "Η τρέχουσα εγκατάσταση θα αντικατασταθεί."
+
+#: src/mainuan_install_appimage/gui.py:295
+msgctxt "@action:button"
+msgid "Replace Version"
+msgstr "Αντικατάσταση έκδοσης"
+
+#: src/mainuan_install_appimage/gui.py:319
+#: src/mainuan_install_appimage/staging.py:99
+#: src/mainuan_install_appimage/staging.py:121
+msgid "Inspection canceled."
+msgstr "Η επιθεώρηση ακυρώθηκε."
+
+#: src/mainuan_install_appimage/gui.py:339
+msgid "Waiting for authentication…"
+msgstr "Αναμονή για ταυτοποίηση…"
+
+#: src/mainuan_install_appimage/gui.py:370
+msgid "Installing…"
+msgstr "Εγκατάσταση…"
+
+#: src/mainuan_install_appimage/gui.py:370
+msgid "Preparing installation…"
+msgstr "Προετοιμασία εγκατάστασης…"
+
+#: src/mainuan_install_appimage/gui.py:370
+msgid "Verifying…"
+msgstr "Επαλήθευση…"
+
+#: src/mainuan_install_appimage/gui.py:383
+msgid "Could not start PolicyKit."
+msgstr "Δεν ήταν δυνατή η εκκίνηση του PolicyKit."
+
+#: src/mainuan_install_appimage/gui.py:394
+msgid ""
+"Authentication was denied or canceled. The installation was not completed."
+msgstr "Η ταυτοποίηση απορρίφθηκε ή ακυρώθηκε. Η εγκατάσταση δεν ολοκληρώθηκε."
+
+#: src/mainuan_install_appimage/gui.py:399
+msgid "The installation was not completed."
+msgstr "Η εγκατάσταση δεν ολοκληρώθηκε."
+
+#: src/mainuan_install_appimage/gui.py:400
+#, python-brace-format
+msgid "Exit code: {code}."
+msgstr "Κωδικός εξόδου: {code}."
+
+#: src/mainuan_install_appimage/gui.py:410
+msgid "Installation not completed."
+msgstr "Η εγκατάσταση δεν ολοκληρώθηκε."
+
+#: src/mainuan_install_appimage/gui.py:430
+msgid "Installation completed."
+msgstr "Η εγκατάσταση ολοκληρώθηκε."
+
+#: src/mainuan_install_appimage/gui.py:461
+msgid "The installed file is not available to be opened."
+msgstr "Το εγκατεστημένο αρχείο δεν είναι διαθέσιμο για άνοιγμα."
+
+#: src/mainuan_install_appimage/gui.py:469
+msgid "Could not start the application as a regular user."
+msgstr "Δεν ήταν δυνατή η εκκίνηση της εφαρμογής ως κανονικός χρήστης."
+
+#: src/mainuan_install_appimage/gui.py:474
+msgid "Wait for the operation to finish."
+msgstr "Περιμένετε να ολοκληρωθεί η λειτουργία."
+
+#: src/mainuan_install_appimage/gui.py:502
+msgid "Run the interface as a regular user."
+msgstr "Εκτελέστε τη διεπαφή ως κανονικός χρήστης."
+
+#: src/mainuan_install_appimage/gui.py:513
+msgid "Provide only one AppImage file at a time."
+msgstr "Δώστε μόνο ένα αρχείο AppImage κάθε φορά."
+
+#: src/mainuan_install_appimage/inspector.py:52
+msgid "Format or metadata"
+msgstr "Μορφή ή μεταδεδομένα"
+
+#. Translators: {category} is a failure class such as "Format or metadata".
+#: src/mainuan_install_appimage/inspector.py:56
+#, python-brace-format
+msgid "{category}: {message}"
+msgstr "{category}: {message}"
+
+#: src/mainuan_install_appimage/inspector.py:60
+msgid "Operational limit (does not determine whether the file is valid)"
+msgstr "Λειτουργικό όριο (δεν καθορίζει αν το αρχείο είναι έγκυρο)"
+
+#. Translators: {resource} names the limited resource; keep observed= and limit= readable.
+#: src/mainuan_install_appimage/inspector.py:65
+#, python-brace-format
+msgid "{resource}; observed={observed}, limit={allowed}"
+msgstr "{resource}· παρατηρήθηκε={observed}, όριο={allowed}"
+
+#: src/mainuan_install_appimage/inspector.py:71
+msgid "SquashFS reading tool"
+msgstr "Εργαλείο ανάγνωσης SquashFS"
+
+#: src/mainuan_install_appimage/inspector.py:114
+msgid "The file is not an ELF executable."
+msgstr "Το αρχείο δεν είναι εκτελέσιμο ELF."
+
+#: src/mainuan_install_appimage/inspector.py:118
+msgid "Incompatible format: only little-endian ELF AppImages are accepted."
+msgstr "Μη συμβατή μορφή: γίνονται δεκτά μόνο AppImage ELF little-endian."
+
+#: src/mainuan_install_appimage/inspector.py:121
+msgid "The AppImage uses an incompatible ELF class."
+msgstr "Το AppImage χρησιμοποιεί μη συμβατή κλάση ELF."
+
+#: src/mainuan_install_appimage/inspector.py:124
+msgid "The ELF header is truncated."
+msgstr "Η κεφαλίδα ELF είναι περικομμένη."
+
+#: src/mainuan_install_appimage/inspector.py:129
+msgid "The AppImage ELF header is invalid."
+msgstr "Η κεφαλίδα ELF του AppImage δεν είναι έγκυρη."
+
+#: src/mainuan_install_appimage/inspector.py:143
+msgid ""
+"Incompatible architecture. Accepted formats: amd64, arm64, i386 and armhf."
+msgstr ""
+"Μη συμβατή αρχιτεκτονική. Αποδεκτές μορφές: amd64, arm64, i386 και armhf."
+
+#: src/mainuan_install_appimage/inspector.py:222
+#: src/mainuan_install_appimage/inspector.py:235
+msgid "SquashFS search (s)"
+msgstr "Αναζήτηση SquashFS (s)"
+
+#: src/mainuan_install_appimage/inspector.py:233
+msgid "superblock candidates"
+msgstr "υποψήφια υπερμπλοκ"
+
+#: src/mainuan_install_appimage/inspector.py:245
+msgid "structural superblocks"
+msgstr "δομικά υπερμπλοκ"
+
+#: src/mainuan_install_appimage/inspector.py:256
+msgid "unsquashfs is not installed."
+msgstr "Το unsquashfs δεν είναι εγκατεστημένο."
+
+#: src/mainuan_install_appimage/inspector.py:258
+msgid "inspection time (s)"
+msgstr "χρόνος επιθεώρησης (s)"
+
+#: src/mainuan_install_appimage/inspector.py:267
+#, python-brace-format
+msgid "Could not start unsquashfs: {error}"
+msgstr "Δεν ήταν δυνατή η εκκίνηση του unsquashfs: {error}"
+
+#: src/mainuan_install_appimage/inspector.py:278
+#: src/mainuan_install_appimage/inspector.py:318
+msgid "command time (s)"
+msgstr "χρόνος εντολής (s)"
+
+#: src/mainuan_install_appimage/inspector.py:287
+msgid "unsquashfs stderr (bytes)"
+msgstr "stderr του unsquashfs (byte)"
+
+#: src/mainuan_install_appimage/inspector.py:292
+msgid "unsquashfs stdout (bytes)"
+msgstr "stdout του unsquashfs (byte)"
+
+#: src/mainuan_install_appimage/inspector.py:301
+#: src/mainuan_install_appimage/inspector.py:304
+msgid "listing line (bytes)"
+msgstr "γραμμή λίστας (byte)"
+
+#: src/mainuan_install_appimage/inspector.py:311
+msgid "allocation refused"
+msgstr "η δέσμευση μνήμης απορρίφθηκε"
+
+#: src/mainuan_install_appimage/inspector.py:311
+msgid "unsquashfs memory (bytes; exact usage unavailable)"
+msgstr "μνήμη του unsquashfs (byte· η ακριβής χρήση δεν είναι διαθέσιμη)"
+
+#: src/mainuan_install_appimage/inspector.py:313
+msgid "SIGXCPU signal"
+msgstr "σήμα SIGXCPU"
+
+#: src/mainuan_install_appimage/inspector.py:313
+msgid "unsquashfs CPU (s)"
+msgstr "CPU του unsquashfs (s)"
+
+#: src/mainuan_install_appimage/inspector.py:314
+#, python-brace-format
+msgid "unsquashfs exited with code {code}. {detail}"
+msgstr "Το unsquashfs τερματίστηκε με κωδικό {code}. {detail}"
+
+#: src/mainuan_install_appimage/inspector.py:316
+msgid "The listing is not valid UTF-8."
+msgstr "Η λίστα δεν είναι έγκυρο UTF-8."
+
+# reviewed: 'mode' here is the file mode (permission bits) of the -lln
+# listing, not 'λειτουργία'
+#: src/mainuan_install_appimage/inspector.py:347
+msgid "The -lln listing is malformed (fields/mode/UID/GID)."
+msgstr "Η λίστα -lln είναι κακοσχηματισμένη (πεδία/δικαιώματα/UID/GID)."
+
+#: src/mainuan_install_appimage/inspector.py:351
+msgid "The listing contains an invalid size."
+msgstr "Η λίστα περιέχει μη έγκυρο μέγεθος."
+
+#: src/mainuan_install_appimage/inspector.py:355
+msgid "The SquashFS root is not a directory."
+msgstr "Η ρίζα του SquashFS δεν είναι κατάλογος."
+
+#: src/mainuan_install_appimage/inspector.py:358
+msgid "Path outside the SquashFS root in the listing."
+msgstr "Διαδρομή εκτός της ρίζας του SquashFS στη λίστα."
+
+#: src/mainuan_install_appimage/inspector.py:364
+msgid "link target (characters)"
+msgstr "προορισμός συνδέσμου (χαρακτήρες)"
+
+#: src/mainuan_install_appimage/inspector.py:366
+msgid "Invalid symbolic link."
+msgstr "Μη έγκυρος συμβολικός σύνδεσμος."
+
+#: src/mainuan_install_appimage/inspector.py:368
+#: src/mainuan_install_appimage/inspector.py:438
+msgid "metadata path (characters)"
+msgstr "διαδρομή μεταδεδομένων (χαρακτήρες)"
+
+#: src/mainuan_install_appimage/inspector.py:370
+msgid "Invalid or unsafe path in the listing."
+msgstr "Μη έγκυρη ή μη ασφαλής διαδρομή στη λίστα."
+
+#: src/mainuan_install_appimage/inspector.py:387
+#: src/mainuan_install_appimage/inspector.py:638
+#: src/mainuan_install_appimage/inspector.py:652
+msgid "total inspection time (s)"
+msgstr "συνολικός χρόνος επιθεώρησης (s)"
+
+#: src/mainuan_install_appimage/inspector.py:393
+msgid "metadata path depth"
+msgstr "βάθος διαδρομής μεταδεδομένων"
+
+#: src/mainuan_install_appimage/inspector.py:396
+msgid "exact metadata queries"
+msgstr "ακριβή ερωτήματα μεταδεδομένων"
+
+#: src/mainuan_install_appimage/inspector.py:402
+msgid "accumulated listings (bytes)"
+msgstr "συσσωρευμένες λίστες (byte)"
+
+#: src/mainuan_install_appimage/inspector.py:408
+msgid "records examined in the selected listings"
+msgstr "εγγραφές που εξετάστηκαν στις επιλεγμένες λίστες"
+
+#: src/mainuan_install_appimage/inspector.py:410
+msgid "Duplicate path in the same listing."
+msgstr "Διπλότυπη διαδρομή στην ίδια λίστα."
+
+#: src/mainuan_install_appimage/inspector.py:412
+msgid "unsquashfs returned entries outside the requested selection/depth."
+msgstr ""
+"Το unsquashfs επέστρεψε καταχωρίσεις εκτός της ζητούμενης επιλογής/βάθους."
+
+#: src/mainuan_install_appimage/inspector.py:415
+msgid "Metadata differs between queries to the same image."
+msgstr "Τα μεταδεδομένα διαφέρουν μεταξύ ερωτημάτων για την ίδια εικόνα."
+
+#: src/mainuan_install_appimage/inspector.py:421
+msgid "Invalid metadata directory tree."
+msgstr "Μη έγκυρο δέντρο καταλόγων μεταδεδομένων."
+
+#: src/mainuan_install_appimage/inspector.py:440
+msgid "Unsafe metadata path."
+msgstr "Μη ασφαλής διαδρομή μεταδεδομένων."
+
+#: src/mainuan_install_appimage/inspector.py:470
+msgid "symbolic link hops"
+msgstr "μεταβάσεις συμβολικών συνδέσμων"
+
+#: src/mainuan_install_appimage/inspector.py:482
+msgid "The AppImage metadata path is invalid."
+msgstr "Η διαδρομή μεταδεδομένων του AppImage δεν είναι έγκυρη."
+
+#: src/mainuan_install_appimage/inspector.py:502
+#: src/mainuan_install_appimage/inspector.py:674
+msgid ".desktop metadata (bytes)"
+msgstr "μεταδεδομένα .desktop (byte)"
+
+#: src/mainuan_install_appimage/inspector.py:506
+msgid "The .desktop file is not encoded in UTF-8."
+msgstr "Το αρχείο .desktop δεν είναι κωδικοποιημένο σε UTF-8."
+
+#: src/mainuan_install_appimage/inspector.py:512
+msgid ".desktop line (characters)"
+msgstr "γραμμή .desktop (χαρακτήρες)"
+
+#: src/mainuan_install_appimage/inspector.py:523
+msgid "The .desktop file is malformed."
+msgstr "Το αρχείο .desktop είναι κακοσχηματισμένο."
+
+#: src/mainuan_install_appimage/inspector.py:526
+msgid "The .desktop file contains an invalid key."
+msgstr "Το αρχείο .desktop περιέχει μη έγκυρο κλειδί."
+
+#: src/mainuan_install_appimage/inspector.py:529
+msgid "The .desktop file contains duplicate keys."
+msgstr "Το αρχείο .desktop περιέχει διπλότυπα κλειδιά."
+
+#: src/mainuan_install_appimage/inspector.py:532
+msgid "The AppImage does not contain a valid [Desktop Entry] section."
+msgstr "Το AppImage δεν περιέχει έγκυρη ενότητα [Desktop Entry]."
+
+#: src/mainuan_install_appimage/inspector.py:534
+msgid "The .desktop file does not describe an application."
+msgstr "Το αρχείο .desktop δεν περιγράφει εφαρμογή."
+
+#: src/mainuan_install_appimage/inspector.py:562
+msgid "icon reference (characters)"
+msgstr "αναφορά εικονιδίου (χαρακτήρες)"
+
+#: src/mainuan_install_appimage/inspector.py:586
+msgid "icons read (bytes)"
+msgstr "εικονίδια που διαβάστηκαν (byte)"
+
+#: src/mainuan_install_appimage/inspector.py:595
+msgid "PNG dimensions (width,height,pixels)"
+msgstr "διαστάσεις PNG (πλάτος,ύψος,εικονοστοιχεία)"
+
+#: src/mainuan_install_appimage/inspector.py:620
+#, python-brace-format
+msgid "Could not open the selected file: {error}"
+msgstr "Δεν ήταν δυνατό το άνοιγμα του επιλεγμένου αρχείου: {error}"
+
+#: src/mainuan_install_appimage/inspector.py:622
+msgid "The selected file is not a regular file."
+msgstr "Το επιλεγμένο αρχείο δεν είναι κανονικό αρχείο."
+
+#: src/mainuan_install_appimage/inspector.py:624
+msgid "Truncated ELF header: file smaller than 64 bytes."
+msgstr "Περικομμένη κεφαλίδα ELF: το αρχείο είναι μικρότερο από 64 byte."
+
+#: src/mainuan_install_appimage/inspector.py:626
+msgid "AppImage file (bytes)"
+msgstr "Αρχείο AppImage (byte)"
+
+#: src/mainuan_install_appimage/inspector.py:632
+msgid ""
+"Incompatible format: only AppImage Type 2 with a type 2 AI signature is "
+"accepted."
+msgstr ""
+"Μη συμβατή μορφή: γίνεται δεκτό μόνο AppImage Type 2 με υπογραφή AI τύπου 2."
+
+#: src/mainuan_install_appimage/inspector.py:645
+msgid ""
+"Incompatible or invalid format. Only AppImages Type 2 with a validated "
+"SquashFS 4.0 are accepted."
+msgstr ""
+"Μη συμβατή ή μη έγκυρη μορφή. Γίνονται δεκτά μόνο AppImage Type 2 με "
+"επικυρωμένο SquashFS 4.0."
+
+#: src/mainuan_install_appimage/inspector.py:664
+msgid "The AppImage does not contain a regular .desktop file at its root."
+msgstr "Το AppImage δεν περιέχει κανονικό αρχείο .desktop στη ρίζα του."
+
+#: src/mainuan_install_appimage/inspector.py:667
+msgid ".desktop candidates at the root"
+msgstr "υποψήφια αρχεία .desktop στη ρίζα"
+
+#: src/mainuan_install_appimage/inspector.py:676
+msgid "The .desktop link is invalid or escapes the tree."
+msgstr "Ο σύνδεσμος .desktop δεν είναι έγκυρος ή βγαίνει εκτός του δέντρου."
+
+#: src/mainuan_install_appimage/inspector.py:687
+msgid "The AppImage does not contain valid .desktop metadata."
+msgstr "Το AppImage δεν περιέχει έγκυρα μεταδεδομένα .desktop."
+
+#: src/mainuan_install_appimage/inspector.py:709
+msgid "Could not validate the AppImage."
+msgstr "Δεν ήταν δυνατή η επικύρωση του AppImage."
+
+#: src/mainuan_install_appimage/installer.py:49
+#, python-brace-format
+msgid "Could not query the package manager: {error}"
+msgstr "Δεν ήταν δυνατό το ερώτημα στον διαχειριστή πακέτων: {error}"
+
+#: src/mainuan_install_appimage/installer.py:65
+msgid "dpkg-query failed; it is not safe to continue."
+msgstr "Το dpkg-query απέτυχε· δεν είναι ασφαλές να συνεχίσετε."
+
+#: src/mainuan_install_appimage/installer.py:68
+msgid "The dpkg-query response is malformed."
+msgstr "Η απόκριση του dpkg-query είναι κακοσχηματισμένη."
+
+#: src/mainuan_install_appimage/installer.py:70
+msgid ""
+"The package is in a partial state in dpkg. Examine it before continuing."
+msgstr ""
+"Το πακέτο βρίσκεται σε μερική κατάσταση στο dpkg. Εξετάστε το πριν "
+"συνεχίσετε."
+
+#: src/mainuan_install_appimage/installer.py:105
+msgid ""
+"A package with this identifier already exists that was not installed by this "
+"tool. It will be preserved."
+msgstr ""
+"Υπάρχει ήδη πακέτο με αυτό το αναγνωριστικό που δεν εγκαταστάθηκε από αυτό "
+"το εργαλείο. Θα διατηρηθεί."
+
+#: src/mainuan_install_appimage/installer.py:117
+msgid ""
+"The package identifier belongs to another installation. No file will be "
+"replaced."
+msgstr ""
+"Το αναγνωριστικό πακέτου ανήκει σε άλλη εγκατάσταση. Κανένα αρχείο δεν θα "
+"αντικατασταθεί."
+
+#: src/mainuan_install_appimage/installer.py:139
+msgid ""
+"A legacy installation with this name was detected. The dpkg database and the "
+"existing files will not be repaired automatically."
+msgstr ""
+"Εντοπίστηκε παλαιού τύπου εγκατάσταση με αυτό το όνομα. Η βάση δεδομένων του "
+"dpkg και τα υπάρχοντα αρχεία δεν θα επιδιορθωθούν αυτόματα."
+
+#: src/mainuan_install_appimage/installer.py:158
+msgid "The installer's fallback icon is not available."
+msgstr "Το εφεδρικό εικονίδιο του εγκαταστάτη δεν είναι διαθέσιμο."
+
+#: src/mainuan_install_appimage/installer.py:172
+msgid "Icon conversion cannot run as root."
+msgstr "Η μετατροπή εικονιδίων δεν μπορεί να εκτελεστεί ως root."
+
+#: src/mainuan_install_appimage/installer.py:188
+msgid "Could not prepare the package icons."
+msgstr "Δεν ήταν δυνατή η προετοιμασία των εικονιδίων του πακέτου."
+
+#: src/mainuan_install_appimage/installer.py:216
+#, python-brace-format
+msgid "Launcher categories refused: {error}"
+msgstr "Οι κατηγορίες του εκκινητή απορρίφθηκαν: {error}"
+
+#: src/mainuan_install_appimage/installer.py:295
+#, python-brace-format
+msgid "The destination {path} is not a secure directory."
+msgstr "Ο προορισμός {path} δεν είναι ασφαλής κατάλογος."
+
+#: src/mainuan_install_appimage/installer.py:303
+#, python-brace-format
+msgid "The destination {path} already exists and is not a regular file."
+msgstr "Ο προορισμός {path} υπάρχει ήδη και δεν είναι κανονικό αρχείο."
+
+#: src/mainuan_install_appimage/installer.py:305
+#, python-brace-format
+msgid ""
+"The destination {path} already exists without a valid managed installation."
+msgstr ""
+"Ο προορισμός {path} υπάρχει ήδη χωρίς έγκυρη διαχειριζόμενη εγκατάσταση."
+
+#: src/mainuan_install_appimage/installer.py:312
+#, python-brace-format
+msgid "The file {path} does not belong to a package managed by this tool."
+msgstr ""
+"Το αρχείο {path} δεν ανήκει σε πακέτο που διαχειρίζεται αυτό το εργαλείο."
+
+#: src/mainuan_install_appimage/installer.py:326
+#, python-brace-format
+msgid "Could not prepare the package: {error}"
+msgstr "Δεν ήταν δυνατή η προετοιμασία του πακέτου: {error}"
+
+#: src/mainuan_install_appimage/installer.py:338
+#, python-brace-format
+msgid "dpkg-deb could not build the package: {detail}"
+msgstr "Το dpkg-deb δεν μπόρεσε να κατασκευάσει το πακέτο: {detail}"
+
+#: src/mainuan_install_appimage/installer.py:339
+#: src/mainuan_install_appimage/installer.py:497
+msgid "unknown error"
+msgstr "άγνωστο σφάλμα"
+
+#: src/mainuan_install_appimage/installer.py:350
+msgid "The prepared package's control data does not match the installation."
+msgstr ""
+"Τα δεδομένα ελέγχου του προετοιμασμένου πακέτου δεν αντιστοιχούν στην "
+"εγκατάσταση."
+
+#: src/mainuan_install_appimage/installer.py:354
+msgid "Invalid or oversized Debian control data."
+msgstr "Μη έγκυρα ή υπερμεγέθη δεδομένα ελέγχου Debian."
+
+#: src/mainuan_install_appimage/installer.py:359
+msgid "The package contains control files that are not allowed."
+msgstr "Το πακέτο περιέχει αρχεία ελέγχου που δεν επιτρέπονται."
+
+#: src/mainuan_install_appimage/installer.py:362
+msgid "Invalid Debian control ownership."
+msgstr "Μη έγκυρη ιδιοκτησία ελέγχου Debian."
+
+#: src/mainuan_install_appimage/installer.py:365
+msgid "Invalid Debian control file."
+msgstr "Μη έγκυρο αρχείο ελέγχου Debian."
+
+#: src/mainuan_install_appimage/installer.py:367
+msgid "Debian control fields not allowed."
+msgstr "Μη επιτρεπόμενα πεδία ελέγχου Debian."
+
+#: src/mainuan_install_appimage/installer.py:369
+msgid "Invalid Debian control directory."
+msgstr "Μη έγκυρος κατάλογος ελέγχου Debian."
+
+#: src/mainuan_install_appimage/installer.py:404
+msgid "Duplicate or oversized Debian manifest."
+msgstr "Διπλότυπο ή υπερμεγέθες δηλωτικό Debian."
+
+#: src/mainuan_install_appimage/installer.py:407
+msgid "Invalid Debian ownership metadata."
+msgstr "Μη έγκυρα μεταδεδομένα ιδιοκτησίας Debian."
+
+#: src/mainuan_install_appimage/installer.py:410
+msgid "Directory outside the allowed manifest."
+msgstr "Κατάλογος εκτός του επιτρεπόμενου δηλωτικού."
+
+#: src/mainuan_install_appimage/installer.py:413
+msgid "File or link outside the allowed manifest."
+msgstr "Αρχείο ή σύνδεσμος εκτός του επιτρεπόμενου δηλωτικού."
+
+#: src/mainuan_install_appimage/installer.py:416
+msgid "Invalid Debian file permissions."
+msgstr "Μη έγκυρα δικαιώματα αρχείων Debian."
+
+#: src/mainuan_install_appimage/installer.py:418
+msgid "Size outside the allowed manifest."
+msgstr "Μέγεθος εκτός του επιτρεπόμενου δηλωτικού."
+
+#: src/mainuan_install_appimage/installer.py:424
+msgid "The AppImage in the package does not match the validated snapshot."
+msgstr "Το AppImage στο πακέτο δεν αντιστοιχεί στο επικυρωμένο στιγμιότυπο."
+
+#: src/mainuan_install_appimage/installer.py:426
+msgid "Incomplete or invalid Debian manifest."
+msgstr "Ελλιπές ή μη έγκυρο δηλωτικό Debian."
+
+#: src/mainuan_install_appimage/installer.py:428
+#, python-brace-format
+msgid "Could not validate the package files: {error}"
+msgstr "Δεν ήταν δυνατή η επικύρωση των αρχείων του πακέτου: {error}"
+
+#: src/mainuan_install_appimage/installer.py:443
+msgid "Could not identify the system architecture."
+msgstr "Δεν ήταν δυνατή η αναγνώριση της αρχιτεκτονικής του συστήματος."
+
+#: src/mainuan_install_appimage/installer.py:447
+#, python-brace-format
+msgid ""
+"The AppImage is {architecture}, but the system is {host_architecture}. The "
+"installation was canceled."
+msgstr ""
+"Το AppImage είναι {architecture}, αλλά το σύστημα είναι {host_architecture}. "
+"Η εγκατάσταση ακυρώθηκε."
+
+#: src/mainuan_install_appimage/installer.py:464
+msgid "The package manager is busy. Try again after the other transaction."
+msgstr ""
+"Ο διαχειριστής πακέτων είναι απασχολημένος. Δοκιμάστε ξανά μετά την άλλη "
+"συναλλαγή."
+
+#: src/mainuan_install_appimage/installer.py:477
+msgid "The file changed since the inspection. Select it again."
+msgstr "Το αρχείο άλλαξε από την επιθεώρηση. Επιλέξτε το ξανά."
+
+#: src/mainuan_install_appimage/installer.py:499
+#, python-brace-format
+msgid ""
+"dpkg did not complete the transaction. The previous installation was not "
+"removed beforehand; dpkg itself may leave a partially configured "
+"transaction. Details: {details}"
+msgstr ""
+"Το dpkg δεν ολοκλήρωσε τη συναλλαγή. Η προηγούμενη εγκατάσταση δεν "
+"αφαιρέθηκε εκ των προτέρων· το ίδιο το dpkg μπορεί να αφήσει μια μερικώς "
+"διαμορφωμένη συναλλαγή. Λεπτομέρειες: {details}"
+
+#: src/mainuan_install_appimage/installer.py:504
+msgid "Installation completed by dpkg."
+msgstr "Η εγκατάσταση ολοκληρώθηκε από το dpkg."
+
+#: src/mainuan_install_appimage/installer.py:509
+msgid "The temporary copy identifier is invalid."
+msgstr "Το αναγνωριστικό του προσωρινού αντιγράφου δεν είναι έγκυρο."
+
+#: src/mainuan_install_appimage/installer.py:518
+msgid "The file is not in the allowed temporary area."
+msgstr "Το αρχείο δεν βρίσκεται στην επιτρεπόμενη προσωρινή περιοχή."
+
+#: src/mainuan_install_appimage/installer.py:533
+msgid "Could not validate the secure temporary file."
+msgstr "Δεν ήταν δυνατή η επικύρωση του ασφαλούς προσωρινού αρχείου."
+
+#: src/mainuan_install_appimage/installer.py:549
+msgid "The temporary area or the file has invalid permissions."
+msgstr "Η προσωρινή περιοχή ή το αρχείο έχει μη έγκυρα δικαιώματα."
+
+#: src/mainuan_install_appimage/installer.py:566
+msgid "The copy exceeded the size or time limit."
+msgstr "Το αντίγραφο υπερέβη το όριο μεγέθους ή χρόνου."
+
+#: src/mainuan_install_appimage/installer.py:573
+msgid "The temporary copy does not match the inspected file."
+msgstr "Το προσωρινό αντίγραφο δεν αντιστοιχεί στο αρχείο που επιθεωρήθηκε."
+
+#: src/mainuan_install_appimage/privileged.py:24
+msgid "This helper can only be started by PolicyKit."
+msgstr "Αυτό το βοηθητικό πρόγραμμα μπορεί να εκκινηθεί μόνο από το PolicyKit."
+
+#: src/mainuan_install_appimage/privileged.py:31
+msgid "Could not identify the user who requested the installation."
+msgstr "Δεν ήταν δυνατή η αναγνώριση του χρήστη που ζήτησε την εγκατάσταση."
+
+#: src/mainuan_install_appimage/privileged.py:34
+msgid "Unrecognized administrative operation."
+msgstr "Μη αναγνωρισμένη διαχειριστική λειτουργία."
+
+#: src/mainuan_install_appimage/privileged.py:52
+msgid "File received and hash verified."
+msgstr "Το αρχείο ελήφθη και ο κατακερματισμός επαληθεύτηκε."
+
+#: src/mainuan_install_appimage/reduced.py:35
+msgid "The inspection process did not drop all privileges."
+msgstr "Η διεργασία επιθεώρησης δεν εγκατέλειψε όλα τα προνόμια."
+
+#: src/mainuan_install_appimage/reduced.py:37
+msgid "Could not block new privileges."
+msgstr "Δεν ήταν δυνατός ο αποκλεισμός νέων προνομίων."
+
+#: src/mainuan_install_appimage/reduced.py:41
+msgid "The inspection process still has capabilities."
+msgstr ""
+"Η διεργασία επιθεώρησης εξακολουθεί να έχει δυνατότητες (capabilities)."
+
+#: src/mainuan_install_appimage/reduced.py:73
+msgid "Invalid input descriptor."
+msgstr "Μη έγκυρος περιγραφέας εισόδου."
+
+#: src/mainuan_install_appimage/reduced.py:77
+msgid ""
+"Operational limit: parser memory; address space limit=1073741824 bytes; "
+"exact usage unavailable."
+msgstr ""
+"Λειτουργικό όριο: μνήμη αναλυτή· όριο χώρου διευθύνσεων=1073741824 byte· η "
+"ακριβής χρήση δεν είναι διαθέσιμη."
+
+#: src/mainuan_install_appimage/staging.py:27
+msgid "The environment does not provide a secure temporary directory."
+msgstr "Το περιβάλλον δεν παρέχει ασφαλή προσωρινό κατάλογο."
+
+#: src/mainuan_install_appimage/staging.py:32
+msgid "The secure temporary directory is not available."
+msgstr "Ο ασφαλής προσωρινός κατάλογος δεν είναι διαθέσιμος."
+
+#: src/mainuan_install_appimage/staging.py:39
+msgid "The secure temporary directory has invalid permissions."
+msgstr "Ο ασφαλής προσωρινός κατάλογος έχει μη έγκυρα δικαιώματα."
+
+#: src/mainuan_install_appimage/staging.py:52
+#, python-brace-format
+msgid "Could not read the selected file: {error}"
+msgstr "Δεν ήταν δυνατή η ανάγνωση του επιλεγμένου αρχείου: {error}"
+
+#: src/mainuan_install_appimage/staging.py:64
+msgid "Could not prepare the secure temporary area."
+msgstr "Δεν ήταν δυνατή η προετοιμασία της ασφαλούς προσωρινής περιοχής."
+
+#: src/mainuan_install_appimage/staging.py:72
+msgid "The secure temporary area has invalid permissions."
+msgstr "Η ασφαλής προσωρινή περιοχή έχει μη έγκυρα δικαιώματα."
+
+#: src/mainuan_install_appimage/staging.py:79
+msgid "The selected file is not regular or exceeds the limit."
+msgstr "Το επιλεγμένο αρχείο δεν είναι κανονικό ή υπερβαίνει το όριο."
+
+#: src/mainuan_install_appimage/staging.py:93
+msgid "Copying the file to a protected temporary area…"
+msgstr "Αντιγραφή του αρχείου σε προστατευμένη προσωρινή περιοχή…"
+
+#: src/mainuan_install_appimage/staging.py:102
+msgid "The selected file exceeds the size limit."
+msgstr "Το επιλεγμένο αρχείο υπερβαίνει το όριο μεγέθους."
+
+#: src/mainuan_install_appimage/staging.py:114
+msgid "The file was changed during the copy; select it again."
+msgstr "Το αρχείο άλλαξε κατά την αντιγραφή· επιλέξτε το ξανά."
+
+#: src/mainuan_install_appimage/staging.py:116
+msgid "Validating ELF, architecture, SquashFS and metadata…"
+msgstr "Επικύρωση ELF, αρχιτεκτονικής, SquashFS και μεταδεδομένων…"
+
+#: src/mainuan_install_appimage/staging.py:119
+msgid "The temporary copy does not match the selected file."
+msgstr "Το προσωρινό αντίγραφο δεν αντιστοιχεί στο επιλεγμένο αρχείο."
