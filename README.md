@@ -17,6 +17,9 @@ Inspeciona um AppImage sem executá-lo e o instala como pacote Debian, com menu,
 
 ---
 
+<p align="center"><img src="docs/screenshots/install-appimage.png" width="760" alt="Instalador de AppImage: seleção do arquivo"></p>
+
+
 ## O que é
 
 O Mainuan Instalador de AppImage abre quando se clica num arquivo `.AppImage`

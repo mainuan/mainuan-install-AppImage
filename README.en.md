@@ -17,6 +17,9 @@ Inspects an AppImage without running it and installs it as a Debian package, wit
 
 ---
 
+<p align="center"><img src="docs/screenshots/install-appimage.png" width="760" alt="AppImage installer: choosing the file"></p>
+
+
 ## About
 
 The installer opens when an `.AppImage` file is clicked in Dolphin. It reads
