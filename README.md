@@ -1,224 +1,171 @@
+<div align="center">
 
-
-
-
-
+<img src="src/AppImage.png" width="96" alt="Ícone do Mainuan Instalador de AppImage">
 
 # Mainuan Instalador de AppImage
 
-Aplicativo em Python e Qt Widgets para inspecionar AppImages sem executá-los e
-instalá-los como pacotes Debian no Mainuan, baseado em Kubuntu 26.04, Plasma 6
-e Wayland.
+Inspeciona um AppImage sem executá-lo e o instala como pacote Debian, com menu, ícone e remoção pelo `apt`.
 
-## Formatos e limites
+[![CI](https://github.com/mainuan/mainuan-install-AppImage/actions/workflows/ci.yml/badge.svg)](https://github.com/mainuan/mainuan-install-AppImage/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/mainuan/mainuan-install-AppImage)](https://github.com/mainuan/mainuan-install-AppImage/releases/latest)
+[![Licença](https://img.shields.io/github/license/mainuan/mainuan-install-AppImage)](LICENSE)
+![Plataforma](https://img.shields.io/badge/Kubuntu%2026.04%20%7C%20Plasma%206.6-0079c1)
 
-Esta versão aceita somente AppImage Type 2: contêiner ELF little-endian, assinatura `AI\x02` no offset 8, com
-SquashFS 4.0 estruturalmente válido. As arquiteturas reconhecidas são `amd64`,
-`arm64`, `i386` e `armhf`; a instalação só prossegue quando a arquitetura
-coincide com a do sistema. AppImage Type 1, outros formatos ELF, arquiteturas
-desconhecidas ou estruturas SquashFS inválidas são recusados com uma mensagem
-explicativa.
+**Português** · [English](README.en.md)
 
-A inspeção não executa o AppImage e não extrai sua árvore. Lista somente a raiz
-(`-max-depth 1`) e consulta literalmente os caminhos necessários para resolver
-`.desktop`, `.DirIcon` e localizações convencionais de PNG. Links são resolvidos
-por componentes dentro da imagem, sem `-follow-symlinks`. Arquivos internos não
-consultados são apenas bytes do AppImage copiado, não são extraídos nem validados
-individualmente. SHA-256 e localização estrutural do SquashFS ainda leem o arquivo
-bruto completo. O unsquashfs pode ler tabelas internas mesmo em uma consulta exata.
+</div>
 
-Os limites são de trabalho, não uma declaração de arquivo inválido:
+---
 
-- Arquivo: 8 GiB; inspeção de metadados: 120 s totais e 30 s por comando.
-- Listagens selecionadas: 10.000 registros examinados acumulados (incluindo
-  ancestrais repetidos entre consultas), 4 MiB de saída, linha de até 4 KiB,
-  no máximo 64 consultas e caminhos de até 12 componentes/512 caracteres.
-  O cache mantém apenas os caminhos consultados, com leitura incremental da saída.
-  O total de arquivos internos do aplicativo não é contado.
-- Até dez candidatos `.desktop` na raiz, 128 KiB por arquivo, linhas de até
-  4.096 caracteres. Nenhum erro de limite/ferramenta vira metadados de fallback.
-- Ícones: até 4 MiB somados de dados lidos, 8.192 pixels por dimensão e
-  32 milhões de pixels. Ícones ausentes ou de formato não suportado usam fallback;
-  exceder limites ou falhar a leitura aborta com diagnóstico.
-- Cada leitor unsquashfs: cache de 64 MiB, espaço de endereçamento de 1 GiB,
-  CPU de 30 s, stderr de até 16 KiB. O processo reduzido administrativo mantém
-  seus limites de CPU 120 s, memória virtual 1 GiB e supervisor de 180 s.
-  São limites por processo, não uma quota global ou sandbox.
+## O que é
 
-A raiz costuma conter poucas entradas; os tetos anteriores de 10.000 e 4 MiB
-foram mantidos, aplicados agora apenas às consultas necessárias. Isso permite
-inspecionar imagens com dezenas de milhares de arquivos em subdiretórios sem
-remover a proteção contra uma raiz abusivamente grande. Não é feita uma busca
-recursiva por ícones arbitrários; se não houver um PNG nas referências/localizações
-convencionais permitidas, usa-se o ícone padrão. Formato/metadados, limite
-operacional e erro do unsquashfs são diferenciados nos detalhes técnicos.
+O Mainuan Instalador de AppImage abre quando se clica num arquivo `.AppImage`
+no Dolphin. Ele lê o nome, a versão, o ícone e as categorias do aplicativo
+**sem executar o AppImage** e, com um clique em **Instalar**, gera e instala um
+pacote Debian próprio: o AppImage fica em `/opt/mainuan-appimages/`, com
+lançador e ícones no menu do Plasma.
 
-Nome, descrição, versão, referência de ícone e categorias são lidos como dados do `.desktop`. O lançador Debian é
-gerado pelo instalador com um caminho fixo para o AppImage; `Exec`, scripts e
-scripts de manutenção fornecidos pelo arquivo não são preservados.
+A interface (Python, PyQt6, Qt Widgets) roda como usuário comum e recusa ser
+executada como root. Só a instalação passa pelo PolicyKit, por um helper fixo
+e restrito que refaz todas as verificações por conta própria.
 
-## Construção e uso
+## Funcionalidades
 
-O pacote é construído pelo diretório padrão `debian/` (debhelper); a versão vem
-de `debian/changelog` e as dependências de construção e de teste estão em
-`debian/control`. A construção não baixa nem executa binários externos e
-executa a suíte de testes:
+- Aceita **AppImage Type 2**: ELF little-endian com a assinatura `AI\x02` no offset 8 e SquashFS 4.0 válido. Arquiteturas reconhecidas: `amd64`, `arm64`, `i386` e `armhf`; a instalação só prossegue se a arquitetura for a do sistema. Type 1, outros ELF e SquashFS inválidos são recusados com explicação.
+- Inspeção sem execução e sem extrair a árvore: só a raiz da imagem e os caminhos necessários para o `.desktop`, o `.DirIcon` e os ícones PNG convencionais.
+- Limites de trabalho, entre eles: arquivo de até 8 GiB, inspeção de até 120 s, ícones de até 4 MiB e 8.192 px por lado. Lista completa em [docs/formatos-e-limites.md](docs/formatos-e-limites.md).
+- Lançador gerado do zero, com caminho fixo para o AppImage: `Exec`, scripts e scripts de manutenção trazidos pelo arquivo não são aproveitados. As categorias do `.desktop` original são validadas contra a especificação freedesktop; sem categoria utilizável, vai para Utilitários.
+- Pacote gerado só com arquivos de dados, sem scripts de manutenção, com nome `mainuan-appimage-<nome>-<hash>`.
+- Reinstalação exige conteúdo idêntico; conteúdo diferente aparece como substituição. Nomes diferentes com o mesmo identificador são bloqueados como colisão.
+- Tela de resultado com **Abrir aplicativo** e **Fechar**; o aplicativo só é executado depois do clique.
+- Substitui o pacote antigo `appimage-installer` e bloqueia a instalação quando encontra um registro legado reconhecível no `dpkg`.
+- Interface, ação do PolicyKit e tipo MIME traduzidos em 33 idiomas.
 
-```sh
-sudo apt build-dep ./
-dpkg-buildpackage -us -uc -b      # gera ../mainuan-install-appimage_<versão>_all.deb
+## Instalação
+
+O instalador já vem na ISO do Mainuan Linux, associado aos arquivos `.AppImage`.
+
+Em outro sistema Kubuntu/Ubuntu 26.04, baixe o `.deb` e o `SHA256SUMS` da
+[última release](https://github.com/mainuan/mainuan-install-AppImage/releases/latest),
+confira e instale:
+
+```bash
+sha256sum --check --ignore-missing SHA256SUMS
+sudo apt install ./mainuan-install-appimage_2.1.0_all.deb
 ```
 
-O workflow `.github/workflows/ci.yml` usa o pipeline compartilhado da
-organização: em cada pull request e push constrói e testa o pacote, roda
-lintian, instala, reinstala e remove o pacote num Ubuntu 26.04 limpo e executa
-um teste de fumaça (helper recusado sem PolicyKit, janela offscreen, inspeção e
-geração de pacote de um AppImage sintético). A release, com `SHA256SUMS`, só é
-publicada a partir de uma tag `v<versão>`.
+## Uso
 
-Instale o pacote com o gerenciador de pacotes da distribuição. Depois, abra um
-AppImage pelo Dolphin ou execute:
+Dê dois cliques num `.AppImage` no Dolphin ou execute:
 
 ```sh
 mainuan-install-appimage "/caminho com espaços/Aplicativo.AppImage"
 ```
 
-Sem argumento, o seletor de arquivos é aberto. A interface e a inspeção rodam
-como usuário comum. Somente a instalação passa pelo PolicyKit e por um helper
-fixo e restrito. O helper aceita exclusivamente uma cópia temporária privada
-do usuário, confere novamente o hash, formato, arquitetura e identidade e
-constrói o pacote Debian por conta própria. O pacote gerado contém apenas
-arquivos de dados e não possui scripts de manutenção.
+O comando recebe um único arquivo; sem argumento, abre o seletor de arquivos
+(`man mainuan-install-appimage`). Preferências MIME já salvas pelo usuário
+podem exigir escolher "Abrir com" uma vez.
 
-O `dpkg` instala, reinstala ou substitui a versão em uma transação normal; o
-instalador não remove a versão existente antes da transação. Não há comparação
-textual de versões para anunciar atualizações. Em caso de erro do `dpkg`, o
-instalador informa a falha e não declara sucesso. Como em qualquer transação do
-`dpkg`, uma falha durante o desempacotamento pode deixar o pacote em estado
-parcial; não há promessa de rollback automático dos arquivos. Não se executa
-uma reparação manual da base de pacotes.
-
-Para remover um aplicativo instalado, use o nome do pacote exibido pelo
-`dpkg-query`:
+Para remover um aplicativo instalado, use o nome do pacote:
 
 ```sh
 dpkg-query -W -f='${Package} ${Version}\n' 'mainuan-appimage-*'
 sudo apt remove nome-do-pacote
 ```
 
-## Migração de instalações antigas
+O runtime de cada AppImage pode precisar de FUSE e de outras bibliotecas, que
+não são deduzidas nem instaladas automaticamente. Se uma falha do `dpkg`
+interromper a transação, o instalador informa o erro e não declara sucesso,
+mas não há rollback automático dos arquivos.
 
-O pacote do instalador usa `Provides`, `Conflicts` e `Replaces` para substituir
-o pacote antigo `appimage-installer` em uma instalação Debian normal. Isso não
-remove nem reconstrói os registros falsos que versões antigas gravaram
-diretamente em `/var/lib/dpkg/status` e `/var/lib/dpkg/info`. Se a identidade do
-aplicativo corresponder a um registro legado reconhecível, a instalação é
-bloqueada e os arquivos existentes são preservados. Registros sem metadados
-confiáveis não podem ser distinguidos com segurança de pacotes de terceiros;
-eles não são alterados automaticamente. Nesses casos, faça cópia de segurança
-e examine o estado do `dpkg` manualmente antes de qualquer migração.
+Se o menu do Plasma continuar mostrando a categoria antiga depois de uma
+reinstalação, execute `kbuildsycoca6` como usuário da sessão.
 
-## Testes
+## Informações técnicas
 
-Os testes automatizados criam AppImages de fixture com `mksquashfs`, constroem
-pacotes Debian e executam transações somente em uma raiz e base `dpkg`
-temporárias:
+| Item | Valor |
+|---|---|
+| Linguagem | Python 3 (executado com `python3 -I`) |
+| Toolkit | Qt 6 Widgets (PyQt6) |
+| Base | Kubuntu 26.04 LTS, KDE Plasma 6.6 |
+| Pacote | `mainuan-install-appimage`, `Architecture: all` |
+| Dependências | `python3-pyqt6`, `qt6-wayland`, `squashfs-tools`, `pkexec`, `polkitd`, `shared-mime-info` |
+| Privilégios | só a instalação, via PolicyKit (`br.com.mainuan.install-appimage.install`) |
+| Arquitetura do sistema | amd64 |
 
-```sh
-PYTHONPATH=src QT_QPA_PLATFORM=offscreen python3 -m unittest discover -s tests -v
-lintian ../mainuan-install-appimage_*_all.deb
+### Modelo de segurança
+
+| Etapa | Quem executa |
+|---|---|
+| Cópia privada e primeira inspeção | usuário da sessão |
+| Autorização | agente PolicyKit (`auth_admin`, sem autorização retida) |
+| Cópia administrativa e conferência do SHA-256 | root, sem interpretar ELF, SquashFS nem PNG |
+| Nova inspeção independente (ELF, SquashFS, `.desktop`, ícones) | processo `nobody`, sem grupos suplementares, com `no_new_privs` e limites de recursos |
+| Geração e validação do `.deb` (controle, manifesto fechado, hash do AppImage) | root, com `dpkg-deb` |
+| Transação | `dpkg` |
+| Abrir aplicativo | usuário da sessão, sem `pkexec` |
+
+O helper `/usr/lib/mainuan-install-appimage/privileged-install` aceita apenas
+`--install`, o caminho da cópia privada e o SHA-256; não aceita `.deb`,
+destinos nem opções do `dpkg`. Isso é separação de privilégios, não uma
+sandbox completa, e a ferramenta não verifica autoria nem assinatura do
+aplicativo. Fronteira exata e riscos residuais: [SECURITY.md](SECURITY.md).
+Arquitetura, identidade, transação e migração: [docs/arquitetura.md](docs/arquitetura.md).
+
+## Compilação e testes
+
+```bash
+git clone https://github.com/mainuan/mainuan-install-AppImage.git
+cd mainuan-install-AppImage
+sudo apt build-dep ./
+dpkg-buildpackage -us -uc -b      # gera ../mainuan-install-appimage_<versão>_all.deb
 ```
 
-O modo offscreen não valida renderização real no Plasma, tema claro/escuro,
-escala de fontes nem integração visual com Wayland. Para uma validação final,
-use uma VM descartável Kubuntu 26.04/Plasma 6: instale o pacote gerado, teste
-tema claro e escuro e escala de fonte ampliada, associe e abra um `.AppImage`
-no Dolphin sob Wayland; teste recusa/autorização do PolicyKit, instalação,
-reinstalação, substituição de versão, remoção pelo `apt` e falhas do `dpkg`.
-Confirme também que a base de pacotes e os arquivos da instalação anterior
-permanecem intactos se a preparação falhar.
+A versão vem de `debian/changelog`. O build não baixa nem executa binários
+externos e roda a suíte de testes:
 
-## Arquitetura e identidade
+```bash
+PYTHONPATH=src QT_QPA_PLATFORM=offscreen python3 -m unittest discover -s tests -v
+```
 
-`gui.py` contém os Qt Widgets, workers e processo assíncrono de autenticação;
-`staging.py` mantém a cópia privada; `inspector.py` lê o contêiner;
-`installer.py` consulta dpkg e constrói o pacote; `privileged.py` é a entrada
-administrativa. O helper e a GUI usam Python em modo isolado (`-I`). A GUI
-recusa execução como root. O helper não aceita um `.deb` nem destinos livres.
-A cópia recebida é aberta sem seguir links, copiada para uma área de root e
-conferida por SHA-256 antes de inspeção e geração independentes.
+Os testes criam AppImages de exemplo com `mksquashfs`, constroem pacotes
+Debian e executam transações só numa raiz e numa base `dpkg` temporárias.
 
-O identificador Debian deriva do nome do `.desktop`, com slug e hash estáveis.
-O marcador protegido, pertencente ao pacote, também registra o nome original
-não localizado e o hash do AppImage. Nomes diferentes com o mesmo identificador
-são bloqueados como colisão. Reinstalação exige conteúdo idêntico; conteúdo
-diferente é apresentado como substituição, mesmo que a versão textual coincida.
-Dois produtores que usem o mesmo nome e identidade `.desktop` não podem ser
-distinguidos criptograficamente: esta ferramenta não verifica autoria ou
-assinaturas do aplicativo. Renomear o `.desktop` pode produzir outra identidade.
+O workflow [`CI`](.github/workflows/ci.yml) executa ainda `po/i18n.sh
+check-pot`, `po/i18n.sh validate`, `py_compile` do lançador e do helper e
+`desktop-file-validate`; depois roda `lintian`, gera o `SHA256SUMS`, instala,
+reinstala e remove o pacote num Ubuntu 26.04 limpo e faz um teste de fumaça:
+o helper recusa rodar sem PolicyKit, a janela abre offscreen e um AppImage
+sintético é inspecionado e empacotado. A release só é publicada por uma tag
+`v*`.
 
-O runtime de cada AppImage pode precisar de FUSE e bibliotecas adicionais;
-esses requisitos não podem ser inferidos com segurança só do contêiner e não
-são instalados automaticamente. Não há garantia de compatibilidade em execução.
-A revalidação administrativa interpreta ELF, SquashFS, `.desktop` e ícones em
-um processo com UID/GID `nobody`, sem grupos suplementares, com `no_new_privs`
-e limites de recursos. Root confere um protocolo restrito, gera e valida controle, manifesto e hash do pacote
-e chama dpkg. Isso é separação de privilégios, não uma sandbox completa.
-Consulte [SECURITY.md](SECURITY.md) para a fronteira exata e os riscos residuais.
+O modo offscreen não valida a renderização real no Plasma; o roteiro de
+validação manual em VM e os resultados históricos estão em
+[VALIDATION.md](VALIDATION.md) e [docs/arquitetura.md](docs/arquitetura.md).
 
-A tela carregada apresenta ícone, nome, versão declarada em formato reconhecido, sem inferência pelo nome do arquivo e
-Instalar → Fechar. Reinstalação/substituição recebem apenas uma frase curta.
-Progresso é indeterminado, com etapa curta; detalhes técnicos de erro ficam
-recolhidos. O seletor aparece ao iniciar sem argumento, e cancelar encerra a GUI.
-O resultado apresenta Abrir aplicativo → Fechar; o aplicativo só executa após clique.
+## Traduções
 
-## Validação desta entrega
+Catálogos gettext em `po/` (domínio `mainuan-install-appimage`, textos-fonte
+em inglês), em 33 idiomas listados em `po/LINGUAS`. O `.desktop`, a ação do
+PolicyKit e o tipo MIME são traduzidos com `msgfmt`. Como contribuir:
+[docs/i18n/README.md](docs/i18n/README.md).
 
-Veja [VALIDATION.md](VALIDATION.md) para os resultados históricos de validação,
-simulações, limitações e roteiro de VM. O pacote oficial é gerado pelo GitHub
-Actions e anexado à Release com `SHA256SUMS`.
-A associação instalada anuncia o MIME AppImage ao Dolphin; preferências MIME
-já salvas pelo usuário podem exigir selecionar “Abrir com” uma vez.
+## Contribuição
 
-## Créditos e licença
+Relate problemas em [Issues](https://github.com/mainuan/mainuan-install-AppImage/issues)
+e envie mudanças por pull request para `main`. O
+[CI](https://github.com/mainuan/mainuan-install-AppImage/actions/workflows/ci.yml)
+precisa estar verde. Mudanças na fronteira de privilégios devem atualizar o
+[SECURITY.md](SECURITY.md).
 
-Migração para Mainuan do instalador originalmente criado por Natanael Barbosa
-Santos. Mantidos a autoria histórica e os termos MIT em [LICENSE](LICENSE).
+## Créditos
 
+- Daigo ([@daigoasuka](https://github.com/daigoasuka)): migração para Qt 6 e versão 2.0.1.
+- Rafael Ruscher ([@ruscher](https://github.com/ruscher)): internacionalização, empacotamento Debian e CI.
 
+Origem: instalador de AppImage do Tiger OS, criado por **Natanael Barbosa
+Santos**, cuja autoria e termos MIT estão preservados no [LICENSE](LICENSE).
 
-## Consolidação de 30/10/2026
+## Licença
 
-Os ajustes preservam Qt Widgets/PyQt6 e o fluxo existente. A tela carregada não
-exibe caminho, nome do arquivo, tipo repetido, estado “Não instalado” ou seletor.
-Instalar e Abrir aplicativo ficam à esquerda de Fechar em seus respectivos
-estados, com layout LTR explícito, ação principal e foco nativos. A linha de
-progresso vazia é ocultada fora de operação; versões malformadas não aparecem.
-
-A validação administrativa agora confere integralmente controle e manifesto do
-.deb privado, incluindo hash do AppImage, e impede a conversão de ícones como
-root. Chaves JSON duplicadas/profundidade excessiva falham de forma controlada.
-A transição declara conflito com qualquer versão de `appimage-installer` e
-anuncia extensões `.AppImage` e `.appimage`, sem apagar associações de terceiros.
-Veja o relatório e o roteiro atualizado em [VALIDATION.md](VALIDATION.md).
-
-
-## Categorias do menu
-
-O lançador é gerado do zero. `Categories` é transportado pela inspeção reduzida,
-com lista canônica validada novamente pelo helper e pelo gerador. Identificadores
-registrados na especificação freedesktop são preservados, sem copiar comandos
-ou o `.desktop` original. O limite é 32 identificadores/1.024 caracteres, com
-ponto e vírgula final; não se aceitam espaços, controles, escapes de linhas ou
-campos injetados. Duplicações são removidas na inspeção. Tokens desconhecidos,
-customizados `X-*`, reservados ou incompatíveis com o lançador são descartados.
-Adicionais relacionados a outra categoria principal são filtrados; quando só há
-uma classificação adicional utilizável, ela fornece uma principal relacionada.
-Audio/Video incluem AudioVideo. Sem classificação utilizável, usa-se Utility.
-O protocolo administrativo recusa entradas não canônicas, em vez de repará-las.
-
-A reinstalação substitui o mesmo arquivo de lançador, sem mudar a identidade do
-pacote por causa da categoria. O Plasma normalmente detecta a alteração através
-do KService/kded. Se a sessão ainda mostrar a categoria antiga, execute
-`kbuildsycoca6` como usuário da sessão e reabra o menu. Não é preciso apagar caches,
-configurações ou associações; não se executa kbuildsycoca como root pelo helper.
+[MIT](LICENSE).
