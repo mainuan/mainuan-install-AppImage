@@ -1,0 +1,919 @@
+# Finnish translations for mainuan-install-appimage package.
+# Copyright (C) 2026 Mainuan
+# This file is distributed under the same license as the mainuan-install-appimage package.
+# Automatically generated, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mainuan-install-appimage 2.0.1\n"
+"Report-Msgid-Bugs-To: https://github.com/mainuan/mainuan-install-AppImage/"
+"issues\n"
+"POT-Creation-Date: 2026-11-16 12:37-0300\n"
+"PO-Revision-Date: 2026-11-16 12:37-0300\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: fi <https://github.com/mainuan>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: packaging/appimage-mime.xml:4
+msgid "AppImage application"
+msgstr "AppImage-sovellus"
+
+#: packaging/br.com.mainuan.install-appimage.policy:7
+msgid "Install a verified AppImage as a Debian package"
+msgstr "Asenna vahvistettu AppImage Debian-pakettina"
+
+#: packaging/br.com.mainuan.install-appimage.policy:8
+msgid "Authenticate to install this AppImage on Mainuan"
+msgstr "Tunnistaudu asentaaksesi tämän AppImagen Mainuaniin"
+
+#: packaging/mainuan-install-appimage.desktop:3
+msgid "Mainuan AppImage Installer"
+msgstr "Mainuanin AppImage-asennin"
+
+#: packaging/mainuan-install-appimage.desktop:4
+msgid "Inspects and installs AppImage files as Debian packages"
+msgstr "Tutkii AppImage-tiedostoja ja asentaa ne Debian-paketteina"
+
+#: src/mainuan_install_appimage/boundary.py:39
+msgid "Oversized inspection response."
+msgstr "Tarkastuksen vastaus on liian suuri."
+
+#: src/mainuan_install_appimage/boundary.py:45
+msgid "duplicate JSON field"
+msgstr "toistuva JSON-kenttä"
+
+#: src/mainuan_install_appimage/boundary.py:51
+msgid "object expected"
+msgstr "odotettiin objektia"
+
+#: src/mainuan_install_appimage/boundary.py:53
+msgid "Protocol categories must be a JSON list."
+msgstr "Protokollan luokkien on oltava JSON-luettelo."
+
+#: src/mainuan_install_appimage/boundary.py:57
+msgid "invalid text"
+msgstr "virheellinen teksti"
+
+#: src/mainuan_install_appimage/boundary.py:60
+msgid "control character or line break in text"
+msgstr "ohjausmerkki tai rivinvaihto tekstissä"
+
+#: src/mainuan_install_appimage/boundary.py:63
+msgid "invalid identity"
+msgstr "virheellinen identiteetti"
+
+#: src/mainuan_install_appimage/boundary.py:66
+msgid "package does not match the identity"
+msgstr "paketti ei vastaa identiteettiä"
+
+#: src/mainuan_install_appimage/boundary.py:68
+msgid "divergent content"
+msgstr "poikkeava sisältö"
+
+#: src/mainuan_install_appimage/boundary.py:70
+msgid "invalid size"
+msgstr "virheellinen koko"
+
+#: src/mainuan_install_appimage/boundary.py:72
+msgid "invalid offset"
+msgstr "virheellinen siirtymä"
+
+#: src/mainuan_install_appimage/boundary.py:74
+msgid "invalid architecture"
+msgstr "virheellinen arkkitehtuuri"
+
+#: src/mainuan_install_appimage/boundary.py:77
+msgid "invalid Debian version"
+msgstr "virheellinen Debian-versio"
+
+#: src/mainuan_install_appimage/boundary.py:80
+msgid "invalid icons"
+msgstr "virheelliset kuvakkeet"
+
+#: src/mainuan_install_appimage/boundary.py:84
+msgid "oversized icon"
+msgstr "liian suuri kuvake"
+
+#: src/mainuan_install_appimage/boundary.py:87
+msgid "incompatible icon"
+msgstr "yhteensopimaton kuvake"
+
+#: src/mainuan_install_appimage/boundary.py:95
+#, python-brace-format
+msgid "The inspection response was refused: {error}"
+msgstr "Tarkastuksen vastaus hylättiin: {error}"
+
+#: src/mainuan_install_appimage/boundary.py:101
+msgid "Unprivileged inspection account unavailable."
+msgstr "Rajoitettu tarkastustili ei ole käytettävissä."
+
+#: src/mainuan_install_appimage/boundary.py:112
+msgid "The administrative copy is not regular."
+msgstr "Ylläpidollinen kopio ei ole tavallinen tiedosto."
+
+#: src/mainuan_install_appimage/boundary.py:127
+#, python-brace-format
+msgid "Operational limit: administrative inspection time; limit={limit} s."
+msgstr "Toimintaraja: ylläpidollisen tarkastuksen aika; raja={limit} s."
+
+#: src/mainuan_install_appimage/boundary.py:135
+#, python-brace-format
+msgid ""
+"Operational limit: parser output; observed={observed}, limit={limit} bytes."
+msgstr ""
+"Toimintaraja: jäsentimen tuloste; havaittu={observed}, raja={limit} tavua."
+
+#: src/mainuan_install_appimage/boundary.py:138
+#, python-brace-format
+msgid ""
+"Unprivileged inspection failed: code={code}; limits CPU=120 s, address "
+"space=1073741824 bytes. {detail}"
+msgstr ""
+"Rajoitettu tarkastus epäonnistui: koodi={code}; rajat CPU=120 s, "
+"osoiteavaruus=1073741824 tavua. {detail}"
+
+#: src/mainuan_install_appimage/boundary.py:141
+#, python-brace-format
+msgid "Could not run the unprivileged inspection: {error}"
+msgstr "Rajoitettua tarkastusta ei voitu suorittaa: {error}"
+
+#: src/mainuan_install_appimage/categories.py:82
+msgid "Invalid category list."
+msgstr "Virheellinen luokkaluettelo."
+
+#: src/mainuan_install_appimage/categories.py:85
+msgid "Unknown, malformed or non-canonical categories."
+msgstr "Tuntemattomia, virheellisiä tai epäkanonisia luokkia."
+
+#: src/mainuan_install_appimage/gui.py:32
+msgid "AppImage Installer"
+msgstr "AppImage-asennin"
+
+#: src/mainuan_install_appimage/gui.py:135
+msgid "Show Details"
+msgstr "Näytä yksityiskohdat"
+
+#: src/mainuan_install_appimage/gui.py:147
+msgid "Select File"
+msgstr "Valitse tiedosto"
+
+#: src/mainuan_install_appimage/gui.py:148
+msgctxt "@action:button"
+msgid "Cancel"
+msgstr "Peru"
+
+#: src/mainuan_install_appimage/gui.py:149
+#: src/mainuan_install_appimage/gui.py:287
+#: src/mainuan_install_appimage/gui.py:299
+msgctxt "@action:button"
+msgid "Install"
+msgstr "Asenna"
+
+#: src/mainuan_install_appimage/gui.py:151
+msgid "Open Application"
+msgstr "Avaa sovellus"
+
+#: src/mainuan_install_appimage/gui.py:152
+msgctxt "@action:button"
+msgid "Close"
+msgstr "Sulje"
+
+#: src/mainuan_install_appimage/gui.py:177
+msgid "Select a file."
+msgstr "Valitse tiedosto."
+
+#: src/mainuan_install_appimage/gui.py:179
+msgid "No application selected"
+msgstr "Sovellusta ei ole valittu"
+
+#: src/mainuan_install_appimage/gui.py:198
+msgid "Select AppImage"
+msgstr "Valitse AppImage"
+
+#: src/mainuan_install_appimage/gui.py:200
+msgid "All Files (*)"
+msgstr "Kaikki tiedostot (*)"
+
+#: src/mainuan_install_appimage/gui.py:200
+msgid "AppImages (*.AppImage *.appimage)"
+msgstr "AppImaget (*.AppImage *.appimage)"
+
+#: src/mainuan_install_appimage/gui.py:219
+msgid "Preparing…"
+msgstr "Valmistellaan…"
+
+#: src/mainuan_install_appimage/gui.py:231
+msgid "Inspecting…"
+msgstr "Tarkastetaan…"
+
+#: src/mainuan_install_appimage/gui.py:248
+msgid "Could not inspect the file."
+msgstr "Tiedostoa ei voitu tarkastaa."
+
+#: src/mainuan_install_appimage/gui.py:258
+#: src/mainuan_install_appimage/gui.py:436
+#, python-brace-format
+msgid "Version: {version}"
+msgstr "Versio: {version}"
+
+#: src/mainuan_install_appimage/gui.py:291
+msgid "The application will be reinstalled."
+msgstr "Sovellus asennetaan uudelleen."
+
+#: src/mainuan_install_appimage/gui.py:292
+msgctxt "@action:button"
+msgid "Reinstall"
+msgstr "Asenna uudelleen"
+
+#: src/mainuan_install_appimage/gui.py:294
+msgid "The current installation will be replaced."
+msgstr "Nykyinen asennus korvataan."
+
+#: src/mainuan_install_appimage/gui.py:295
+msgctxt "@action:button"
+msgid "Replace Version"
+msgstr "Korvaa versio"
+
+#: src/mainuan_install_appimage/gui.py:319
+#: src/mainuan_install_appimage/staging.py:99
+#: src/mainuan_install_appimage/staging.py:121
+msgid "Inspection canceled."
+msgstr "Tarkastus peruttiin."
+
+#: src/mainuan_install_appimage/gui.py:339
+msgid "Waiting for authentication…"
+msgstr "Odotetaan tunnistautumista…"
+
+#: src/mainuan_install_appimage/gui.py:370
+msgid "Installing…"
+msgstr "Asennetaan…"
+
+#: src/mainuan_install_appimage/gui.py:370
+msgid "Preparing installation…"
+msgstr "Valmistellaan asennusta…"
+
+#: src/mainuan_install_appimage/gui.py:370
+msgid "Verifying…"
+msgstr "Tarkistetaan…"
+
+#: src/mainuan_install_appimage/gui.py:383
+msgid "Could not start PolicyKit."
+msgstr "PolicyKitiä ei voitu käynnistää."
+
+#: src/mainuan_install_appimage/gui.py:394
+msgid ""
+"Authentication was denied or canceled. The installation was not completed."
+msgstr ""
+"Tunnistautuminen evättiin tai peruttiin. Asennusta ei suoritettu loppuun."
+
+#: src/mainuan_install_appimage/gui.py:399
+msgid "The installation was not completed."
+msgstr "Asennusta ei suoritettu loppuun."
+
+#: src/mainuan_install_appimage/gui.py:400
+#, python-brace-format
+msgid "Exit code: {code}."
+msgstr "Paluukoodi: {code}."
+
+#: src/mainuan_install_appimage/gui.py:410
+msgid "Installation not completed."
+msgstr "Asennusta ei suoritettu loppuun."
+
+#: src/mainuan_install_appimage/gui.py:430
+msgid "Installation completed."
+msgstr "Asennus valmis."
+
+#: src/mainuan_install_appimage/gui.py:461
+msgid "The installed file is not available to be opened."
+msgstr "Asennettua tiedostoa ei voi avata."
+
+#: src/mainuan_install_appimage/gui.py:469
+msgid "Could not start the application as a regular user."
+msgstr "Sovellusta ei voitu käynnistää tavallisena käyttäjänä."
+
+#: src/mainuan_install_appimage/gui.py:474
+msgid "Wait for the operation to finish."
+msgstr "Odota, että toimenpide päättyy."
+
+#: src/mainuan_install_appimage/gui.py:502
+msgid "Run the interface as a regular user."
+msgstr "Suorita käyttöliittymä tavallisena käyttäjänä."
+
+#: src/mainuan_install_appimage/gui.py:513
+msgid "Provide only one AppImage file at a time."
+msgstr "Anna vain yksi AppImage-tiedosto kerrallaan."
+
+#: src/mainuan_install_appimage/inspector.py:52
+msgid "Format or metadata"
+msgstr "Muoto tai metatiedot"
+
+#. Translators: {category} is a failure class such as "Format or metadata".
+#: src/mainuan_install_appimage/inspector.py:56
+#, python-brace-format
+msgid "{category}: {message}"
+msgstr "{category}: {message}"
+
+#: src/mainuan_install_appimage/inspector.py:60
+msgid "Operational limit (does not determine whether the file is valid)"
+msgstr "Toimintaraja (ei ratkaise, onko tiedosto kelvollinen)"
+
+#. Translators: {resource} names the limited resource; keep observed= and limit= readable.
+#: src/mainuan_install_appimage/inspector.py:65
+#, python-brace-format
+msgid "{resource}; observed={observed}, limit={allowed}"
+msgstr "{resource}; havaittu={observed}, raja={allowed}"
+
+#: src/mainuan_install_appimage/inspector.py:71
+msgid "SquashFS reading tool"
+msgstr "SquashFS-lukutyökalu"
+
+#: src/mainuan_install_appimage/inspector.py:114
+msgid "The file is not an ELF executable."
+msgstr "Tiedosto ei ole ELF-suoritustiedosto."
+
+#: src/mainuan_install_appimage/inspector.py:118
+msgid "Incompatible format: only little-endian ELF AppImages are accepted."
+msgstr "Yhteensopimaton muoto: vain little-endian-ELF-AppImaget hyväksytään."
+
+#: src/mainuan_install_appimage/inspector.py:121
+msgid "The AppImage uses an incompatible ELF class."
+msgstr "AppImage käyttää yhteensopimatonta ELF-luokkaa."
+
+#: src/mainuan_install_appimage/inspector.py:124
+msgid "The ELF header is truncated."
+msgstr "ELF-otsake on katkaistu."
+
+#: src/mainuan_install_appimage/inspector.py:129
+msgid "The AppImage ELF header is invalid."
+msgstr "AppImagen ELF-otsake on virheellinen."
+
+#: src/mainuan_install_appimage/inspector.py:143
+msgid ""
+"Incompatible architecture. Accepted formats: amd64, arm64, i386 and armhf."
+msgstr ""
+"Yhteensopimaton arkkitehtuuri. Hyväksytyt muodot: amd64, arm64, i386 ja "
+"armhf."
+
+#: src/mainuan_install_appimage/inspector.py:222
+#: src/mainuan_install_appimage/inspector.py:235
+msgid "SquashFS search (s)"
+msgstr "SquashFS-haku (s)"
+
+#: src/mainuan_install_appimage/inspector.py:233
+msgid "superblock candidates"
+msgstr "superlohkoehdokkaat"
+
+#: src/mainuan_install_appimage/inspector.py:245
+msgid "structural superblocks"
+msgstr "rakenteelliset superlohkot"
+
+#: src/mainuan_install_appimage/inspector.py:256
+msgid "unsquashfs is not installed."
+msgstr "unsquashfs ei ole asennettu."
+
+#: src/mainuan_install_appimage/inspector.py:258
+msgid "inspection time (s)"
+msgstr "tarkastusaika (s)"
+
+#: src/mainuan_install_appimage/inspector.py:267
+#, python-brace-format
+msgid "Could not start unsquashfs: {error}"
+msgstr "unsquashfsia ei voitu käynnistää: {error}"
+
+#: src/mainuan_install_appimage/inspector.py:278
+#: src/mainuan_install_appimage/inspector.py:318
+msgid "command time (s)"
+msgstr "komennon aika (s)"
+
+#: src/mainuan_install_appimage/inspector.py:287
+msgid "unsquashfs stderr (bytes)"
+msgstr "unsquashfs stderr (tavua)"
+
+#: src/mainuan_install_appimage/inspector.py:292
+msgid "unsquashfs stdout (bytes)"
+msgstr "unsquashfs stdout (tavua)"
+
+#: src/mainuan_install_appimage/inspector.py:301
+#: src/mainuan_install_appimage/inspector.py:304
+msgid "listing line (bytes)"
+msgstr "luettelon rivi (tavua)"
+
+#: src/mainuan_install_appimage/inspector.py:311
+msgid "allocation refused"
+msgstr "muistinvaraus evätty"
+
+#: src/mainuan_install_appimage/inspector.py:311
+msgid "unsquashfs memory (bytes; exact usage unavailable)"
+msgstr "unsquashfsin muisti (tavua; tarkka käyttö ei saatavilla)"
+
+#: src/mainuan_install_appimage/inspector.py:313
+msgid "SIGXCPU signal"
+msgstr "SIGXCPU-signaali"
+
+#: src/mainuan_install_appimage/inspector.py:313
+msgid "unsquashfs CPU (s)"
+msgstr "unsquashfsin CPU (s)"
+
+#: src/mainuan_install_appimage/inspector.py:314
+#, python-brace-format
+msgid "unsquashfs exited with code {code}. {detail}"
+msgstr "unsquashfs päättyi koodilla {code}. {detail}"
+
+#: src/mainuan_install_appimage/inspector.py:316
+msgid "The listing is not valid UTF-8."
+msgstr "Luettelo ei ole kelvollista UTF-8:aa."
+
+#: src/mainuan_install_appimage/inspector.py:347
+msgid "The -lln listing is malformed (fields/mode/UID/GID)."
+msgstr "-lln-luettelo on virheellinen (kentät/tila/UID/GID)."
+
+#: src/mainuan_install_appimage/inspector.py:351
+msgid "The listing contains an invalid size."
+msgstr "Luettelossa on virheellinen koko."
+
+#: src/mainuan_install_appimage/inspector.py:355
+msgid "The SquashFS root is not a directory."
+msgstr "SquashFS-juuri ei ole kansio."
+
+#: src/mainuan_install_appimage/inspector.py:358
+msgid "Path outside the SquashFS root in the listing."
+msgstr "Luettelossa on polku SquashFS-juuren ulkopuolella."
+
+#: src/mainuan_install_appimage/inspector.py:364
+msgid "link target (characters)"
+msgstr "linkin kohde (merkkiä)"
+
+#: src/mainuan_install_appimage/inspector.py:366
+msgid "Invalid symbolic link."
+msgstr "Virheellinen symbolinen linkki."
+
+#: src/mainuan_install_appimage/inspector.py:368
+#: src/mainuan_install_appimage/inspector.py:438
+msgid "metadata path (characters)"
+msgstr "metatietopolku (merkkiä)"
+
+#: src/mainuan_install_appimage/inspector.py:370
+msgid "Invalid or unsafe path in the listing."
+msgstr "Luettelossa on virheellinen tai turvaton polku."
+
+#: src/mainuan_install_appimage/inspector.py:387
+#: src/mainuan_install_appimage/inspector.py:638
+#: src/mainuan_install_appimage/inspector.py:652
+msgid "total inspection time (s)"
+msgstr "tarkastuksen kokonaisaika (s)"
+
+#: src/mainuan_install_appimage/inspector.py:393
+msgid "metadata path depth"
+msgstr "metatietopolun syvyys"
+
+#: src/mainuan_install_appimage/inspector.py:396
+msgid "exact metadata queries"
+msgstr "tarkat metatietokyselyt"
+
+#: src/mainuan_install_appimage/inspector.py:402
+msgid "accumulated listings (bytes)"
+msgstr "kertyneet luettelot (tavua)"
+
+#: src/mainuan_install_appimage/inspector.py:408
+msgid "records examined in the selected listings"
+msgstr "valituista luetteloista tutkitut tietueet"
+
+#: src/mainuan_install_appimage/inspector.py:410
+msgid "Duplicate path in the same listing."
+msgstr "Sama polku toistuu luettelossa."
+
+#: src/mainuan_install_appimage/inspector.py:412
+msgid "unsquashfs returned entries outside the requested selection/depth."
+msgstr ""
+"unsquashfs palautti merkintöjä pyydetyn valinnan tai syvyyden ulkopuolelta."
+
+#: src/mainuan_install_appimage/inspector.py:415
+msgid "Metadata differs between queries to the same image."
+msgstr "Metatiedot poikkeavat saman levykuvan kyselyjen välillä."
+
+#: src/mainuan_install_appimage/inspector.py:421
+msgid "Invalid metadata directory tree."
+msgstr "Virheellinen metatietojen kansiopuu."
+
+#: src/mainuan_install_appimage/inspector.py:440
+msgid "Unsafe metadata path."
+msgstr "Turvaton metatietopolku."
+
+#: src/mainuan_install_appimage/inspector.py:470
+msgid "symbolic link hops"
+msgstr "symbolisten linkkien hypyt"
+
+#: src/mainuan_install_appimage/inspector.py:482
+msgid "The AppImage metadata path is invalid."
+msgstr "AppImagen metatietopolku on virheellinen."
+
+#: src/mainuan_install_appimage/inspector.py:502
+#: src/mainuan_install_appimage/inspector.py:674
+msgid ".desktop metadata (bytes)"
+msgstr ".desktop-metatiedot (tavua)"
+
+#: src/mainuan_install_appimage/inspector.py:506
+msgid "The .desktop file is not encoded in UTF-8."
+msgstr ".desktop-tiedostoa ei ole koodattu UTF-8:ksi."
+
+#: src/mainuan_install_appimage/inspector.py:512
+msgid ".desktop line (characters)"
+msgstr ".desktop-rivi (merkkiä)"
+
+#: src/mainuan_install_appimage/inspector.py:523
+msgid "The .desktop file is malformed."
+msgstr ".desktop-tiedosto on virheellinen."
+
+#: src/mainuan_install_appimage/inspector.py:526
+msgid "The .desktop file contains an invalid key."
+msgstr ".desktop-tiedostossa on virheellinen avain."
+
+#: src/mainuan_install_appimage/inspector.py:529
+msgid "The .desktop file contains duplicate keys."
+msgstr ".desktop-tiedostossa on toistuvia avaimia."
+
+#: src/mainuan_install_appimage/inspector.py:532
+msgid "The AppImage does not contain a valid [Desktop Entry] section."
+msgstr "AppImage ei sisällä kelvollista [Desktop Entry] -osiota."
+
+#: src/mainuan_install_appimage/inspector.py:534
+msgid "The .desktop file does not describe an application."
+msgstr ".desktop-tiedosto ei kuvaa sovellusta."
+
+#: src/mainuan_install_appimage/inspector.py:562
+msgid "icon reference (characters)"
+msgstr "kuvakeviite (merkkiä)"
+
+#: src/mainuan_install_appimage/inspector.py:586
+msgid "icons read (bytes)"
+msgstr "luetut kuvakkeet (tavua)"
+
+#: src/mainuan_install_appimage/inspector.py:595
+msgid "PNG dimensions (width,height,pixels)"
+msgstr "PNG-mitat (leveys,korkeus,pikselit)"
+
+#: src/mainuan_install_appimage/inspector.py:620
+#, python-brace-format
+msgid "Could not open the selected file: {error}"
+msgstr "Valittua tiedostoa ei voitu avata: {error}"
+
+#: src/mainuan_install_appimage/inspector.py:622
+msgid "The selected file is not a regular file."
+msgstr "Valittu tiedosto ei ole tavallinen tiedosto."
+
+#: src/mainuan_install_appimage/inspector.py:624
+msgid "Truncated ELF header: file smaller than 64 bytes."
+msgstr "Katkaistu ELF-otsake: tiedosto on alle 64 tavua."
+
+#: src/mainuan_install_appimage/inspector.py:626
+msgid "AppImage file (bytes)"
+msgstr "AppImage-tiedosto (tavua)"
+
+#: src/mainuan_install_appimage/inspector.py:632
+msgid ""
+"Incompatible format: only AppImage Type 2 with a type 2 AI signature is "
+"accepted."
+msgstr ""
+"Yhteensopimaton muoto: vain tyypin 2 AppImage, jossa on tyypin 2 AI-"
+"allekirjoitus, hyväksytään."
+
+#: src/mainuan_install_appimage/inspector.py:645
+msgid ""
+"Incompatible or invalid format. Only AppImages Type 2 with a validated "
+"SquashFS 4.0 are accepted."
+msgstr ""
+"Yhteensopimaton tai virheellinen muoto. Vain tyypin 2 AppImaget, joissa on "
+"vahvistettu SquashFS 4.0, hyväksytään."
+
+#: src/mainuan_install_appimage/inspector.py:664
+msgid "The AppImage does not contain a regular .desktop file at its root."
+msgstr "AppImagen juuressa ei ole tavallista .desktop-tiedostoa."
+
+#: src/mainuan_install_appimage/inspector.py:667
+msgid ".desktop candidates at the root"
+msgstr ".desktop-ehdokkaat juuressa"
+
+#: src/mainuan_install_appimage/inspector.py:676
+msgid "The .desktop link is invalid or escapes the tree."
+msgstr ".desktop-linkki on virheellinen tai osoittaa puun ulkopuolelle."
+
+#: src/mainuan_install_appimage/inspector.py:687
+msgid "The AppImage does not contain valid .desktop metadata."
+msgstr "AppImage ei sisällä kelvollisia .desktop-metatietoja."
+
+#: src/mainuan_install_appimage/inspector.py:709
+msgid "Could not validate the AppImage."
+msgstr "AppImagea ei voitu vahvistaa."
+
+#: src/mainuan_install_appimage/installer.py:49
+#, python-brace-format
+msgid "Could not query the package manager: {error}"
+msgstr "Paketinhallinnalta ei voitu kysyä tietoja: {error}"
+
+#: src/mainuan_install_appimage/installer.py:65
+msgid "dpkg-query failed; it is not safe to continue."
+msgstr "dpkg-query epäonnistui, joten jatkaminen ei ole turvallista."
+
+#: src/mainuan_install_appimage/installer.py:68
+msgid "The dpkg-query response is malformed."
+msgstr "dpkg-queryn vastaus on virheellinen."
+
+#: src/mainuan_install_appimage/installer.py:70
+msgid ""
+"The package is in a partial state in dpkg. Examine it before continuing."
+msgstr "Paketti on dpkg:ssä osittaisessa tilassa. Tutki se ennen jatkamista."
+
+#: src/mainuan_install_appimage/installer.py:105
+msgid ""
+"A package with this identifier already exists that was not installed by this "
+"tool. It will be preserved."
+msgstr ""
+"Tällä tunnisteella on jo paketti, jota tämä työkalu ei asentanut. Se "
+"säilytetään."
+
+#: src/mainuan_install_appimage/installer.py:117
+msgid ""
+"The package identifier belongs to another installation. No file will be "
+"replaced."
+msgstr ""
+"Paketin tunniste kuuluu toiseen asennukseen. Yhtään tiedostoa ei korvata."
+
+#: src/mainuan_install_appimage/installer.py:139
+msgid ""
+"A legacy installation with this name was detected. The dpkg database and the "
+"existing files will not be repaired automatically."
+msgstr ""
+"Tällä nimellä havaittiin vanha asennus. dpkg-tietokantaa ja olemassa olevia "
+"tiedostoja ei korjata automaattisesti."
+
+#: src/mainuan_install_appimage/installer.py:158
+msgid "The installer's fallback icon is not available."
+msgstr "Asentimen varakuvake ei ole saatavilla."
+
+#: src/mainuan_install_appimage/installer.py:172
+msgid "Icon conversion cannot run as root."
+msgstr "Kuvakkeiden muuntoa ei voi suorittaa pääkäyttäjänä."
+
+#: src/mainuan_install_appimage/installer.py:188
+msgid "Could not prepare the package icons."
+msgstr "Paketin kuvakkeita ei voitu valmistella."
+
+#: src/mainuan_install_appimage/installer.py:216
+#, python-brace-format
+msgid "Launcher categories refused: {error}"
+msgstr "Käynnistimen luokat hylättiin: {error}"
+
+#: src/mainuan_install_appimage/installer.py:295
+#, python-brace-format
+msgid "The destination {path} is not a secure directory."
+msgstr "Kohde {path} ei ole turvallinen kansio."
+
+#: src/mainuan_install_appimage/installer.py:303
+#, python-brace-format
+msgid "The destination {path} already exists and is not a regular file."
+msgstr "Kohde {path} on jo olemassa, eikä se ole tavallinen tiedosto."
+
+#: src/mainuan_install_appimage/installer.py:305
+#, python-brace-format
+msgid ""
+"The destination {path} already exists without a valid managed installation."
+msgstr "Kohde {path} on jo olemassa ilman kelvollista hallittua asennusta."
+
+#: src/mainuan_install_appimage/installer.py:312
+#, python-brace-format
+msgid "The file {path} does not belong to a package managed by this tool."
+msgstr "Tiedosto {path} ei kuulu tämän työkalun hallitsemaan pakettiin."
+
+#: src/mainuan_install_appimage/installer.py:326
+#, python-brace-format
+msgid "Could not prepare the package: {error}"
+msgstr "Pakettia ei voitu valmistella: {error}"
+
+#: src/mainuan_install_appimage/installer.py:338
+#, python-brace-format
+msgid "dpkg-deb could not build the package: {detail}"
+msgstr "dpkg-deb ei voinut koota pakettia: {detail}"
+
+#: src/mainuan_install_appimage/installer.py:339
+#: src/mainuan_install_appimage/installer.py:497
+msgid "unknown error"
+msgstr "tuntematon virhe"
+
+#: src/mainuan_install_appimage/installer.py:350
+msgid "The prepared package's control data does not match the installation."
+msgstr "Valmistellun paketin ohjaustiedot eivät vastaa asennusta."
+
+#: src/mainuan_install_appimage/installer.py:354
+msgid "Invalid or oversized Debian control data."
+msgstr "Virheelliset tai liian suuret Debian-ohjaustiedot."
+
+#: src/mainuan_install_appimage/installer.py:359
+msgid "The package contains control files that are not allowed."
+msgstr "Paketti sisältää kiellettyjä ohjaustiedostoja."
+
+#: src/mainuan_install_appimage/installer.py:362
+msgid "Invalid Debian control ownership."
+msgstr "Virheellinen Debian-ohjaustietojen omistajuus."
+
+#: src/mainuan_install_appimage/installer.py:365
+msgid "Invalid Debian control file."
+msgstr "Virheellinen Debian-ohjaustiedosto."
+
+#: src/mainuan_install_appimage/installer.py:367
+msgid "Debian control fields not allowed."
+msgstr "Kiellettyjä Debian-ohjauskenttiä."
+
+#: src/mainuan_install_appimage/installer.py:369
+msgid "Invalid Debian control directory."
+msgstr "Virheellinen Debian-ohjauskansio."
+
+#: src/mainuan_install_appimage/installer.py:404
+msgid "Duplicate or oversized Debian manifest."
+msgstr "Toistuva tai liian suuri Debian-luettelo."
+
+#: src/mainuan_install_appimage/installer.py:407
+msgid "Invalid Debian ownership metadata."
+msgstr "Virheelliset Debian-omistajuusmetatiedot."
+
+#: src/mainuan_install_appimage/installer.py:410
+msgid "Directory outside the allowed manifest."
+msgstr "Kansio sallitun luettelon ulkopuolella."
+
+#: src/mainuan_install_appimage/installer.py:413
+msgid "File or link outside the allowed manifest."
+msgstr "Tiedosto tai linkki sallitun luettelon ulkopuolella."
+
+#: src/mainuan_install_appimage/installer.py:416
+msgid "Invalid Debian file permissions."
+msgstr "Virheelliset Debian-tiedosto-oikeudet."
+
+#: src/mainuan_install_appimage/installer.py:418
+msgid "Size outside the allowed manifest."
+msgstr "Koko sallitun luettelon ulkopuolella."
+
+#: src/mainuan_install_appimage/installer.py:424
+msgid "The AppImage in the package does not match the validated snapshot."
+msgstr "Paketissa oleva AppImage ei vastaa vahvistettua tilannevedosta."
+
+#: src/mainuan_install_appimage/installer.py:426
+msgid "Incomplete or invalid Debian manifest."
+msgstr "Puutteellinen tai virheellinen Debian-luettelo."
+
+#: src/mainuan_install_appimage/installer.py:428
+#, python-brace-format
+msgid "Could not validate the package files: {error}"
+msgstr "Paketin tiedostoja ei voitu vahvistaa: {error}"
+
+#: src/mainuan_install_appimage/installer.py:443
+msgid "Could not identify the system architecture."
+msgstr "Järjestelmän arkkitehtuuria ei voitu tunnistaa."
+
+#: src/mainuan_install_appimage/installer.py:447
+#, python-brace-format
+msgid ""
+"The AppImage is {architecture}, but the system is {host_architecture}. The "
+"installation was canceled."
+msgstr ""
+"AppImagen arkkitehtuuri on {architecture}, mutta järjestelmän "
+"{host_architecture}. Asennus peruttiin."
+
+#: src/mainuan_install_appimage/installer.py:464
+msgid "The package manager is busy. Try again after the other transaction."
+msgstr ""
+"Paketinhallinta on varattu. Yritä uudelleen, kun toinen tapahtuma on valmis."
+
+#: src/mainuan_install_appimage/installer.py:477
+msgid "The file changed since the inspection. Select it again."
+msgstr "Tiedosto on muuttunut tarkastuksen jälkeen. Valitse se uudelleen."
+
+#: src/mainuan_install_appimage/installer.py:499
+#, python-brace-format
+msgid ""
+"dpkg did not complete the transaction. The previous installation was not "
+"removed beforehand; dpkg itself may leave a partially configured "
+"transaction. Details: {details}"
+msgstr ""
+"dpkg ei suorittanut tapahtumaa loppuun. Aiempaa asennusta ei poistettu "
+"etukäteen, mutta dpkg itse voi jättää tapahtuman osittain määritetyksi. "
+"Tiedot: {details}"
+
+#: src/mainuan_install_appimage/installer.py:504
+msgid "Installation completed by dpkg."
+msgstr "dpkg suoritti asennuksen loppuun."
+
+#: src/mainuan_install_appimage/installer.py:509
+msgid "The temporary copy identifier is invalid."
+msgstr "Väliaikaisen kopion tunniste on virheellinen."
+
+#: src/mainuan_install_appimage/installer.py:518
+msgid "The file is not in the allowed temporary area."
+msgstr "Tiedosto ei ole sallitulla väliaikaisalueella."
+
+#: src/mainuan_install_appimage/installer.py:533
+msgid "Could not validate the secure temporary file."
+msgstr "Turvallista väliaikaistiedostoa ei voitu vahvistaa."
+
+#: src/mainuan_install_appimage/installer.py:549
+msgid "The temporary area or the file has invalid permissions."
+msgstr "Väliaikaisalueella tai tiedostolla on virheelliset käyttöoikeudet."
+
+#: src/mainuan_install_appimage/installer.py:566
+msgid "The copy exceeded the size or time limit."
+msgstr "Kopio ylitti koko- tai aikarajan."
+
+#: src/mainuan_install_appimage/installer.py:573
+msgid "The temporary copy does not match the inspected file."
+msgstr "Väliaikainen kopio ei vastaa tarkastettua tiedostoa."
+
+#: src/mainuan_install_appimage/privileged.py:24
+msgid "This helper can only be started by PolicyKit."
+msgstr "Vain PolicyKit voi käynnistää tämän apuohjelman."
+
+#: src/mainuan_install_appimage/privileged.py:31
+msgid "Could not identify the user who requested the installation."
+msgstr "Asennusta pyytänyttä käyttäjää ei voitu tunnistaa."
+
+#: src/mainuan_install_appimage/privileged.py:34
+msgid "Unrecognized administrative operation."
+msgstr "Tuntematon ylläpitotoiminto."
+
+#: src/mainuan_install_appimage/privileged.py:52
+msgid "File received and hash verified."
+msgstr "Tiedosto vastaanotettu ja tiiviste tarkistettu."
+
+#: src/mainuan_install_appimage/reduced.py:35
+msgid "The inspection process did not drop all privileges."
+msgstr "Tarkastusprosessi ei luopunut kaikista oikeuksista."
+
+#: src/mainuan_install_appimage/reduced.py:37
+msgid "Could not block new privileges."
+msgstr "Uusia oikeuksia ei voitu estää."
+
+#: src/mainuan_install_appimage/reduced.py:41
+msgid "The inspection process still has capabilities."
+msgstr "Tarkastusprosessilla on yhä kyvykkyyksiä (capabilities)."
+
+#: src/mainuan_install_appimage/reduced.py:73
+msgid "Invalid input descriptor."
+msgstr "Virheellinen syötteen kuvaaja."
+
+#: src/mainuan_install_appimage/reduced.py:77
+msgid ""
+"Operational limit: parser memory; address space limit=1073741824 bytes; "
+"exact usage unavailable."
+msgstr ""
+"Toimintaraja: jäsentimen muisti; osoiteavaruuden raja=1073741824 tavua; "
+"tarkka käyttö ei saatavilla."
+
+#: src/mainuan_install_appimage/staging.py:27
+msgid "The environment does not provide a secure temporary directory."
+msgstr "Ympäristö ei tarjoa turvallista väliaikaiskansiota."
+
+#: src/mainuan_install_appimage/staging.py:32
+msgid "The secure temporary directory is not available."
+msgstr "Turvallinen väliaikaiskansio ei ole käytettävissä."
+
+#: src/mainuan_install_appimage/staging.py:39
+msgid "The secure temporary directory has invalid permissions."
+msgstr "Turvallisella väliaikaiskansiolla on virheelliset käyttöoikeudet."
+
+#: src/mainuan_install_appimage/staging.py:52
+#, python-brace-format
+msgid "Could not read the selected file: {error}"
+msgstr "Valittua tiedostoa ei voitu lukea: {error}"
+
+#: src/mainuan_install_appimage/staging.py:64
+msgid "Could not prepare the secure temporary area."
+msgstr "Turvallista väliaikaisaluetta ei voitu valmistella."
+
+#: src/mainuan_install_appimage/staging.py:72
+msgid "The secure temporary area has invalid permissions."
+msgstr "Turvallisella väliaikaisalueella on virheelliset käyttöoikeudet."
+
+#: src/mainuan_install_appimage/staging.py:79
+msgid "The selected file is not regular or exceeds the limit."
+msgstr "Valittu tiedosto ei ole tavallinen tiedosto tai se ylittää rajan."
+
+#: src/mainuan_install_appimage/staging.py:93
+msgid "Copying the file to a protected temporary area…"
+msgstr "Kopioidaan tiedostoa suojatulle väliaikaisalueelle…"
+
+#: src/mainuan_install_appimage/staging.py:102
+msgid "The selected file exceeds the size limit."
+msgstr "Valittu tiedosto ylittää kokorajan."
+
+#: src/mainuan_install_appimage/staging.py:114
+msgid "The file was changed during the copy; select it again."
+msgstr "Tiedostoa muutettiin kopioinnin aikana: valitse se uudelleen."
+
+#: src/mainuan_install_appimage/staging.py:116
+msgid "Validating ELF, architecture, SquashFS and metadata…"
+msgstr "Vahvistetaan ELF-muotoa, arkkitehtuuria, SquashFS:ää ja metatietoja…"
+
+#: src/mainuan_install_appimage/staging.py:119
+msgid "The temporary copy does not match the selected file."
+msgstr "Väliaikainen kopio ei vastaa valittua tiedostoa."

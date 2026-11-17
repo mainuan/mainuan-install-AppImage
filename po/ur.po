@@ -1,0 +1,914 @@
+# Urdu translations for mainuan-install-appimage package.
+# Copyright (C) 2026 Mainuan
+# This file is distributed under the same license as the mainuan-install-appimage package.
+# Automatically generated, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mainuan-install-appimage 2.0.1\n"
+"Report-Msgid-Bugs-To: https://github.com/mainuan/mainuan-install-AppImage/"
+"issues\n"
+"POT-Creation-Date: 2026-11-16 12:37-0300\n"
+"PO-Revision-Date: 2026-11-16 12:37-0300\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: ur <https://github.com/mainuan>\n"
+"Language: ur\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: packaging/appimage-mime.xml:4
+msgid "AppImage application"
+msgstr "AppImage ایپلی کیشن"
+
+#: packaging/br.com.mainuan.install-appimage.policy:7
+msgid "Install a verified AppImage as a Debian package"
+msgstr "ایک تصدیق شدہ AppImage کو Debian پیکیج کے طور پر انسٹال کریں"
+
+#: packaging/br.com.mainuan.install-appimage.policy:8
+msgid "Authenticate to install this AppImage on Mainuan"
+msgstr "Mainuan پر یہ AppImage انسٹال کرنے کے لیے توثیق کریں"
+
+#: packaging/mainuan-install-appimage.desktop:3
+msgid "Mainuan AppImage Installer"
+msgstr "Mainuan AppImage انسٹالر"
+
+#: packaging/mainuan-install-appimage.desktop:4
+msgid "Inspects and installs AppImage files as Debian packages"
+msgstr ""
+"AppImage فائلوں کا معائنہ کرتا ہے اور انہیں Debian پیکیجز کے طور پر انسٹال "
+"کرتا ہے"
+
+#: src/mainuan_install_appimage/boundary.py:39
+msgid "Oversized inspection response."
+msgstr "معائنے کا جواب حد سے بڑا ہے۔"
+
+#: src/mainuan_install_appimage/boundary.py:45
+msgid "duplicate JSON field"
+msgstr "دہرایا گیا JSON فیلڈ"
+
+#: src/mainuan_install_appimage/boundary.py:51
+msgid "object expected"
+msgstr "آبجیکٹ متوقع تھا"
+
+#: src/mainuan_install_appimage/boundary.py:53
+msgid "Protocol categories must be a JSON list."
+msgstr "پروٹوکول کی کیٹیگریز JSON فہرست ہونی چاہئیں۔"
+
+#: src/mainuan_install_appimage/boundary.py:57
+msgid "invalid text"
+msgstr "غلط متن"
+
+#: src/mainuan_install_appimage/boundary.py:60
+msgid "control character or line break in text"
+msgstr "متن میں کنٹرول کیریکٹر یا سطر کا وقفہ"
+
+#: src/mainuan_install_appimage/boundary.py:63
+msgid "invalid identity"
+msgstr "غلط شناخت"
+
+#: src/mainuan_install_appimage/boundary.py:66
+msgid "package does not match the identity"
+msgstr "پیکیج شناخت سے مطابقت نہیں رکھتا"
+
+#: src/mainuan_install_appimage/boundary.py:68
+msgid "divergent content"
+msgstr "مختلف مواد"
+
+#: src/mainuan_install_appimage/boundary.py:70
+msgid "invalid size"
+msgstr "غلط سائز"
+
+#: src/mainuan_install_appimage/boundary.py:72
+msgid "invalid offset"
+msgstr "غلط آفسیٹ"
+
+#: src/mainuan_install_appimage/boundary.py:74
+msgid "invalid architecture"
+msgstr "غلط آرکیٹیکچر"
+
+#: src/mainuan_install_appimage/boundary.py:77
+msgid "invalid Debian version"
+msgstr "غلط Debian ورژن"
+
+#: src/mainuan_install_appimage/boundary.py:80
+msgid "invalid icons"
+msgstr "غلط آئیکنز"
+
+#: src/mainuan_install_appimage/boundary.py:84
+msgid "oversized icon"
+msgstr "حد سے بڑا آئیکن"
+
+#: src/mainuan_install_appimage/boundary.py:87
+msgid "incompatible icon"
+msgstr "غیر مطابق آئیکن"
+
+#: src/mainuan_install_appimage/boundary.py:95
+#, python-brace-format
+msgid "The inspection response was refused: {error}"
+msgstr "معائنے کا جواب مسترد کر دیا گیا: {error}"
+
+#: src/mainuan_install_appimage/boundary.py:101
+msgid "Unprivileged inspection account unavailable."
+msgstr "غیر مراعات یافتہ معائنہ اکاؤنٹ دستیاب نہیں۔"
+
+#: src/mainuan_install_appimage/boundary.py:112
+msgid "The administrative copy is not regular."
+msgstr "انتظامی نقل ایک عام فائل نہیں ہے۔"
+
+#: src/mainuan_install_appimage/boundary.py:127
+#, python-brace-format
+msgid "Operational limit: administrative inspection time; limit={limit} s."
+msgstr "آپریشنل حد: انتظامی معائنے کا وقت؛ حد={limit} s۔"
+
+#: src/mainuan_install_appimage/boundary.py:135
+#, python-brace-format
+msgid ""
+"Operational limit: parser output; observed={observed}, limit={limit} bytes."
+msgstr "آپریشنل حد: پارسر آؤٹ پٹ؛ مشاہدہ={observed}، حد={limit} بائٹس۔"
+
+#: src/mainuan_install_appimage/boundary.py:138
+#, python-brace-format
+msgid ""
+"Unprivileged inspection failed: code={code}; limits CPU=120 s, address "
+"space=1073741824 bytes. {detail}"
+msgstr ""
+"غیر مراعات یافتہ معائنہ ناکام ہو گیا: کوڈ={code}؛ حدود CPU=120 s، ایڈریس "
+"اسپیس=1073741824 بائٹس۔ {detail}"
+
+#: src/mainuan_install_appimage/boundary.py:141
+#, python-brace-format
+msgid "Could not run the unprivileged inspection: {error}"
+msgstr "غیر مراعات یافتہ معائنہ نہیں چلایا جا سکا: {error}"
+
+#: src/mainuan_install_appimage/categories.py:82
+msgid "Invalid category list."
+msgstr "کیٹیگریز کی غلط فہرست۔"
+
+#: src/mainuan_install_appimage/categories.py:85
+msgid "Unknown, malformed or non-canonical categories."
+msgstr "نامعلوم، بگڑی ہوئی یا غیر معیاری کیٹیگریز۔"
+
+#: src/mainuan_install_appimage/gui.py:32
+msgid "AppImage Installer"
+msgstr "AppImage انسٹالر"
+
+#: src/mainuan_install_appimage/gui.py:135
+msgid "Show Details"
+msgstr "تفصیلات دکھائیں"
+
+#: src/mainuan_install_appimage/gui.py:147
+msgid "Select File"
+msgstr "فائل منتخب کریں"
+
+#: src/mainuan_install_appimage/gui.py:148
+msgctxt "@action:button"
+msgid "Cancel"
+msgstr "منسوخ کریں"
+
+#: src/mainuan_install_appimage/gui.py:149
+#: src/mainuan_install_appimage/gui.py:287
+#: src/mainuan_install_appimage/gui.py:299
+msgctxt "@action:button"
+msgid "Install"
+msgstr "انسٹال کریں"
+
+#: src/mainuan_install_appimage/gui.py:151
+msgid "Open Application"
+msgstr "ایپلی کیشن کھولیں"
+
+#: src/mainuan_install_appimage/gui.py:152
+msgctxt "@action:button"
+msgid "Close"
+msgstr "بند کریں"
+
+#: src/mainuan_install_appimage/gui.py:177
+msgid "Select a file."
+msgstr "ایک فائل منتخب کریں۔"
+
+#: src/mainuan_install_appimage/gui.py:179
+msgid "No application selected"
+msgstr "کوئی ایپلی کیشن منتخب نہیں"
+
+#: src/mainuan_install_appimage/gui.py:198
+msgid "Select AppImage"
+msgstr "AppImage منتخب کریں"
+
+#: src/mainuan_install_appimage/gui.py:200
+msgid "All Files (*)"
+msgstr "تمام فائلیں (*)"
+
+#: src/mainuan_install_appimage/gui.py:200
+msgid "AppImages (*.AppImage *.appimage)"
+msgstr "AppImages (*.AppImage *.appimage)"
+
+#: src/mainuan_install_appimage/gui.py:219
+msgid "Preparing…"
+msgstr "تیاری ہو رہی ہے…"
+
+#: src/mainuan_install_appimage/gui.py:231
+msgid "Inspecting…"
+msgstr "معائنہ ہو رہا ہے…"
+
+#: src/mainuan_install_appimage/gui.py:248
+msgid "Could not inspect the file."
+msgstr "فائل کا معائنہ نہیں کیا جا سکا۔"
+
+#: src/mainuan_install_appimage/gui.py:258
+#: src/mainuan_install_appimage/gui.py:436
+#, python-brace-format
+msgid "Version: {version}"
+msgstr "ورژن: {version}"
+
+#: src/mainuan_install_appimage/gui.py:291
+msgid "The application will be reinstalled."
+msgstr "ایپلی کیشن دوبارہ انسٹال کی جائے گی۔"
+
+#: src/mainuan_install_appimage/gui.py:292
+msgctxt "@action:button"
+msgid "Reinstall"
+msgstr "دوبارہ انسٹال کریں"
+
+#: src/mainuan_install_appimage/gui.py:294
+msgid "The current installation will be replaced."
+msgstr "موجودہ انسٹالیشن تبدیل کر دی جائے گی۔"
+
+#: src/mainuan_install_appimage/gui.py:295
+msgctxt "@action:button"
+msgid "Replace Version"
+msgstr "ورژن تبدیل کریں"
+
+#: src/mainuan_install_appimage/gui.py:319
+#: src/mainuan_install_appimage/staging.py:99
+#: src/mainuan_install_appimage/staging.py:121
+msgid "Inspection canceled."
+msgstr "معائنہ منسوخ کر دیا گیا۔"
+
+#: src/mainuan_install_appimage/gui.py:339
+msgid "Waiting for authentication…"
+msgstr "توثیق کا انتظار ہے…"
+
+#: src/mainuan_install_appimage/gui.py:370
+msgid "Installing…"
+msgstr "انسٹال ہو رہا ہے…"
+
+#: src/mainuan_install_appimage/gui.py:370
+msgid "Preparing installation…"
+msgstr "انسٹالیشن کی تیاری ہو رہی ہے…"
+
+#: src/mainuan_install_appimage/gui.py:370
+msgid "Verifying…"
+msgstr "تصدیق ہو رہی ہے…"
+
+#: src/mainuan_install_appimage/gui.py:383
+msgid "Could not start PolicyKit."
+msgstr "PolicyKit شروع نہیں کیا جا سکا۔"
+
+#: src/mainuan_install_appimage/gui.py:394
+msgid ""
+"Authentication was denied or canceled. The installation was not completed."
+msgstr "توثیق مسترد یا منسوخ کر دی گئی۔ انسٹالیشن مکمل نہیں ہوئی۔"
+
+#: src/mainuan_install_appimage/gui.py:399
+msgid "The installation was not completed."
+msgstr "انسٹالیشن مکمل نہیں ہوئی۔"
+
+#: src/mainuan_install_appimage/gui.py:400
+#, python-brace-format
+msgid "Exit code: {code}."
+msgstr "ایگزٹ کوڈ: {code}۔"
+
+#: src/mainuan_install_appimage/gui.py:410
+msgid "Installation not completed."
+msgstr "انسٹالیشن مکمل نہیں ہوئی۔"
+
+#: src/mainuan_install_appimage/gui.py:430
+msgid "Installation completed."
+msgstr "انسٹالیشن مکمل ہو گئی۔"
+
+#: src/mainuan_install_appimage/gui.py:461
+msgid "The installed file is not available to be opened."
+msgstr "انسٹال شدہ فائل کھولنے کے لیے دستیاب نہیں۔"
+
+#: src/mainuan_install_appimage/gui.py:469
+msgid "Could not start the application as a regular user."
+msgstr "ایپلی کیشن کو عام صارف کے طور پر شروع نہیں کیا جا سکا۔"
+
+#: src/mainuan_install_appimage/gui.py:474
+msgid "Wait for the operation to finish."
+msgstr "کارروائی مکمل ہونے کا انتظار کریں۔"
+
+#: src/mainuan_install_appimage/gui.py:502
+msgid "Run the interface as a regular user."
+msgstr "انٹرفیس کو عام صارف کے طور پر چلائیں۔"
+
+#: src/mainuan_install_appimage/gui.py:513
+msgid "Provide only one AppImage file at a time."
+msgstr "ایک وقت میں صرف ایک AppImage فائل فراہم کریں۔"
+
+#: src/mainuan_install_appimage/inspector.py:52
+msgid "Format or metadata"
+msgstr "فارمیٹ یا میٹا ڈیٹا"
+
+#. Translators: {category} is a failure class such as "Format or metadata".
+#: src/mainuan_install_appimage/inspector.py:56
+#, python-brace-format
+msgid "{category}: {message}"
+msgstr "{category}: {message}"
+
+#: src/mainuan_install_appimage/inspector.py:60
+msgid "Operational limit (does not determine whether the file is valid)"
+msgstr "آپریشنل حد (یہ طے نہیں کرتی کہ فائل درست ہے یا نہیں)"
+
+#. Translators: {resource} names the limited resource; keep observed= and limit= readable.
+#: src/mainuan_install_appimage/inspector.py:65
+#, python-brace-format
+msgid "{resource}; observed={observed}, limit={allowed}"
+msgstr "{resource}؛ مشاہدہ={observed}، حد={allowed}"
+
+#: src/mainuan_install_appimage/inspector.py:71
+msgid "SquashFS reading tool"
+msgstr "SquashFS پڑھنے کا ٹول"
+
+#: src/mainuan_install_appimage/inspector.py:114
+msgid "The file is not an ELF executable."
+msgstr "فائل ELF ایگزیکیوٹیبل نہیں ہے۔"
+
+#: src/mainuan_install_appimage/inspector.py:118
+msgid "Incompatible format: only little-endian ELF AppImages are accepted."
+msgstr ""
+"غیر مطابق فارمیٹ: صرف little-endian ELF والی AppImages قبول کی جاتی ہیں۔"
+
+#: src/mainuan_install_appimage/inspector.py:121
+msgid "The AppImage uses an incompatible ELF class."
+msgstr "AppImage غیر مطابق ELF کلاس استعمال کرتی ہے۔"
+
+#: src/mainuan_install_appimage/inspector.py:124
+msgid "The ELF header is truncated."
+msgstr "ELF ہیڈر نامکمل ہے۔"
+
+#: src/mainuan_install_appimage/inspector.py:129
+msgid "The AppImage ELF header is invalid."
+msgstr "AppImage کا ELF ہیڈر غلط ہے۔"
+
+#: src/mainuan_install_appimage/inspector.py:143
+msgid ""
+"Incompatible architecture. Accepted formats: amd64, arm64, i386 and armhf."
+msgstr "غیر مطابق آرکیٹیکچر۔ قبول شدہ فارمیٹس: amd64، arm64، i386 اور armhf۔"
+
+#: src/mainuan_install_appimage/inspector.py:222
+#: src/mainuan_install_appimage/inspector.py:235
+msgid "SquashFS search (s)"
+msgstr "SquashFS تلاش (s)"
+
+#: src/mainuan_install_appimage/inspector.py:233
+msgid "superblock candidates"
+msgstr "سپر بلاک امیدوار"
+
+#: src/mainuan_install_appimage/inspector.py:245
+msgid "structural superblocks"
+msgstr "ساختی سپر بلاکس"
+
+#: src/mainuan_install_appimage/inspector.py:256
+msgid "unsquashfs is not installed."
+msgstr "unsquashfs انسٹال نہیں ہے۔"
+
+#: src/mainuan_install_appimage/inspector.py:258
+msgid "inspection time (s)"
+msgstr "معائنے کا وقت (s)"
+
+#: src/mainuan_install_appimage/inspector.py:267
+#, python-brace-format
+msgid "Could not start unsquashfs: {error}"
+msgstr "unsquashfs شروع نہیں کیا جا سکا: {error}"
+
+#: src/mainuan_install_appimage/inspector.py:278
+#: src/mainuan_install_appimage/inspector.py:318
+msgid "command time (s)"
+msgstr "کمانڈ کا وقت (s)"
+
+#: src/mainuan_install_appimage/inspector.py:287
+msgid "unsquashfs stderr (bytes)"
+msgstr "unsquashfs stderr (بائٹس)"
+
+#: src/mainuan_install_appimage/inspector.py:292
+msgid "unsquashfs stdout (bytes)"
+msgstr "unsquashfs stdout (بائٹس)"
+
+#: src/mainuan_install_appimage/inspector.py:301
+#: src/mainuan_install_appimage/inspector.py:304
+msgid "listing line (bytes)"
+msgstr "فہرست کی سطر (بائٹس)"
+
+#: src/mainuan_install_appimage/inspector.py:311
+msgid "allocation refused"
+msgstr "میموری مختص کرنے سے انکار"
+
+#: src/mainuan_install_appimage/inspector.py:311
+msgid "unsquashfs memory (bytes; exact usage unavailable)"
+msgstr "unsquashfs میموری (بائٹس؛ درست استعمال دستیاب نہیں)"
+
+#: src/mainuan_install_appimage/inspector.py:313
+msgid "SIGXCPU signal"
+msgstr "SIGXCPU سگنل"
+
+#: src/mainuan_install_appimage/inspector.py:313
+msgid "unsquashfs CPU (s)"
+msgstr "unsquashfs CPU (s)"
+
+#: src/mainuan_install_appimage/inspector.py:314
+#, python-brace-format
+msgid "unsquashfs exited with code {code}. {detail}"
+msgstr "unsquashfs کوڈ {code} کے ساتھ بند ہوا۔ {detail}"
+
+#: src/mainuan_install_appimage/inspector.py:316
+msgid "The listing is not valid UTF-8."
+msgstr "فہرست درست UTF-8 نہیں ہے۔"
+
+#: src/mainuan_install_appimage/inspector.py:347
+msgid "The -lln listing is malformed (fields/mode/UID/GID)."
+msgstr "-lln فہرست بگڑی ہوئی ہے (فیلڈز/موڈ/UID/GID)۔"
+
+#: src/mainuan_install_appimage/inspector.py:351
+msgid "The listing contains an invalid size."
+msgstr "فہرست میں غلط سائز ہے۔"
+
+#: src/mainuan_install_appimage/inspector.py:355
+msgid "The SquashFS root is not a directory."
+msgstr "SquashFS روٹ ڈائریکٹری نہیں ہے۔"
+
+#: src/mainuan_install_appimage/inspector.py:358
+msgid "Path outside the SquashFS root in the listing."
+msgstr "فہرست میں SquashFS روٹ سے باہر راستہ۔"
+
+#: src/mainuan_install_appimage/inspector.py:364
+msgid "link target (characters)"
+msgstr "ربط کا ہدف (حروف)"
+
+#: src/mainuan_install_appimage/inspector.py:366
+msgid "Invalid symbolic link."
+msgstr "غلط علامتی ربط۔"
+
+#: src/mainuan_install_appimage/inspector.py:368
+#: src/mainuan_install_appimage/inspector.py:438
+msgid "metadata path (characters)"
+msgstr "میٹا ڈیٹا راستہ (حروف)"
+
+#: src/mainuan_install_appimage/inspector.py:370
+msgid "Invalid or unsafe path in the listing."
+msgstr "فہرست میں غلط یا غیر محفوظ راستہ۔"
+
+#: src/mainuan_install_appimage/inspector.py:387
+#: src/mainuan_install_appimage/inspector.py:638
+#: src/mainuan_install_appimage/inspector.py:652
+msgid "total inspection time (s)"
+msgstr "معائنے کا کل وقت (s)"
+
+#: src/mainuan_install_appimage/inspector.py:393
+msgid "metadata path depth"
+msgstr "میٹا ڈیٹا راستے کی گہرائی"
+
+#: src/mainuan_install_appimage/inspector.py:396
+msgid "exact metadata queries"
+msgstr "میٹا ڈیٹا کے عین استفسارات"
+
+#: src/mainuan_install_appimage/inspector.py:402
+msgid "accumulated listings (bytes)"
+msgstr "جمع شدہ فہرستیں (بائٹس)"
+
+#: src/mainuan_install_appimage/inspector.py:408
+msgid "records examined in the selected listings"
+msgstr "منتخب فہرستوں میں جانچے گئے ریکارڈز"
+
+#: src/mainuan_install_appimage/inspector.py:410
+msgid "Duplicate path in the same listing."
+msgstr "ایک ہی فہرست میں دہرایا گیا راستہ۔"
+
+#: src/mainuan_install_appimage/inspector.py:412
+msgid "unsquashfs returned entries outside the requested selection/depth."
+msgstr "unsquashfs نے مطلوبہ انتخاب/گہرائی سے باہر اندراجات واپس کیے۔"
+
+#: src/mainuan_install_appimage/inspector.py:415
+msgid "Metadata differs between queries to the same image."
+msgstr "ایک ہی امیج کے استفسارات کے درمیان میٹا ڈیٹا مختلف ہے۔"
+
+#: src/mainuan_install_appimage/inspector.py:421
+msgid "Invalid metadata directory tree."
+msgstr "میٹا ڈیٹا ڈائریکٹری کا غلط ٹری۔"
+
+#: src/mainuan_install_appimage/inspector.py:440
+msgid "Unsafe metadata path."
+msgstr "غیر محفوظ میٹا ڈیٹا راستہ۔"
+
+#: src/mainuan_install_appimage/inspector.py:470
+msgid "symbolic link hops"
+msgstr "علامتی ربط کی چھلانگیں"
+
+#: src/mainuan_install_appimage/inspector.py:482
+msgid "The AppImage metadata path is invalid."
+msgstr "AppImage کا میٹا ڈیٹا راستہ غلط ہے۔"
+
+#: src/mainuan_install_appimage/inspector.py:502
+#: src/mainuan_install_appimage/inspector.py:674
+msgid ".desktop metadata (bytes)"
+msgstr ".desktop میٹا ڈیٹا (بائٹس)"
+
+#: src/mainuan_install_appimage/inspector.py:506
+msgid "The .desktop file is not encoded in UTF-8."
+msgstr ".desktop فائل UTF-8 میں انکوڈ نہیں ہے۔"
+
+#: src/mainuan_install_appimage/inspector.py:512
+msgid ".desktop line (characters)"
+msgstr ".desktop سطر (حروف)"
+
+#: src/mainuan_install_appimage/inspector.py:523
+msgid "The .desktop file is malformed."
+msgstr ".desktop فائل بگڑی ہوئی ہے۔"
+
+#: src/mainuan_install_appimage/inspector.py:526
+msgid "The .desktop file contains an invalid key."
+msgstr ".desktop فائل میں غلط کلید ہے۔"
+
+#: src/mainuan_install_appimage/inspector.py:529
+msgid "The .desktop file contains duplicate keys."
+msgstr ".desktop فائل میں دہرائی گئی کلیدیں ہیں۔"
+
+#: src/mainuan_install_appimage/inspector.py:532
+msgid "The AppImage does not contain a valid [Desktop Entry] section."
+msgstr "AppImage میں درست [Desktop Entry] سیکشن نہیں ہے۔"
+
+#: src/mainuan_install_appimage/inspector.py:534
+msgid "The .desktop file does not describe an application."
+msgstr ".desktop فائل کسی ایپلی کیشن کی وضاحت نہیں کرتی۔"
+
+#: src/mainuan_install_appimage/inspector.py:562
+msgid "icon reference (characters)"
+msgstr "آئیکن کا حوالہ (حروف)"
+
+#: src/mainuan_install_appimage/inspector.py:586
+msgid "icons read (bytes)"
+msgstr "پڑھے گئے آئیکنز (بائٹس)"
+
+#: src/mainuan_install_appimage/inspector.py:595
+msgid "PNG dimensions (width,height,pixels)"
+msgstr "PNG ابعاد (چوڑائی، اونچائی، پکسلز)"
+
+#: src/mainuan_install_appimage/inspector.py:620
+#, python-brace-format
+msgid "Could not open the selected file: {error}"
+msgstr "منتخب فائل نہیں کھولی جا سکی: {error}"
+
+#: src/mainuan_install_appimage/inspector.py:622
+msgid "The selected file is not a regular file."
+msgstr "منتخب فائل ایک عام فائل نہیں ہے۔"
+
+#: src/mainuan_install_appimage/inspector.py:624
+msgid "Truncated ELF header: file smaller than 64 bytes."
+msgstr "نامکمل ELF ہیڈر: فائل 64 بائٹس سے چھوٹی ہے۔"
+
+#: src/mainuan_install_appimage/inspector.py:626
+msgid "AppImage file (bytes)"
+msgstr "AppImage فائل (بائٹس)"
+
+#: src/mainuan_install_appimage/inspector.py:632
+msgid ""
+"Incompatible format: only AppImage Type 2 with a type 2 AI signature is "
+"accepted."
+msgstr ""
+"غیر مطابق فارمیٹ: صرف type 2 AI دستخط والی AppImage Type 2 قبول کی جاتی ہے۔"
+
+#: src/mainuan_install_appimage/inspector.py:645
+msgid ""
+"Incompatible or invalid format. Only AppImages Type 2 with a validated "
+"SquashFS 4.0 are accepted."
+msgstr ""
+"غیر مطابق یا غلط فارمیٹ۔ صرف تصدیق شدہ SquashFS 4.0 والی AppImages Type 2 "
+"قبول کی جاتی ہیں۔"
+
+#: src/mainuan_install_appimage/inspector.py:664
+msgid "The AppImage does not contain a regular .desktop file at its root."
+msgstr "AppImage کے روٹ میں کوئی عام .desktop فائل نہیں ہے۔"
+
+#: src/mainuan_install_appimage/inspector.py:667
+msgid ".desktop candidates at the root"
+msgstr "روٹ میں .desktop امیدوار"
+
+#: src/mainuan_install_appimage/inspector.py:676
+msgid "The .desktop link is invalid or escapes the tree."
+msgstr ".desktop ربط غلط ہے یا ٹری سے باہر جاتا ہے۔"
+
+#: src/mainuan_install_appimage/inspector.py:687
+msgid "The AppImage does not contain valid .desktop metadata."
+msgstr "AppImage میں درست .desktop میٹا ڈیٹا نہیں ہے۔"
+
+#: src/mainuan_install_appimage/inspector.py:709
+msgid "Could not validate the AppImage."
+msgstr "AppImage کی توثیق نہیں ہو سکی۔"
+
+#: src/mainuan_install_appimage/installer.py:49
+#, python-brace-format
+msgid "Could not query the package manager: {error}"
+msgstr "پیکیج منیجر سے استفسار نہیں کیا جا سکا: {error}"
+
+#: src/mainuan_install_appimage/installer.py:65
+msgid "dpkg-query failed; it is not safe to continue."
+msgstr "dpkg-query ناکام ہو گیا؛ جاری رکھنا محفوظ نہیں۔"
+
+#: src/mainuan_install_appimage/installer.py:68
+msgid "The dpkg-query response is malformed."
+msgstr "dpkg-query کا جواب بگڑا ہوا ہے۔"
+
+#: src/mainuan_install_appimage/installer.py:70
+msgid ""
+"The package is in a partial state in dpkg. Examine it before continuing."
+msgstr "پیکیج dpkg میں جزوی حالت میں ہے۔ جاری رکھنے سے پہلے اس کا جائزہ لیں۔"
+
+#: src/mainuan_install_appimage/installer.py:105
+msgid ""
+"A package with this identifier already exists that was not installed by this "
+"tool. It will be preserved."
+msgstr ""
+"اس شناخت کنندہ والا ایک پیکیج پہلے سے موجود ہے جو اس ٹول نے انسٹال نہیں کیا۔ "
+"اسے محفوظ رکھا جائے گا۔"
+
+#: src/mainuan_install_appimage/installer.py:117
+msgid ""
+"The package identifier belongs to another installation. No file will be "
+"replaced."
+msgstr ""
+"پیکیج کا شناخت کنندہ کسی دوسری انسٹالیشن سے تعلق رکھتا ہے۔ کوئی فائل تبدیل "
+"نہیں کی جائے گی۔"
+
+#: src/mainuan_install_appimage/installer.py:139
+msgid ""
+"A legacy installation with this name was detected. The dpkg database and the "
+"existing files will not be repaired automatically."
+msgstr ""
+"اس نام کی ایک پرانی انسٹالیشن ملی ہے۔ dpkg ڈیٹا بیس اور موجودہ فائلوں کی "
+"خودکار مرمت نہیں کی جائے گی۔"
+
+#: src/mainuan_install_appimage/installer.py:158
+msgid "The installer's fallback icon is not available."
+msgstr "انسٹالر کا متبادل آئیکن دستیاب نہیں۔"
+
+#: src/mainuan_install_appimage/installer.py:172
+msgid "Icon conversion cannot run as root."
+msgstr "آئیکن کی تبدیلی root کے طور پر نہیں چل سکتی۔"
+
+#: src/mainuan_install_appimage/installer.py:188
+msgid "Could not prepare the package icons."
+msgstr "پیکیج کے آئیکنز تیار نہیں کیے جا سکے۔"
+
+#: src/mainuan_install_appimage/installer.py:216
+#, python-brace-format
+msgid "Launcher categories refused: {error}"
+msgstr "لانچر کی کیٹیگریز مسترد کر دی گئیں: {error}"
+
+#: src/mainuan_install_appimage/installer.py:295
+#, python-brace-format
+msgid "The destination {path} is not a secure directory."
+msgstr "منزل {path} محفوظ ڈائریکٹری نہیں ہے۔"
+
+#: src/mainuan_install_appimage/installer.py:303
+#, python-brace-format
+msgid "The destination {path} already exists and is not a regular file."
+msgstr "منزل {path} پہلے سے موجود ہے اور ایک عام فائل نہیں ہے۔"
+
+#: src/mainuan_install_appimage/installer.py:305
+#, python-brace-format
+msgid ""
+"The destination {path} already exists without a valid managed installation."
+msgstr "منزل {path} کسی درست منظم انسٹالیشن کے بغیر پہلے سے موجود ہے۔"
+
+#: src/mainuan_install_appimage/installer.py:312
+#, python-brace-format
+msgid "The file {path} does not belong to a package managed by this tool."
+msgstr "فائل {path} اس ٹول کے زیرِ انتظام کسی پیکیج سے تعلق نہیں رکھتی۔"
+
+#: src/mainuan_install_appimage/installer.py:326
+#, python-brace-format
+msgid "Could not prepare the package: {error}"
+msgstr "پیکیج تیار نہیں کیا جا سکا: {error}"
+
+#: src/mainuan_install_appimage/installer.py:338
+#, python-brace-format
+msgid "dpkg-deb could not build the package: {detail}"
+msgstr "dpkg-deb پیکیج نہیں بنا سکا: {detail}"
+
+#: src/mainuan_install_appimage/installer.py:339
+#: src/mainuan_install_appimage/installer.py:497
+msgid "unknown error"
+msgstr "نامعلوم خرابی"
+
+#: src/mainuan_install_appimage/installer.py:350
+msgid "The prepared package's control data does not match the installation."
+msgstr "تیار شدہ پیکیج کا کنٹرول ڈیٹا انسٹالیشن سے مطابقت نہیں رکھتا۔"
+
+#: src/mainuan_install_appimage/installer.py:354
+msgid "Invalid or oversized Debian control data."
+msgstr "Debian کنٹرول ڈیٹا غلط یا حد سے بڑا ہے۔"
+
+#: src/mainuan_install_appimage/installer.py:359
+msgid "The package contains control files that are not allowed."
+msgstr "پیکیج میں ایسی کنٹرول فائلیں ہیں جن کی اجازت نہیں۔"
+
+#: src/mainuan_install_appimage/installer.py:362
+msgid "Invalid Debian control ownership."
+msgstr "Debian کنٹرول کی غلط ملکیت۔"
+
+#: src/mainuan_install_appimage/installer.py:365
+msgid "Invalid Debian control file."
+msgstr "غلط Debian کنٹرول فائل۔"
+
+#: src/mainuan_install_appimage/installer.py:367
+msgid "Debian control fields not allowed."
+msgstr "Debian کنٹرول فیلڈز کی اجازت نہیں۔"
+
+#: src/mainuan_install_appimage/installer.py:369
+msgid "Invalid Debian control directory."
+msgstr "غلط Debian کنٹرول ڈائریکٹری۔"
+
+#: src/mainuan_install_appimage/installer.py:404
+msgid "Duplicate or oversized Debian manifest."
+msgstr "Debian مینی فیسٹ دہرایا گیا یا حد سے بڑا ہے۔"
+
+#: src/mainuan_install_appimage/installer.py:407
+msgid "Invalid Debian ownership metadata."
+msgstr "Debian ملکیت کا غلط میٹا ڈیٹا۔"
+
+#: src/mainuan_install_appimage/installer.py:410
+msgid "Directory outside the allowed manifest."
+msgstr "اجازت شدہ مینی فیسٹ سے باہر ڈائریکٹری۔"
+
+#: src/mainuan_install_appimage/installer.py:413
+msgid "File or link outside the allowed manifest."
+msgstr "اجازت شدہ مینی فیسٹ سے باہر فائل یا ربط۔"
+
+#: src/mainuan_install_appimage/installer.py:416
+msgid "Invalid Debian file permissions."
+msgstr "غلط Debian فائل اجازتیں۔"
+
+#: src/mainuan_install_appimage/installer.py:418
+msgid "Size outside the allowed manifest."
+msgstr "اجازت شدہ مینی فیسٹ سے باہر سائز۔"
+
+#: src/mainuan_install_appimage/installer.py:424
+msgid "The AppImage in the package does not match the validated snapshot."
+msgstr "پیکیج میں موجود AppImage تصدیق شدہ اسنیپ شاٹ سے مطابقت نہیں رکھتی۔"
+
+#: src/mainuan_install_appimage/installer.py:426
+msgid "Incomplete or invalid Debian manifest."
+msgstr "نامکمل یا غلط Debian مینی فیسٹ۔"
+
+#: src/mainuan_install_appimage/installer.py:428
+#, python-brace-format
+msgid "Could not validate the package files: {error}"
+msgstr "پیکیج کی فائلوں کی توثیق نہیں ہو سکی: {error}"
+
+#: src/mainuan_install_appimage/installer.py:443
+msgid "Could not identify the system architecture."
+msgstr "سسٹم کا آرکیٹیکچر معلوم نہیں کیا جا سکا۔"
+
+#: src/mainuan_install_appimage/installer.py:447
+#, python-brace-format
+msgid ""
+"The AppImage is {architecture}, but the system is {host_architecture}. The "
+"installation was canceled."
+msgstr ""
+"AppImage {architecture} ہے، لیکن سسٹم {host_architecture} ہے۔ انسٹالیشن "
+"منسوخ کر دی گئی۔"
+
+#: src/mainuan_install_appimage/installer.py:464
+msgid "The package manager is busy. Try again after the other transaction."
+msgstr "پیکیج منیجر مصروف ہے۔ دوسری ٹرانزیکشن کے بعد دوبارہ کوشش کریں۔"
+
+#: src/mainuan_install_appimage/installer.py:477
+msgid "The file changed since the inspection. Select it again."
+msgstr "معائنے کے بعد فائل تبدیل ہو گئی۔ اسے دوبارہ منتخب کریں۔"
+
+#: src/mainuan_install_appimage/installer.py:499
+#, python-brace-format
+msgid ""
+"dpkg did not complete the transaction. The previous installation was not "
+"removed beforehand; dpkg itself may leave a partially configured "
+"transaction. Details: {details}"
+msgstr ""
+"dpkg نے ٹرانزیکشن مکمل نہیں کی۔ پچھلی انسٹالیشن پہلے نہیں ہٹائی گئی تھی؛ "
+"dpkg خود ایک جزوی طور پر ترتیب شدہ ٹرانزیکشن چھوڑ سکتا ہے۔ تفصیلات: {details}"
+
+#: src/mainuan_install_appimage/installer.py:504
+msgid "Installation completed by dpkg."
+msgstr "dpkg نے انسٹالیشن مکمل کر دی۔"
+
+#: src/mainuan_install_appimage/installer.py:509
+msgid "The temporary copy identifier is invalid."
+msgstr "عارضی نقل کا شناخت کنندہ غلط ہے۔"
+
+#: src/mainuan_install_appimage/installer.py:518
+msgid "The file is not in the allowed temporary area."
+msgstr "فائل اجازت شدہ عارضی جگہ میں نہیں ہے۔"
+
+#: src/mainuan_install_appimage/installer.py:533
+msgid "Could not validate the secure temporary file."
+msgstr "محفوظ عارضی فائل کی توثیق نہیں ہو سکی۔"
+
+#: src/mainuan_install_appimage/installer.py:549
+msgid "The temporary area or the file has invalid permissions."
+msgstr "عارضی جگہ یا فائل کی اجازتیں غلط ہیں۔"
+
+#: src/mainuan_install_appimage/installer.py:566
+msgid "The copy exceeded the size or time limit."
+msgstr "نقل سائز یا وقت کی حد سے تجاوز کر گئی۔"
+
+#: src/mainuan_install_appimage/installer.py:573
+msgid "The temporary copy does not match the inspected file."
+msgstr "عارضی نقل معائنہ شدہ فائل سے مطابقت نہیں رکھتی۔"
+
+#: src/mainuan_install_appimage/privileged.py:24
+msgid "This helper can only be started by PolicyKit."
+msgstr "یہ مددگار صرف PolicyKit کے ذریعے شروع کیا جا سکتا ہے۔"
+
+#: src/mainuan_install_appimage/privileged.py:31
+msgid "Could not identify the user who requested the installation."
+msgstr "انسٹالیشن کی درخواست کرنے والے صارف کی شناخت نہیں ہو سکی۔"
+
+#: src/mainuan_install_appimage/privileged.py:34
+msgid "Unrecognized administrative operation."
+msgstr "نامعلوم انتظامی کارروائی۔"
+
+#: src/mainuan_install_appimage/privileged.py:52
+msgid "File received and hash verified."
+msgstr "فائل موصول ہو گئی اور ہیش کی تصدیق ہو گئی۔"
+
+#: src/mainuan_install_appimage/reduced.py:35
+msgid "The inspection process did not drop all privileges."
+msgstr "معائنے کے عمل نے تمام مراعات ترک نہیں کیں۔"
+
+#: src/mainuan_install_appimage/reduced.py:37
+msgid "Could not block new privileges."
+msgstr "نئی مراعات کو روکا نہیں جا سکا۔"
+
+#: src/mainuan_install_appimage/reduced.py:41
+msgid "The inspection process still has capabilities."
+msgstr "معائنے کے عمل کے پاس ابھی بھی خصوصی صلاحیتیں (capabilities) ہیں۔"
+
+#: src/mainuan_install_appimage/reduced.py:73
+msgid "Invalid input descriptor."
+msgstr "غلط ان پٹ ڈسکرپٹر۔"
+
+#: src/mainuan_install_appimage/reduced.py:77
+msgid ""
+"Operational limit: parser memory; address space limit=1073741824 bytes; "
+"exact usage unavailable."
+msgstr ""
+"آپریشنل حد: پارسر میموری؛ ایڈریس اسپیس کی حد=1073741824 بائٹس؛ درست استعمال "
+"دستیاب نہیں۔"
+
+#: src/mainuan_install_appimage/staging.py:27
+msgid "The environment does not provide a secure temporary directory."
+msgstr "ماحول کوئی محفوظ عارضی ڈائریکٹری فراہم نہیں کرتا۔"
+
+#: src/mainuan_install_appimage/staging.py:32
+msgid "The secure temporary directory is not available."
+msgstr "محفوظ عارضی ڈائریکٹری دستیاب نہیں۔"
+
+#: src/mainuan_install_appimage/staging.py:39
+msgid "The secure temporary directory has invalid permissions."
+msgstr "محفوظ عارضی ڈائریکٹری کی اجازتیں غلط ہیں۔"
+
+#: src/mainuan_install_appimage/staging.py:52
+#, python-brace-format
+msgid "Could not read the selected file: {error}"
+msgstr "منتخب فائل پڑھی نہیں جا سکی: {error}"
+
+#: src/mainuan_install_appimage/staging.py:64
+msgid "Could not prepare the secure temporary area."
+msgstr "محفوظ عارضی جگہ تیار نہیں کی جا سکی۔"
+
+#: src/mainuan_install_appimage/staging.py:72
+msgid "The secure temporary area has invalid permissions."
+msgstr "محفوظ عارضی جگہ کی اجازتیں غلط ہیں۔"
+
+#: src/mainuan_install_appimage/staging.py:79
+msgid "The selected file is not regular or exceeds the limit."
+msgstr "منتخب فائل عام فائل نہیں ہے یا حد سے تجاوز کرتی ہے۔"
+
+#: src/mainuan_install_appimage/staging.py:93
+msgid "Copying the file to a protected temporary area…"
+msgstr "فائل کو محفوظ عارضی جگہ میں کاپی کیا جا رہا ہے…"
+
+#: src/mainuan_install_appimage/staging.py:102
+msgid "The selected file exceeds the size limit."
+msgstr "منتخب فائل سائز کی حد سے تجاوز کرتی ہے۔"
+
+#: src/mainuan_install_appimage/staging.py:114
+msgid "The file was changed during the copy; select it again."
+msgstr "کاپی کے دوران فائل تبدیل ہو گئی؛ اسے دوبارہ منتخب کریں۔"
+
+#: src/mainuan_install_appimage/staging.py:116
+msgid "Validating ELF, architecture, SquashFS and metadata…"
+msgstr "ELF، آرکیٹیکچر، SquashFS اور میٹا ڈیٹا کی توثیق ہو رہی ہے…"
+
+#: src/mainuan_install_appimage/staging.py:119
+msgid "The temporary copy does not match the selected file."
+msgstr "عارضی نقل منتخب فائل سے مطابقت نہیں رکھتی۔"
