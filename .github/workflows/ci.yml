@@ -1,0 +1,93 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    tags: ['v[0-9]*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref_type != 'tag' }}
+
+jobs:
+  package:
+    permissions:
+      contents: write # only the release job uses it, and only for v* tags
+    uses: mainuan/.github/.github/workflows/debian-package.yml@2409a50535befe90ac3bbfc4db6eed7d65eac4e5
+    with:
+      package: mainuan-install-appimage
+      release-title: Mainuan Instalador de AppImage
+      # The unit tests run in debian/rules (dh_auto_test).
+      test-command: |
+        po/i18n.sh check-pot
+        po/i18n.sh validate
+        python3 -m py_compile packaging/mainuan-install-appimage packaging/privileged-install
+        desktop-file-validate packaging/mainuan-install-appimage.desktop
+        rm -rf packaging/__pycache__
+      extra-install-packages: desktop-file-utils libxml2-utils
+      smoke-command: |
+        test -x /usr/bin/mainuan-install-appimage
+        helper=/usr/lib/mainuan-install-appimage/privileged-install
+        test -x "$helper"
+        test -f /usr/share/man/man1/mainuan-install-appimage.1.gz
+        test -f /usr/share/mainuan-install-appimage/AppImage.png
+        test -f /usr/share/locale/pt_BR/LC_MESSAGES/mainuan-install-appimage.mo
+        desktop=/usr/share/applications/mainuan-install-appimage.desktop
+        desktop-file-validate "$desktop"
+        grep -q '^Name\[pt_BR\]=' "$desktop"
+        policy=/usr/share/polkit-1/actions/br.com.mainuan.install-appimage.policy
+        mime=/usr/share/mime/packages/mainuan-appimage.xml
+        xmllint --noout "$policy" "$mime"
+        grep -q 'id="br.com.mainuan.install-appimage.install"' "$policy"
+        grep -q "<annotate key=\"org.freedesktop.policykit.exec.path\">$helper</annotate>" "$policy"
+        grep -q 'xml:lang="pt_BR"' "$policy"
+        grep -q 'xml:lang="pt_BR"' "$mime"
+        # The administrative helper refuses to run without PolicyKit (root).
+        if out="$(LANGUAGE=pt_BR "$helper" --install /tmp/x 0 2>&1)"; then
+          echo "privileged-install ran as a regular user"; exit 1
+        fi
+        grep -q 'Este helper só pode ser iniciado pelo PolicyKit.' <<<"$out"
+        # The window starts offscreen and stays open after refusing a non-AppImage.
+        printf 'not an AppImage\n' > "$HOME/sample.AppImage"
+        rc=0
+        LANGUAGE=pt_BR timeout 15 mainuan-install-appimage "$HOME/sample.AppImage" > "$HOME/gui.log" 2>&1 || rc=$?
+        cat "$HOME/gui.log"
+        test "$rc" -eq 124
+        if grep -q 'Traceback' "$HOME/gui.log"; then exit 1; fi
+        # Inspect a synthetic type 2 AppImage and build/validate its package
+        # with the installed modules, as the regular user (no dpkg -i).
+        cat > "$HOME/e2e.py" <<'PY'
+        import struct, subprocess, sys, tempfile
+        from pathlib import Path
+        from PyQt6.QtWidgets import QApplication
+        from mainuan_install_appimage.inspector import inspect_appimage
+        from mainuan_install_appimage.installer import build_deb, validate_built_package
+        app = QApplication(["smoke"])
+        work = Path(tempfile.mkdtemp())
+        root = work / "root"
+        root.mkdir()
+        (root / "Editor.desktop").write_text(
+            "[Desktop Entry]\nType=Application\nName=Smoke Editor\nComment=Smoke test\n"
+            "X-AppImage-Version=1.2\nIcon=smoke\nCategories=Office;\nExec=never-run\n")
+        (root / "smoke.png").write_bytes(Path("/usr/share/mainuan-install-appimage/AppImage.png").read_bytes())
+        subprocess.run(["mksquashfs", str(root), str(work / "fs"), "-noappend", "-quiet", "-no-progress"], check=True)
+        header = bytearray(64)
+        header[:7] = b"\x7fELF\x02\x01\x01"
+        header[8:11] = b"AI\x02"
+        struct.pack_into("<HHI", header, 16, 3, 62, 1)
+        struct.pack_into("<H", header, 52, 64)
+        image = work / "Smoke Editor.AppImage"
+        image.write_bytes(bytes(header) + (work / "fs").read_bytes())
+        info = inspect_appimage(image)
+        print(info.name, info.version, info.architecture, info.package_name, info.categories)
+        assert info.name == "Smoke Editor" and info.architecture == "amd64", info
+        deb = build_deb(info, image, work / "out.deb")
+        validate_built_package(deb, info)
+        print(subprocess.run(["dpkg-deb", "--contents", str(deb)], check=True, text=True, capture_output=True).stdout)
+        PY
+        python3 -I "$HOME/e2e.py"

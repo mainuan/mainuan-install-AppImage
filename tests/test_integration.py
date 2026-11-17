@@ -13,6 +13,44 @@ from mainuan_install_appimage.installer import package_manager_lock, Installatio
 from test_installer import ROOT, _isolated_dpkg
 
 
+def _binary_stanza() -> dict[str, str]:
+    """Fields of the binary package in debian/control (continuation lines joined)."""
+    stanzas, current, key = [], {}, None
+    for line in (ROOT / 'debian/control').read_text(encoding='utf-8').splitlines():
+        if not line.strip():
+            if current:
+                stanzas.append(current)
+            current, key = {}, None
+        elif line[0] in ' \t' and key:
+            current[key] += ' ' + line.strip()
+        else:
+            key, _, value = line.partition(':')
+            current[key] = value.strip()
+    if current:
+        stanzas.append(current)
+    return next(stanza for stanza in stanzas if stanza.get('Package') == 'mainuan-install-appimage')
+
+
+def _stand_in_package(base: Path) -> Path:
+    """The package is built after the tests (dpkg-buildpackage), so dpkg is given
+    a package with the relations declared in debian/control and the launcher
+    path. Set MAINUAN_INSTALL_APPIMAGE_DEB to check a built .deb instead."""
+    stanza = _binary_stanza()
+    tree = base / 'new'
+    (tree / 'DEBIAN').mkdir(parents=True)
+    fields = ['Package: mainuan-install-appimage', 'Version: 0', 'Architecture: all',
+              'Maintainer: Test <test@example.invalid>']
+    fields += [f'{name}: {stanza[name]}' for name in ('Provides', 'Conflicts', 'Replaces')]
+    fields.append('Description: stand-in with the relations of debian/control')
+    (tree / 'DEBIAN/control').write_text('\n'.join(fields) + '\n')
+    desktop = tree / 'usr/share/applications/mainuan-install-appimage.desktop'
+    desktop.parent.mkdir(parents=True)
+    desktop.write_bytes((ROOT / 'packaging/mainuan-install-appimage.desktop').read_bytes())
+    deb = base / 'new.deb'
+    subprocess.run(['dpkg-deb', '--build', '--root-owner-group', str(tree), str(deb)], check=True, stdout=subprocess.PIPE)
+    return deb
+
+
 class IntegrationTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -80,8 +118,7 @@ class IntegrationTests(unittest.TestCase):
             launcher.write_text('[Desktop Entry]\nType=Application\nName=Old fixture\nExec=/usr/tigertools/AppImage-Installer %F\n')
             old_deb = base / 'old.deb'
             subprocess.run(['dpkg-deb', '--build', '--root-owner-group', str(old), str(old_deb)], check=True, stdout=subprocess.PIPE)
-            new_deb = base / 'new.deb'
-            subprocess.run(['bash', str(ROOT / 'build.sh'), str(new_deb)], check=True, stdout=subprocess.PIPE)
+            new_deb = Path(os.environ.get('MAINUAN_INSTALL_APPIMAGE_DEB') or _stand_in_package(base))
             root = base / 'root'
             installed = _isolated_dpkg(root, ['-i', str(old_deb)])
             self.assertEqual(installed.returncode, 0, installed.stderr)

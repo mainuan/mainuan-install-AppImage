@@ -1,0 +1,41 @@
+Source: mainuan-install-appimage
+Section: admin
+Priority: optional
+Maintainer: Mainuan <openwebosbr@gmail.com>
+Build-Depends: debhelper-compat (= 13),
+               dh-sequence-python3,
+               gettext,
+               python3,
+               desktop-file-utils <!nocheck>,
+               python3-pyqt6 <!nocheck>,
+               shared-mime-info <!nocheck>,
+               squashfs-tools <!nocheck>
+Standards-Version: 4.7.2
+Rules-Requires-Root: no
+Homepage: https://github.com/mainuan/mainuan-install-AppImage
+Vcs-Browser: https://github.com/mainuan/mainuan-install-AppImage
+Vcs-Git: https://github.com/mainuan/mainuan-install-AppImage.git
+
+Package: mainuan-install-appimage
+Architecture: all
+Depends: ${misc:Depends},
+         ${python3:Depends},
+         hicolor-icon-theme,
+         pkexec,
+         polkitd,
+         python3-pyqt6,
+         qt6-wayland,
+         shared-mime-info,
+         squashfs-tools
+Provides: appimage-installer
+Conflicts: appimage-installer
+Replaces: appimage-installer
+Description: safe AppImage installer for Mainuan
+ Qt Widgets interface that inspects AppImage (type 2) files without running
+ them and installs them through a Debian package transaction. The
+ inspection runs as an unprivileged user; a PolicyKit-authorized helper
+ builds a package with a fixed file list (the AppImage under
+ /opt/mainuan-appimages, a launcher and icons) and installs it with dpkg.
+ .
+ The interface is translated and follows the language of the KDE Plasma
+ session.
