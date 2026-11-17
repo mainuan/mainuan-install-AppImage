@@ -59,18 +59,25 @@ scripts de manutenção fornecidos pelo arquivo não são preservados.
 
 ## Construção e uso
 
-Dependências de construção: `bash`, `coreutils`, `findutils`, `gzip` e `dpkg`
-(para `dpkg-deb`). Para testes: `python3-pyqt6` e `squashfs-tools`;
-`lintian` para análise do pacote. A construção não baixa
-nem executa binários externos:
+O pacote é construído pelo diretório padrão `debian/` (debhelper); a versão vem
+de `debian/changelog` e as dependências de construção e de teste estão em
+`debian/control`. A construção não baixa nem executa binários externos e
+executa a suíte de testes:
 
 ```sh
-./build.sh
+sudo apt build-dep ./
+dpkg-buildpackage -us -uc -b      # gera ../mainuan-install-appimage_<versão>_all.deb
 ```
 
-O pacote oficial é criado em
-`dist/mainuan-install-appimage_2.0.1_all.deb`. Instale-o com o gerenciador de
-pacotes da distribuição. Depois, abra um AppImage pelo Dolphin ou execute:
+O workflow `.github/workflows/ci.yml` usa o pipeline compartilhado da
+organização: em cada pull request e push constrói e testa o pacote, roda
+lintian, instala, reinstala e remove o pacote num Ubuntu 26.04 limpo e executa
+um teste de fumaça (helper recusado sem PolicyKit, janela offscreen, inspeção e
+geração de pacote de um AppImage sintético). A release, com `SHA256SUMS`, só é
+publicada a partir de uma tag `v<versão>`.
+
+Instale o pacote com o gerenciador de pacotes da distribuição. Depois, abra um
+AppImage pelo Dolphin ou execute:
 
 ```sh
 mainuan-install-appimage "/caminho com espaços/Aplicativo.AppImage"
@@ -119,7 +126,7 @@ temporárias:
 
 ```sh
 PYTHONPATH=src QT_QPA_PLATFORM=offscreen python3 -m unittest discover -s tests -v
-lintian dist/mainuan-install-appimage_2.0.1_all.deb
+lintian ../mainuan-install-appimage_*_all.deb
 ```
 
 O modo offscreen não valida renderização real no Plasma, tema claro/escuro,
@@ -168,8 +175,8 @@ O resultado apresenta Abrir aplicativo → Fechar; o aplicativo só executa apó
 ## Validação desta entrega
 
 Veja [VALIDATION.md](VALIDATION.md) para os resultados históricos de validação,
-simulações, limitações e roteiro de VM. Os artefatos de teste permanecem em
-`dist/`; o pacote oficial é gerado pelo comando acima e será anexado à Release.
+simulações, limitações e roteiro de VM. O pacote oficial é gerado pelo GitHub
+Actions e anexado à Release com `SHA256SUMS`.
 A associação instalada anuncia o MIME AppImage ao Dolphin; preferências MIME
 já salvas pelo usuário podem exigir selecionar “Abrir com” uma vez.
 

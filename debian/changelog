@@ -1,3 +1,19 @@
+mainuan-install-appimage (2.1.0) resolute; urgency=medium
+
+  * Interface, entrada .desktop, ação do PolicyKit e tipo MIME traduzidos
+    (gettext) em 33 idiomas, seguindo o idioma da sessão do KDE Plasma; o
+    helper administrativo envia mensagens sem tradução e a interface as
+    traduz no idioma do usuário.
+  * Layout espelhado para idiomas da direita para a esquerda.
+  * Empacotamento Debian padrão (debhelper) no lugar de DEBIAN/ e build.sh,
+    com o mesmo conjunto de arquivos instalados e os catálogos .mo. Os
+    módulos Python são compilados na instalação e limpos na remoção
+    (dh_python3), sem deixar __pycache__ para trás.
+  * Pipeline de CI com testes, lintian e teste de instalação e remoção em
+    pull requests e pushes; release apenas a partir de tag.
+
+ -- Mainuan <openwebosbr@gmail.com>  Tue, 17 Nov 2026 11:45:00 -0300
+
 mainuan-install-appimage (2.0.1) unstable; urgency=medium
 
   * Primeira versão estável da migração para Qt Widgets no Mainuan.

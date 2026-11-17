@@ -173,14 +173,21 @@ PY
   rm -rf "$tmp"
 }
 
+# Compared without the creation date and without the python-brace-format
+# flag: GNU gettext 1.0 also sets it for positional "{}" placeholders, older
+# releases (Ubuntu 26.04) do not, and the flag does not change the template.
+pot_normalize() {
+  grep -v '^"POT-Creation-Date:' | sed -E -e '/^#,/ s/,? ?python-brace-format//' -e '/^#,? ?$/d'
+}
+
 cmd_check_pot() {
   # Extract into a temporary POT: the committed file is never rewritten, so
   # parallel runs (ctest -j) cannot see a half-written template.
   local committed=$POT tmp; tmp=$(mktemp --suffix=.pot)
   cp "$committed" "$tmp"
   POT=$tmp cmd_extract >/dev/null
-  if ! diff -q <(grep -v '^"POT-Creation-Date:' "$committed") <(grep -v '^"POT-Creation-Date:' "$tmp") >/dev/null; then
-    diff -u <(grep -v '^"POT-Creation-Date:' "$committed") <(grep -v '^"POT-Creation-Date:' "$tmp") | head -40 >&2
+  if ! diff -q <(pot_normalize < "$committed") <(pot_normalize < "$tmp") >/dev/null; then
+    diff -u <(pot_normalize < "$committed") <(pot_normalize < "$tmp") | head -40 >&2
     rm -f "$tmp"
     echo "i18n.sh: POT is out of date — run po/i18n.sh extract && po/i18n.sh update" >&2; exit 1
   fi

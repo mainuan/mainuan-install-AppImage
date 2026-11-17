@@ -51,7 +51,7 @@ PYTHONPATH=src QT_QPA_PLATFORM=offscreen python3 -m unittest discover -s tests -
 
 ## Empacotamento
 
-`build.sh` (requer `gettext`):
+`debian/rules` (requer `gettext`):
 
 * compila `po/*.po` em `usr/share/locale/<lang>/LC_MESSAGES/`;
 * `packaging/mainuan-install-appimage.desktop`, `packaging/br.com.mainuan.install-appimage.policy`
@@ -83,7 +83,7 @@ não seguem o formato (saída bruta do dpkg) aparecem como estão. Os marcadores
 
 * Dados que entram no pacote gerado ou no protocolo: a versão sentinela
   `Não informada`, o nome/comentário de fallback `Aplicativo AppImage` gravados
-  no `.desktop` do aplicativo instalado, o `Description:` do `DEBIAN/control`
+  no `.desktop` do aplicativo instalado, o `Description:` do controle Debian do pacote
   gerado (validado byte a byte), identificadores de categoria freedesktop.
 * Saída bruta de `dpkg`/`unsquashfs`/Python (`OSError` etc.).
 * Motivos internos descartados sem exibição (`installation_state`) e a guarda

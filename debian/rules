@@ -1,0 +1,58 @@
+#!/usr/bin/make -f
+export QT_QPA_PLATFORM = offscreen
+export PYTHONDONTWRITEBYTECODE = 1
+# ITS rules for the polkit policy and the MIME package live in po/its.
+export GETTEXTDATADIRS = $(CURDIR)/po
+
+PKG := debian/mainuan-install-appimage
+BUILD := debian/build
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	mkdir -p $(BUILD)
+	po/i18n.sh compile $(BUILD)/locale
+	msgfmt --desktop --template=packaging/mainuan-install-appimage.desktop -d po \
+		-o $(BUILD)/mainuan-install-appimage.desktop
+	msgfmt --xml --template=packaging/br.com.mainuan.install-appimage.policy -d po \
+		-o $(BUILD)/br.com.mainuan.install-appimage.policy
+	msgfmt --xml --template=packaging/appimage-mime.xml -d po \
+		-o $(BUILD)/mainuan-appimage.xml
+	# msgfmt writes BCP 47 tags (pt-BR, zh-Hans-CN); polkitd and Qt/KDE look
+	# translations up by POSIX locale (pt_BR, zh_CN).
+	sed -i -E -e 's/xml:lang="([a-z]{2,3})-[A-Z][a-z]{3}-([A-Z]{2})"/xml:lang="\1_\2"/g' \
+		-e 's/xml:lang="([a-z]{2,3})-([A-Za-z0-9]+)"/xml:lang="\1_\2"/g' \
+		$(BUILD)/br.com.mainuan.install-appimage.policy $(BUILD)/mainuan-appimage.xml
+
+override_dh_auto_test:
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+	PYTHONPATH=src python3 -m unittest discover -s tests -v
+endif
+
+override_dh_auto_install:
+	install -D -m 0755 packaging/mainuan-install-appimage $(PKG)/usr/bin/mainuan-install-appimage
+	install -D -m 0755 packaging/privileged-install \
+		$(PKG)/usr/lib/mainuan-install-appimage/privileged-install
+	install -d $(PKG)/usr/lib/python3/dist-packages/mainuan_install_appimage
+	install -m 0644 src/mainuan_install_appimage/*.py \
+		$(PKG)/usr/lib/python3/dist-packages/mainuan_install_appimage/
+	install -D -m 0644 src/AppImage.png $(PKG)/usr/share/mainuan-install-appimage/AppImage.png
+	install -D -m 0644 src/AppImage.png \
+		$(PKG)/usr/share/icons/hicolor/128x128/apps/mainuan-install-appimage.png
+	install -D -m 0644 $(BUILD)/mainuan-install-appimage.desktop \
+		$(PKG)/usr/share/applications/mainuan-install-appimage.desktop
+	install -D -m 0644 $(BUILD)/br.com.mainuan.install-appimage.policy \
+		$(PKG)/usr/share/polkit-1/actions/br.com.mainuan.install-appimage.policy
+	install -D -m 0644 $(BUILD)/mainuan-appimage.xml \
+		$(PKG)/usr/share/mime/packages/mainuan-appimage.xml
+	mkdir -p $(PKG)/usr/share/locale
+	cp -r $(BUILD)/locale/. $(PKG)/usr/share/locale/
+
+# README.md and SECURITY.md stay uncompressed, as in the previous packages.
+override_dh_compress:
+	dh_compress -X.md
+
+override_dh_auto_clean:
+	rm -rf $(BUILD)
+	find . -name __pycache__ -prune -exec rm -rf {} +

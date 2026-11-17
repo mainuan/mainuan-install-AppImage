@@ -7,7 +7,7 @@ publicação. Nenhuma instalação foi feita no dpkg real deste host.
 
 O usuário confirmou instalação bem-sucedida do Kdenlive e funcionamento do botão
 Abrir aplicativo. A entrada apareceu em Utilitários. Esses resultados pertencem
-ao teste real do usuário na VM, não a uma instalação executada por este agente.
+ao teste real do usuário na VM, não a uma instalação feita no ambiente de build.
 
 ## Causa e correção
 
